@@ -26,14 +26,630 @@ namespace CARED.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18, 2)");
 
+                    b.Property<string>("Group")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue("N/A");
+
                     b.Property<string>("ProcedureName")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("SubGroup")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue("N/A");
+
                     b.HasKey("ProcedureID");
 
                     b.ToTable("Procedures");
+
+                    b.HasData(
+                        new
+                        {
+                            ProcedureID = 1,
+                            Amount = 182.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "URINALYSIS",
+                            SubGroup = "I. CLINICAL MICROSCOPY"
+                        },
+                        new
+                        {
+                            ProcedureID = 2,
+                            Amount = 182.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "STOOL",
+                            SubGroup = "I. CLINICAL MICROSCOPY"
+                        },
+                        new
+                        {
+                            ProcedureID = 3,
+                            Amount = 275.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "FECAL OCCULT BLOOD",
+                            SubGroup = "I. CLINICAL MICROSCOPY"
+                        },
+                        new
+                        {
+                            ProcedureID = 4,
+                            Amount = 385.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "PT (SERUM)",
+                            SubGroup = "II. SEROLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 5,
+                            Amount = 242.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BLOOD TYPING",
+                            SubGroup = "II. SEROLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 6,
+                            Amount = 440.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "VDRL",
+                            SubGroup = "II. SEROLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 7,
+                            Amount = 440.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HBsAg",
+                            SubGroup = "II. SEROLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 8,
+                            Amount = 440.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "Anti- HBs",
+                            SubGroup = "II. SEROLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 9,
+                            Amount = 2024.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "NS1, IgM/IgG",
+                            SubGroup = "II. SEROLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 10,
+                            Amount = 770.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HIV SCREENING",
+                            SubGroup = "II. SEROLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 11,
+                            Amount = 300.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CBC",
+                            SubGroup = "III. HEMATOLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 12,
+                            Amount = 193.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CLOTTING TIME",
+                            SubGroup = "III. HEMATOLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 13,
+                            Amount = 193.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BLEEDING TIME",
+                            SubGroup = "III. HEMATOLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 14,
+                            Amount = 220.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "ESR",
+                            SubGroup = "III. HEMATOLOGY"
+                        },
+                        new
+                        {
+                            ProcedureID = 15,
+                            Amount = 825.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "LIPID PANEL with FBS",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 16,
+                            Amount = 330.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "GLUCOSE/FBS/RBS",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 17,
+                            Amount = 363.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CHOLESTEROL",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 18,
+                            Amount = 385.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "TRIGLYCERIDES",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 19,
+                            Amount = 385.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HDL",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 20,
+                            Amount = 330.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CREATININE",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 21,
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BUA",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 22,
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BUN",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 23,
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "SGPT",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 24,
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "SGOT",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 25,
+                            Amount = 352.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "ALKALINE PHOSPHATASE",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 26,
+                            Amount = 770.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HbA1C",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 27,
+                            Amount = 770.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "OGTT 75g 2HRS",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
+                        },
+                        new
+                        {
+                            ProcedureID = 28,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "SKULL AP AND LATERAL",
+                            SubGroup = "I. HEAD"
+                        },
+                        new
+                        {
+                            ProcedureID = 29,
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "PARANASAL SINUS (CALDWELL @ WATERS)",
+                            SubGroup = "I. HEAD"
+                        },
+                        new
+                        {
+                            ProcedureID = 30,
+                            Amount = 440.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "SHOULDER AP",
+                            SubGroup = "II. UPPER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 31,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "FOREARMS AP LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 32,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "ELBOW AP LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 33,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "WRIST AP LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 34,
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "HAND PA OBLIQUE and LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 35,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "HUMERUS APL",
+                            SubGroup = "II. UPPER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 36,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "LEG (TIBIA FIBULA) AP LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 37,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "KNEE AP AND LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 38,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "ANKLE AP OBLIQUE and LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 39,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "FOOT AP, OBLIQUE and LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 40,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "FOOT LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
+                        },
+                        new
+                        {
+                            ProcedureID = 41,
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CERVICAL SPINE APL",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
+                        },
+                        new
+                        {
+                            ProcedureID = 42,
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CERVICAL SPINE (open mouth) APL",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
+                        },
+                        new
+                        {
+                            ProcedureID = 43,
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "LUMBOSACRAL",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
+                        },
+                        new
+                        {
+                            ProcedureID = 44,
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "THORACIC SPINE",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
+                        },
+                        new
+                        {
+                            ProcedureID = 45,
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "PELVIC XRAY",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
+                        },
+                        new
+                        {
+                            ProcedureID = 46,
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST PA",
+                            SubGroup = "V. THORACIC"
+                        },
+                        new
+                        {
+                            ProcedureID = 47,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST PAL",
+                            SubGroup = "V. THORACIC"
+                        },
+                        new
+                        {
+                            ProcedureID = 48,
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST AP(Pedia)",
+                            SubGroup = "V. THORACIC"
+                        },
+                        new
+                        {
+                            ProcedureID = 49,
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST APL (Pedia)",
+                            SubGroup = "V. THORACIC"
+                        },
+                        new
+                        {
+                            ProcedureID = 50,
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST LATERAL",
+                            SubGroup = "V. THORACIC"
+                        },
+                        new
+                        {
+                            ProcedureID = 51,
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST APICOLORDOTIC",
+                            SubGroup = "V. THORACIC"
+                        },
+                        new
+                        {
+                            ProcedureID = 52,
+                            Amount = 506.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "ECG 12L WITH RS",
+                            SubGroup = "VI. OTHERS"
+                        },
+                        new
+                        {
+                            ProcedureID = 53,
+                            Amount = 1650.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "WHOLE ABDOMEN",
+                            SubGroup = "I. GENERAL"
+                        },
+                        new
+                        {
+                            ProcedureID = 54,
+                            Amount = 1100.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "UPPER ABDOMEN",
+                            SubGroup = "I. GENERAL"
+                        },
+                        new
+                        {
+                            ProcedureID = 55,
+                            Amount = 990.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "LOWER ABDOMEN",
+                            SubGroup = "I. GENERAL"
+                        },
+                        new
+                        {
+                            ProcedureID = 56,
+                            Amount = 990.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "KUB",
+                            SubGroup = "I. GENERAL"
+                        },
+                        new
+                        {
+                            ProcedureID = 57,
+                            Amount = 1155.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "KUB + PROSTATE",
+                            SubGroup = "I. GENERAL"
+                        },
+                        new
+                        {
+                            ProcedureID = 58,
+                            Amount = 1100.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "HBT",
+                            SubGroup = "I. GENERAL"
+                        },
+                        new
+                        {
+                            ProcedureID = 59,
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "TRANSVAGINAL",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 60,
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "PREGNANT PELVIS/TRANS AB UTZ",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 61,
+                            Amount = 1500.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "PELVIC UTZ W/ CERVICAL LENGTH",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 62,
+                            Amount = 1200.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "BIOPHYSICAL PROFILE",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 63,
+                            Amount = 2000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "DOPPLER VELOCIMETRY",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 64,
+                            Amount = 2000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "CONGENITAL ANOMALY SCAN",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 65,
+                            Amount = 2500.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "CAS W/ CERVICAL LENGTH",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 66,
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "4D UTZ PIC ALONE",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 67,
+                            Amount = 2100.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "W/ BIOMETRY",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 68,
+                            Amount = 2900.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "WITH BIOMETRY CD AND PIC",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 69,
+                            Amount = 1300.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "1ST TRINUCHAL SCREEN",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 70,
+                            Amount = 1200.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "TRANSRECTAL",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 71,
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "NON PREGNANT PELVIS",
+                            SubGroup = "II. OB ULTRASOUND"
+                        },
+                        new
+                        {
+                            ProcedureID = 72,
+                            Amount = 5300.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "POST BRONCHIAL SPIROMETRY",
+                            SubGroup = "III. OTHERS"
+                        },
+                        new
+                        {
+                            ProcedureID = 73,
+                            Amount = 3900.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "24H ABPM",
+                            SubGroup = "III. OTHERS"
+                        },
+                        new
+                        {
+                            ProcedureID = 74,
+                            Amount = 4400.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "24H HOLTER MONITORING",
+                            SubGroup = "III. OTHERS"
+                        },
+                        new
+                        {
+                            ProcedureID = 75,
+                            Amount = 3300.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "ABI",
+                            SubGroup = "III. OTHERS"
+                        });
                 });
 
             modelBuilder.Entity("CARED.Models.TransactedProcedure", b =>
@@ -68,7 +684,9 @@ namespace CARED.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Insurer")
                         .IsRequired()
@@ -93,7 +711,7 @@ namespace CARED.Migrations
             modelBuilder.Entity("CARED.Models.TransactedProcedure", b =>
                 {
                     b.HasOne("CARED.Models.Procedure", "Procedure")
-                        .WithMany("TransactedProcedures")
+                        .WithMany()
                         .HasForeignKey("ProcedureID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -107,11 +725,6 @@ namespace CARED.Migrations
                     b.Navigation("Procedure");
 
                     b.Navigation("Transaction");
-                });
-
-            modelBuilder.Entity("CARED.Models.Procedure", b =>
-                {
-                    b.Navigation("TransactedProcedures");
                 });
 
             modelBuilder.Entity("CARED.Models.Transaction", b =>
