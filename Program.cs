@@ -1,41 +1,66 @@
-using Microsoft.EntityFrameworkCore;
 using CARED.Data;
+using CARED.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace CARED
 {
     internal static class Program
     {
+        public static IHost? AppHost { get; private set; }
+
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            // 1. Initialize and ensure the database exists.
-            // This is crucial to create the 'app_database.db' file and all the tables 
-            // defined in your AppDatabaseContext based on the models.
-            try
-            {
-                using (var db = new AppDatabaseContext())
+
+            AppHost = Host.CreateDefaultBuilder(args).ConfigureServices((context, services) =>
                 {
-                    // This method runs any pending migrations or creates the database if it doesn't exist.
-                    db.Database.Migrate();
+                    // 1. EF Core DbContext Registration
+                    // Register the AppDatabaseContext with the dependency injection container.
+                    services.AddDbContext<AppDatabaseContext>(options =>
+                    {
+                        // Using SQLite connection defined here
+                        options.UseSqlite("Data Source=app_database.db");
+
+                        // Inside services.AddDbContext<AppDatabaseContext>(options => { ... });
+                        options.LogTo(Console.WriteLine, LogLevel.Information);
+                    });
+
+                    // 2. Service Layer Registration
+                    // If you have a User model):
+                    //services.AddTransient<IUserService, UserService>();
+
+                    // --- Registration for your core entities ---
+                    services.AddTransient<IProcedureService, ProcedureService>();
+                    services.AddTransient<ITransactionService, TransactionService>();
+
+                    // --- 3. WINFORMS REGISTRATION ---
+                    services.AddTransient<mainForm>();
+
+                })
+                .Build();
+
+            // --- Database Migration and Initialization ---
+            using (var scope = AppHost.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDatabaseContext>();
+                try
+                {
+                    dbContext.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"FATAL: Database initialization failed. Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
-            catch (Exception ex)
-            {
-                // In a real application, you would log this error and potentially show a 
-                // user-friendly message box instead of just writing to the console.
-                Console.WriteLine($"Database initialization failed: {ex.Message}");
-                MessageBox.Show($"FATAL: Database initialization failed. Ensure the app has file write permissions. Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Optionally exit the application if the database is critical
-                 return;
-            }
-
-            // 2. Run the main form of the application.
-            // Replace 'Form1' with your actual starting form class name.
-            Application.Run(new mainForm());
+            Application.Run(AppHost.Services.GetRequiredService<mainForm>());
         }
     }
 }

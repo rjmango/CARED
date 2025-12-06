@@ -15,7 +15,7 @@ namespace CARED.Data
         public DbSet<TransactedProcedure> TransactedProcedures { get; set; }
 
         // We use the parameterless constructor for direct instantiation
-        public AppDatabaseContext() : base()
+        public AppDatabaseContext(DbContextOptions<AppDatabaseContext> options) : base(options)
         {
         }
 

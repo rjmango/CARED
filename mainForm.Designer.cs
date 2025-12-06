@@ -1,6 +1,12 @@
-﻿namespace CARED
+﻿using System;
+using System.Windows.Forms;
+using CARED.Services;
+using System.Collections.Generic;
+using CARED.Models;
+
+namespace CARED
 {
-    partial class mainForm
+    public partial class mainForm : Form
     {
         /// <summary>
         ///  Required designer variable.
@@ -11,6 +17,7 @@
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -35,5 +42,13 @@
         }
 
         #endregion
+
+        // Inject the Service Layer through the constructor
+        private readonly IProcedureService _procedureService;
+        public mainForm(IProcedureService procedureService)
+        {
+            InitializeComponent();
+            _procedureService = procedureService;
+        }
     }
 }
