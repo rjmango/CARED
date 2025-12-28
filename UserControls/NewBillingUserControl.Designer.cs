@@ -12,12 +12,12 @@ namespace CARED.UserControls
         private System.ComponentModel.IContainer components = null;
        
         private IProcedureService _procedureService;
-        private ITransactionService transactionService;
+        private ITransactionService _transactionService;
 
         public NewBillingUserControl(IProcedureService procedureService, ITransactionService transactionService)
         {
             _procedureService = procedureService;
-            this.transactionService = transactionService;
+            _transactionService = transactionService;
             InitializeComponent();
         }
         /// <summary> 
