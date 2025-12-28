@@ -1,12 +1,25 @@
-﻿namespace CARED.UserControls
+﻿using System;
+using System.Windows.Forms;
+using CARED.Services; // Assuming your service interfaces are here
+
+namespace CARED.UserControls
 {
-    partial class NewBillingUserControl
+    public partial class NewBillingUserControl
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+       
+        private IProcedureService _procedureService;
+        private ITransactionService transactionService;
 
+        public NewBillingUserControl(IProcedureService procedureService, ITransactionService transactionService)
+        {
+            _procedureService = procedureService;
+            this.transactionService = transactionService;
+            InitializeComponent();
+        }
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
