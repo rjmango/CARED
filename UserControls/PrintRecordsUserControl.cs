@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CARED.UserControls
 {
-    public partial class DashboardUserControl : UserControl
+    public partial class PrintRecordsUserControl : UserControl
     {
-        public DashboardUserControl()
+        public PrintRecordsUserControl()
         {
             InitializeComponent();
         }

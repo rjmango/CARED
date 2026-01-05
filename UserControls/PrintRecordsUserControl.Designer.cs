@@ -1,6 +1,6 @@
 ﻿namespace CARED.UserControls
 {
-    partial class DashboardUserControl
+    partial class PrintRecordsUserControl
     {
         /// <summary> 
         /// Required designer variable.

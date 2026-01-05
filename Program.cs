@@ -46,7 +46,7 @@ namespace CARED
                     //services.AddTransient<TestForm>();
 
                     // --- Registration for your user controls ---
-                    services.AddTransient<DashboardUserControl>();
+                    services.AddTransient<PrintRecordsUserControl>();
                     services.AddTransient<NewBillingUserControl>();
                     services.AddTransient<RetrieveRecordsUserControl>();
 
