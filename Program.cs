@@ -42,8 +42,9 @@ namespace CARED
                     services.AddTransient<ITransactionService, TransactionService>();
 
                     // --- 3. WINFORMS REGISTRATION ---
-                    services.AddTransient<mainForm>();
+                    //services.AddTransient<mainForm>();
                     //services.AddTransient<TestForm>();
+                    services.AddTransient<newForm>();
 
                     // --- Registration for your user controls ---
                     services.AddTransient<DashboardUserControl>();
@@ -67,7 +68,8 @@ namespace CARED
                     return;
                 }
             }
-            Application.Run(AppHost.Services.GetRequiredService<mainForm>());
+            Application.Run(AppHost.Services.GetRequiredService<newForm>());
+            //Application.Run(AppHost.Services.GetRequiredService<mainForm>());
             //Application.Run(AppHost.Services.GetRequiredService<TestForm>());
         }
     }

@@ -145,8 +145,9 @@ namespace CARED
             InitializeComponent();
             SetupLayoutConfiguration();
 
-            // Start with Dashboard
-            ShowUserControl<DashboardUserControl>(btnDashboard);
+            // Start with 
+            ShowUserControl<NewBillingUserControl>(btnBilling);
+            //ShowUserControl<DashboardUserControl>(btnDashboard);
         }
 
         private void InitializeComponent()
@@ -156,44 +157,59 @@ namespace CARED
             btnBilling = new Button();
             btnRetrieve = new Button();
             contentPanel = new Panel();
-
-            this.sidePanel.SuspendLayout();
-            this.SuspendLayout();
-
-            // 1. sidePanel (Sidebar)
+            SuspendLayout();
+            // 
+            // sidePanel
+            // 
             sidePanel.BackColor = Color.FromArgb(194, 213, 132);
             sidePanel.Dock = DockStyle.Left;
             sidePanel.Location = new Point(0, 0);
             sidePanel.Name = "sidePanel";
+            sidePanel.Size = new Size(200, 450);
             sidePanel.TabIndex = 1;
-
-            // 2. CALL THE SETUPBUTTON METHOD HERE
-            // This is when the buttons are actually configured with colors and events.
-            Color btnColor = Color.FromArgb(174, 193, 112); // Slightly darker for contrast
-            SetupButton(btnDashboard, "Dashboard", 150, btnColor, Color.Black);
-            SetupButton(btnBilling, "New Record / Billing", 220, btnColor, Color.Black);
-            SetupButton(btnRetrieve, "Retrieve Past Records", 290, btnColor, Color.Black);
-
-            // 3. contentPanel (The 2/3 area)
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.Location = new Point(0, 0);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(75, 23);
+            btnDashboard.TabIndex = 0;
+            // 
+            // btnBilling
+            // 
+            btnBilling.Location = new Point(0, 0);
+            btnBilling.Name = "btnBilling";
+            btnBilling.Size = new Size(75, 23);
+            btnBilling.TabIndex = 0;
+            // 
+            // btnRetrieve
+            // 
+            btnRetrieve.Location = new Point(0, 0);
+            btnRetrieve.Name = "btnRetrieve";
+            btnRetrieve.Size = new Size(75, 23);
+            btnRetrieve.TabIndex = 0;
+            // 
+            // contentPanel
+            // 
             contentPanel.BackColor = Color.WhiteSmoke;
             contentPanel.Dock = DockStyle.Fill;
             contentPanel.Location = new Point(200, 0);
             contentPanel.Name = "contentPanel";
             contentPanel.Padding = new Padding(20);
+            contentPanel.Size = new Size(600, 450);
             contentPanel.TabIndex = 0;
-
-            // 4. mainForm Configuration
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(800, 450);
-            this.Controls.Add(contentPanel);
-            this.Controls.Add(sidePanel);
-            this.Name = "mainForm";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "CARED Management System";
-
-            this.sidePanel.ResumeLayout(false);
-            this.ResumeLayout(false);
+            // 
+            // mainForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(contentPanel);
+            Controls.Add(sidePanel);
+            Name = "mainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "CARED Management System";
+            ResumeLayout(false);
         }
 
         private void SetupButton(Button btn, string text, int top, Color backColor, Color textColor)
@@ -249,6 +265,7 @@ namespace CARED
             else if (btn == btnRetrieve) ShowUserControl<RetrieveRecordsUserControl>(btn);
         }
 
+        // This handles displaying user control and button highlighting
         private void ShowUserControl<T>(Button triggerButton) where T : UserControl
         {
             if (activeBtn != null) activeBtn.BackColor = Color.FromArgb(174, 193, 112);
