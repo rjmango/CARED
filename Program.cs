@@ -44,7 +44,7 @@ namespace CARED
                     services.AddTransient<CreateExcelSheetService>();
 
                     // --- 3. WINFORMS REGISTRATION ---
-                    services.AddTransient<mainForm>();
+                    services.AddTransient<printForm>();
 
                 })
                 .Build();
@@ -63,7 +63,7 @@ namespace CARED
                     return;
                 }
             }
-            Application.Run(AppHost.Services.GetRequiredService<mainForm>());
+            Application.Run(AppHost.Services.GetRequiredService<printForm>());
         }
     }
 }
