@@ -65,5 +65,7 @@ namespace CARED.Services
         /// Calculates the total cost for a specific transaction by summing the costs of all linked procedures.
         /// </summary>
         Task<decimal> CalculateTotalCostAsync(int transactionId);
+        // Returns a Tuple: (List of items, Total count of items)
+        Task<List<Transaction>> SearchTransactionsAsync(string? searchTerm);
     }
 }

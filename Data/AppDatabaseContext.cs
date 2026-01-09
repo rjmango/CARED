@@ -52,6 +52,12 @@ namespace CARED.Data
             // This calls the external static method to insert procedure data via migration.
             modelBuilder.Entity<Procedure>().HasData(ProcedureSeedData.GetInitialProcedures());
 
+            // *** Philippe: Transaction Seeding ***
+            modelBuilder.Entity<Transaction>().HasData(TransactionSeedData.GetTransactions());
+
+            // *** Philippe: TransactedProcedure Seeding ***
+            modelBuilder.Entity<TransactedProcedure>().HasData(TransactionSeedData.GetTransactedProcedures());
+
             // --- 3. Relationship Configuration ---
 
             // A. COMPOSITE PRIMARY KEY for the junction table
