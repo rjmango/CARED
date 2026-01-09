@@ -40,6 +40,9 @@ namespace CARED
                     services.AddTransient<IProcedureService, ProcedureService>();
                     services.AddTransient<ITransactionService, TransactionService>();
 
+                    // Register Excel generation service
+                    services.AddTransient<CreateExcelSheetService>();
+
                     // --- 3. WINFORMS REGISTRATION ---
                     services.AddTransient<mainForm>();
 
