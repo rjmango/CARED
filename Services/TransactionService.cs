@@ -15,7 +15,31 @@ namespace CARED.Services
         {
             _dbContext = dbContext;
         }
+        public async Task<List<Transaction>> SearchTransactionsAsync(string? searchTerm)
+        {
+            // 1. Start query and Include relationships
+            var query = _dbContext.Transactions
+                .Include(t => t.TransactedProcedures)
+                .ThenInclude(tp => tp.Procedure)
+                .AsNoTracking();
 
+            // 2. Apply Filter (if search term is provided)
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                string term = searchTerm.ToLower().Trim();
+                query = query.Where(t =>
+                    t.Name.ToLower().Contains(term) ||
+                    t.CsNo.ToLower().Contains(term) ||
+                    t.Personnel.ToLower().Contains(term) ||
+                    t.Company.ToLower().Contains(term) ||
+                    t.Insurer.ToLower().Contains(term));
+            }
+
+            // 3. Always Sort by Date (Most Recent First) and execute
+            return await query
+                .OrderByDescending(t => t.Date)
+                .ToListAsync();
+        }
         public async Task<Transaction> AddTransaction(Transaction transaction, IEnumerable<int> procedureIds)
         {
             // 1. Add the main transaction entity
