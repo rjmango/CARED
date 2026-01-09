@@ -46,18 +46,21 @@ namespace CARED.UserControls
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(191, 269);
+            label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(36, 49, 34);
+            label1.Location = new Point(2, 2);
             label1.Name = "label1";
-            label1.Size = new Size(418, 86);
+            label1.Size = new Size(264, 40);
             label1.TabIndex = 1;
-            label1.Text = "NEW BILLING";
+            label1.Text = "New Record Entry";
             // 
             // NewBillingUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(240, 237, 226);
             Controls.Add(label1);
             Name = "NewBillingUserControl";
             Size = new Size(800, 600);

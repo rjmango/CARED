@@ -144,9 +144,14 @@ namespace CARED
 
         private void ShowUserControl<T>(Button triggerButton) where T : UserControl
         {
-            if (activeBtn != null) activeBtn.BackColor = Color.FromArgb(37, 48, 35);
+            if (activeBtn != null)
+            {
+                activeBtn.BackColor = Color.FromArgb(37, 48, 35);
+                activeBtn.ForeColor = SystemColors.Window;
+            }
             activeBtn = triggerButton;
             activeBtn.BackColor = Color.FromArgb(149, 177, 114); // Darker highlight for active tab
+            activeBtn.ForeColor = Color.FromArgb(37, 48, 25);
 
             contentPanel.Controls.Clear();
             var control = _serviceProvider.GetRequiredService<T>();
