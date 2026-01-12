@@ -30,16 +30,14 @@
         {
             components = new System.ComponentModel.Container();
             label1 = new Label();
-            button1 = new Button();
             dataGridView1 = new DataGridView();
-            transactionBindingSource = new BindingSource(components);
-            textBox1 = new TextBox();
-            button2 = new Button();
             csNoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             transactedProceduresDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             personnelDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            transactionBindingSource = new BindingSource(components);
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)transactionBindingSource).BeginInit();
             SuspendLayout();
@@ -48,67 +46,32 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(35, 32);
+            label1.Location = new Point(20, 32);
             label1.Name = "label1";
             label1.Size = new Size(412, 81);
             label1.TabIndex = 1;
             label1.Text = "View Records";
             label1.Click += label1_Click;
             // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(1152, 132);
-            button1.Name = "button1";
-            button1.Size = new Size(91, 43);
-            button1.TabIndex = 2;
-            button1.Text = "Filter";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { csNoDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, transactedProceduresDataGridViewTextBoxColumn, personnelDataGridViewTextBoxColumn });
             dataGridView1.DataSource = transactionBindingSource;
-            dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystroke;
-            dataGridView1.Location = new Point(3, 210);
+            dataGridView1.Location = new Point(20, 200);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1240, 667);
+            dataGridView1.Size = new Size(1240, 660);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // transactionBindingSource
-            // 
-            transactionBindingSource.DataSource = typeof(Models.Transaction);
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(32, 132);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(1015, 43);
-            textBox1.TabIndex = 4;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(1044, 132);
-            button2.Name = "button2";
-            button2.Size = new Size(110, 43);
-            button2.TabIndex = 5;
-            button2.Text = "Search";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // csNoDataGridViewTextBoxColumn
             // 
@@ -155,14 +118,27 @@
             personnelDataGridViewTextBoxColumn.ReadOnly = true;
             personnelDataGridViewTextBoxColumn.Width = 125;
             // 
+            // transactionBindingSource
+            // 
+            transactionBindingSource.DataSource = typeof(Models.Transaction);
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(20, 132);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Search by Name, CS No, or Company...";
+            textBox1.Size = new Size(1211, 43);
+            textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
             // RetrieveRecordsUserControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button2);
             Controls.Add(textBox1);
             Controls.Add(dataGridView1);
-            Controls.Add(button1);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "RetrieveRecordsUserControl";
@@ -177,10 +153,8 @@
         #endregion
 
         private Label label1;
-        private Button button1;
         private DataGridView dataGridView1;
         private TextBox textBox1;
-        private Button button2;
         private BindingSource transactionBindingSource;
         private DataGridViewTextBoxColumn csNoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
