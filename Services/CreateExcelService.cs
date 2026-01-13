@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms; // <--- REQUIRED for SaveFileDialog
+using System.Windows.Forms;
 
 namespace CARED.Services
 {
@@ -33,7 +33,7 @@ namespace CARED.Services
                 ws.Style.Font.FontSize = 11;
 
                 // PAGINATION CONFIGURATION
-                const int MAX_ROWS_PER_PAGE = 70; // Standard A4 limit
+                const int MAX_ROWS_PER_PAGE = 70;
                 int rowsUsedOnCurrentPage = 0;
 
                 using (var context = new AppDatabaseContext())
@@ -59,52 +59,36 @@ namespace CARED.Services
                             int countLeft = leftTrans.TransactedProcedures.Count;
                             int countRight = (rightTrans != null) ? rightTrans.TransactedProcedures.Count : 0;
 
-                            // The pair height is determined by the longer list
                             int maxItemsInPair = Math.Max(countLeft, countRight);
-
-                            // Height = Header(11) + Items(Count) + Footer(2)
-                            // We treat the "Slip Block" as 13 static rows + item rows
                             int slipHeight = 13 + maxItemsInPair;
 
-                            // B. CHECK FOR "HUGE SLIP" (Multi-Page Scenario)
+                            // B. CHECK FOR "HUGE SLIP" OR PAGE OVERFLOW
                             bool isHugeSlip = slipHeight > MAX_ROWS_PER_PAGE;
 
                             if (isHugeSlip)
                             {
-                                // 1. If we are not at the top of a page, start a new one.
                                 if (rowsUsedOnCurrentPage > 0)
                                 {
                                     ws.PageSetup.AddHorizontalPageBreak(currentRow - 1);
                                     rowsUsedOnCurrentPage = 0;
                                 }
 
-                                // 2. Print the pair (It will naturally span multiple pages)
                                 int endRow = PrintPair(ws, leftTrans, rightTrans, currentRow, maxItemsInPair);
-
-                                // 3. FORCE NEW PAGE AFTER
-                                // The requirement: "succeeding charge slips need to start in a new page"
                                 ws.PageSetup.AddHorizontalPageBreak(endRow);
 
-                                // 4. Reset for next loop
-                                currentRow = endRow + 1; // Start next slip on the very next line (which is now a new page)
+                                currentRow = endRow + 1;
                                 rowsUsedOnCurrentPage = 0;
                             }
                             else
                             {
-                                // C. STANDARD SLIP (Fits on one page)
-
-                                // Check if it fits in the *remaining* space of the current page
                                 if (rowsUsedOnCurrentPage + slipHeight > MAX_ROWS_PER_PAGE)
                                 {
-                                    // It doesn't fit here, so push to next page
                                     ws.PageSetup.AddHorizontalPageBreak(currentRow - 1);
                                     rowsUsedOnCurrentPage = 0;
                                 }
 
-                                // Print normally
                                 int endRow = PrintPair(ws, leftTrans, rightTrans, currentRow, maxItemsInPair);
 
-                                // Update cursor (+3 for gap between slips)
                                 currentRow = endRow + 3;
                                 rowsUsedOnCurrentPage += (slipHeight + 3);
                             }
@@ -146,11 +130,10 @@ namespace CARED.Services
                 rightEnd = PrintSingleSlip(ws, right, startRow, "D", "E", maxItems);
             }
 
-            // Return the furthest row reached
             return Math.Max(leftEnd, rightEnd);
         }
 
-        // --- HELPER 2: Prints the actual content (Same as before) ---
+        // --- HELPER 2: Prints the actual content (UPDATED FOR FORMULAS) ---
         private static int PrintSingleSlip(IXLWorksheet ws, Transaction t, int startRow, string c1, string c2, int targetItemCount)
         {
             int r = startRow;
@@ -169,7 +152,7 @@ namespace CARED.Services
             ws.Range($"{c1}{r + 3}:{c2}{r + 3}").Merge();
 
             // INFO
-            ws.Cell($"{c1}{r + 5}").Value = $"CS No: {t.CsNo}     DATE: {t.Date:MM/dd/yyyy}";
+            ws.Cell($"{c1}{r + 5}").Value = $"CS No: {t.CsNo}      DATE: {t.Date:MM/dd/yyyy}";
             ws.Cell($"{c1}{r + 6}").Value = t.Name;
             ws.Cell($"{c1}{r + 7}").Value = t.Personnel;
             ws.Cell($"{c1}{r + 8}").Value = t.Company;
@@ -180,20 +163,22 @@ namespace CARED.Services
             ws.Cell($"{c2}{r + 10}").Value = "AMOUNT";
             ws.Cell($"{c2}{r + 10}").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-            r += 11; // Items start
+            r += 11; // Items start here
+
+            // TRACKING START ROW FOR FORMULA
+            int itemStartRow = r;
 
             // ITEMS
-            decimal sum = 0.00m;
             int itemsPrinted = 0;
             foreach (var item in t.TransactedProcedures)
             {
                 ws.Cell($"{c1}{r}").Value = item.Procedure.ProcedureName;
-                ws.Cell($"{c1}{r}").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left; // Left Align
+                ws.Cell($"{c1}{r}").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+
                 ws.Cell($"{c2}{r}").Value = item.Procedure.Amount;
                 ws.Cell($"{c2}{r}").Style.NumberFormat.Format = "#,##0.00";
                 ws.Cell($"{c2}{r}").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                sum += item.Procedure.Amount;
                 r++;
                 itemsPrinted++;
             }
@@ -201,11 +186,19 @@ namespace CARED.Services
             // PADDING (Vital for alignment)
             r += (targetItemCount - itemsPrinted);
 
+            // Determine the last row of data (including padding)
+            int itemEndRow = r - 1;
+
             // FOOTER
-            r++;
+            r++; // Move to Total Row
             ws.Cell($"{c1}{r}").Value = "TOTAL";
             ws.Cell($"{c1}{r}").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-            ws.Cell($"{c2}{r}").Value = sum;
+
+            // *** FORMULA CHANGE ***
+            // Instead of putting the 'sum' variable, we put a SUM formula.
+            // We include the full range (itemStartRow to itemEndRow) so if user adds text in padding, it calculates.
+            ws.Cell($"{c2}{r}").FormulaA1 = $"=SUM({c2}{itemStartRow}:{c2}{itemEndRow})";
+
             ws.Cell($"{c2}{r}").Style.NumberFormat.Format = "#,##0.00";
             ws.Cell($"{c2}{r}").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             ws.Cell($"{c2}{r}").Style.Font.Bold = true;
@@ -213,7 +206,6 @@ namespace CARED.Services
 
             return r;
         }
-
 
         public static void GenerateBillingStatement(int targetYear, int targetMonth, string bsName, string hmo, string defaultFileName)
         {
@@ -224,20 +216,12 @@ namespace CARED.Services
             {
                 sfd.Filter = "Excel Workbook|*.xlsx";
                 sfd.Title = "Save Billing Statement";
-                sfd.FileName = defaultFileName; // Suggest a filename
-
-                // If user clicks "Cancel", stop the function here.
-                if (sfd.ShowDialog() != DialogResult.OK)
-                {
-                    return;
-                }
-
-                finalFilePath = sfd.FileName; // This is the path they chose
+                sfd.FileName = defaultFileName;
+                if (sfd.ShowDialog() != DialogResult.OK) return;
+                finalFilePath = sfd.FileName;
             }
 
             // 2. GENERATE THE EXCEL FILE
-            decimal totalAmount = 0.00m;
-
             using (var workbook = new XLWorkbook())
             {
                 var ws = workbook.Worksheets.Add("Billing Statement");
@@ -301,6 +285,9 @@ namespace CARED.Services
 
                         int row = 15;
 
+                        // Keep track of where data starts for the Grand Total formula
+                        int dataStartRow = 15;
+
                         foreach (var transaction in entriesInAMonth)
                         {
                             ws.Cell($"A{row}").Value = transaction.Date;
@@ -311,7 +298,8 @@ namespace CARED.Services
                                 ws.Cell($"B{row}").Value = transaction.CsNo;
                                 ws.Cell($"C{row}").Value = transaction.Name;
 
-                                decimal sum = 0.00m;
+                                // Track start row for this specific transaction's sum
+                                int procStartRow = row;
 
                                 foreach (var transactedItem in transaction.TransactedProcedures)
                                 {
@@ -320,14 +308,17 @@ namespace CARED.Services
                                     ws.Cell($"E{row}").Value = transactedItem.Procedure.Amount;
                                     ws.Cell($"E{row}").Style.NumberFormat.Format = "#,##0.00";
 
-                                    sum += transactedItem.Procedure.Amount;
                                     row++;
                                 }
 
-                                totalAmount += sum;
-                                row--; // Step back to align Total
+                                int procEndRow = row - 1;
 
-                                ws.Cell($"F{row}").Value = sum;
+                                // Step back to align Total (same as your original logic)
+                                row--;
+
+                                // *** FORMULA CHANGE 1: PER PATIENT TOTAL ***
+                                // Formula: SUM(E_start : E_end)
+                                ws.Cell($"F{row}").FormulaA1 = $"=SUM(E{procStartRow}:E{procEndRow})";
                                 ws.Cell($"F{row}").Style.NumberFormat.Format = "#,##0.00";
 
                                 ws.Cell($"G{row}").Value = transaction.Personnel;
@@ -338,27 +329,36 @@ namespace CARED.Services
                         }
 
                         // --- SUMMARY SECTION ---
+                        int lastDataRow = row - 1;
+
                         ws.Cell($"C{row + 1}").Value = "TOTAL AMOUNT BILLED";
                         ws.Cell($"C{row + 1}").Style.Font.Bold = true;
-                        ws.Cell($"F{row + 1}").Value = totalAmount;
+
+                        // *** FORMULA CHANGE 2: GRAND TOTAL ***
+                        // Sum the 'Total' column (F). Empty cells are ignored by Excel SUM, 
+                        // so we can sum the whole range from 15 to end.
+                        ws.Cell($"F{row + 1}").FormulaA1 = $"=SUM(F{dataStartRow}:F{lastDataRow})";
                         ws.Cell($"F{row + 1}").Style.NumberFormat.Format = "#,##0.00";
                         ws.Cell($"F{row + 1}").Style.Font.Bold = true;
 
-                        decimal withheldTax = totalAmount * 0.02m;
-                        decimal netAmount = totalAmount - withheldTax;
-
+                        // *** FORMULA CHANGE 3: TAX ***
+                        // Tax = (Grand Total Cell) * 0.02
+                        // Grand Total is at F{row + 1}
                         ws.Cell($"C{row + 2}").Value = "LESS 2% WITHHELD TAX";
-                        ws.Cell($"F{row + 2}").Value = withheldTax;
+                        ws.Cell($"F{row + 2}").FormulaA1 = $"=F{row + 1}*0.02";
                         ws.Cell($"F{row + 2}").Style.NumberFormat.Format = "#,##0.00";
 
+                        // *** FORMULA CHANGE 4: NET TOTAL ***
+                        // Net = (Grand Total) - (Tax)
                         ws.Cell($"C{row + 3}").Value = "TOTAL";
                         ws.Cell($"C{row + 3}").Style.Font.Bold = true;
-                        
+
                         ws.Cell($"F{row + 3}").Style.Border.TopBorder = XLBorderStyleValues.Thin;
-                        ws.Cell($"F{row + 3}").Value = netAmount;
+                        ws.Cell($"F{row + 3}").FormulaA1 = $"=F{row + 1}-F{row + 2}";
                         ws.Cell($"F{row + 3}").Style.NumberFormat.Format = "#,##0.00";
                         ws.Cell($"F{row + 3}").Style.Font.Bold = true;
 
+                        // Signatories
                         ws.Cell($"C{row + 5}").Value = "PREPARED BY:";
                         ws.Cell($"F{row + 5}").Value = "NOTED BY:";
 
@@ -384,7 +384,6 @@ namespace CARED.Services
             }
 
             // 4. OPEN THE SAVED FILE
-            // No need for "/t" anymore because it's a real file the user saved.
             try
             {
                 var p = new Process();
