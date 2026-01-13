@@ -33,7 +33,7 @@ namespace CARED.Services
                 ws.Style.Font.FontSize = 11;
 
                 // PAGINATION CONFIGURATION
-                const int MAX_ROWS_PER_PAGE = 75; // Standard A4 limit
+                const int MAX_ROWS_PER_PAGE = 70; // Standard A4 limit
                 int rowsUsedOnCurrentPage = 0;
 
                 using (var context = new AppDatabaseContext())
