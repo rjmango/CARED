@@ -44,7 +44,11 @@ namespace CARED.UserControls
             if (ChargeSlipCheckBox.Checked)
             {
                 BillingStatementCheckBox.Checked = false;
-                bsPopup.Visible = false;
+                csSuggestion.Visible = true;
+            }
+            else 
+            {
+                csSuggestion.Visible = false;
             }
         }
 
@@ -115,6 +119,11 @@ namespace CARED.UserControls
         }
 
         private void hmoTitle_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
         {
 
         }

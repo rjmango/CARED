@@ -51,6 +51,7 @@
             bsNameTitle = new TextBox();
             hmoTitle = new TextBox();
             bsNameLabel = new Label();
+            csSuggestion = new Label();
             border = new Panel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -263,6 +264,7 @@
             tableLayoutPanel6.Controls.Add(ChargeSlipCheckBox, 0, 0);
             tableLayoutPanel6.Controls.Add(BillingStatementCheckBox, 1, 0);
             tableLayoutPanel6.Controls.Add(bsPopup, 1, 1);
+            tableLayoutPanel6.Controls.Add(csSuggestion, 0, 1);
             tableLayoutPanel6.Dock = DockStyle.Fill;
             tableLayoutPanel6.Location = new Point(0, 0);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -355,6 +357,18 @@
             bsNameLabel.Text = "Title:";
             bsNameLabel.Click += label1_Click;
             // 
+            // csSuggestion
+            // 
+            csSuggestion.AutoSize = true;
+            csSuggestion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            csSuggestion.Location = new Point(3, 56);
+            csSuggestion.Name = "csSuggestion";
+            csSuggestion.Size = new Size(229, 30);
+            csSuggestion.TabIndex = 18;
+            csSuggestion.Text = "Suggestion for printing: A4, Portrait, Fit All Columns on One Page";
+            csSuggestion.Visible = false;
+            csSuggestion.Click += label1_Click_1;
+            // 
             // border
             // 
             border.BackColor = SystemColors.ActiveCaptionText;
@@ -418,5 +432,6 @@
         private TextBox bsNameTitle;
         private TextBox hmoTitle;
         private Label bsNameLabel;
+        private Label csSuggestion;
     }
 }
