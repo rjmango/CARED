@@ -70,7 +70,7 @@ namespace CARED
             btnPrintRecords.Name = "btnPrintRecords";
             btnPrintRecords.Size = new Size(149, 36);
             btnPrintRecords.TabIndex = 0;
-            btnPrintRecords.Text = "Print Records";
+            btnPrintRecords.Text = "Export Records";
             btnPrintRecords.UseVisualStyleBackColor = false;
             btnPrintRecords.Click += HandleNavClick;
             // 
@@ -115,6 +115,7 @@ namespace CARED
             contentPanel.Padding = new Padding(20);
             contentPanel.Size = new Size(600, 450);
             contentPanel.TabIndex = 0;
+            contentPanel.Paint += contentPanel_Paint;
             // 
             // mainForm
             // 
@@ -137,7 +138,7 @@ namespace CARED
         private void HandleNavClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (btn == btnPrintRecords) ShowUserControl<PrintRecordsUserControl>(btn);
+            if (btn == btnPrintRecords) ShowUserControl<ExportRecordsUserControl>(btn);
             else if (btn == btnNewRecord) ShowUserControl<NewBillingUserControl>(btn);
             else if (btn == btnRetrieveRecords) ShowUserControl<RetrieveRecordsUserControl>(btn);
         }

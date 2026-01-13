@@ -11,5 +11,10 @@ namespace CARED
         {
             this.Close();
         }
+
+        private void contentPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
