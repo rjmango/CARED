@@ -81,48 +81,58 @@ namespace CARED.Services
         }
         public async Task UpdateTransaction(Transaction updatedTransaction, IEnumerable<int> newProcedureIds)
         {
-            // 1. Update the main Transaction entity details
-            _dbContext.Transactions.Update(updatedTransaction);
-
-            // 2. Handle Junction Table updates (the linked procedures)
-            // Fetch the existing transaction with its current procedures
+            // 1. Fetch the EXISTING record from the database (Tracked by EF)
             var existingTransaction = await _dbContext.Transactions
                 .Include(t => t.TransactedProcedures)
                 .FirstOrDefaultAsync(t => t.TransactionID == updatedTransaction.TransactionID);
 
-            if(existingTransaction == null)
+            if (existingTransaction == null)
             {
                 throw new KeyNotFoundException($"Transaction with ID {updatedTransaction.TransactionID} not found.");
             }
 
-            // Remove old links that are not in the newProcedureIds list
+            // 2. Update Scalar Properties
+            // Copy values from the form object (updatedTransaction) to the database object (existingTransaction)
+            existingTransaction.CsNo = updatedTransaction.CsNo;
+            existingTransaction.Name = updatedTransaction.Name;
+            existingTransaction.Date = updatedTransaction.Date;
+            existingTransaction.Personnel = updatedTransaction.Personnel;
+            existingTransaction.Company = updatedTransaction.Company;
+            existingTransaction.Insurer = updatedTransaction.Insurer;
+
+            // 3. Handle Junction Table Updates (Add/Remove Procedures)
+
+            // A. Identify links to REMOVE (Present in DB, but NOT in the new list)
             var linksToRemove = existingTransaction.TransactedProcedures
                 .Where(tp => !newProcedureIds.Contains(tp.ProcedureID))
                 .ToList();
 
-            foreach(var link in linksToRemove)
+            foreach (var link in linksToRemove)
             {
                 existingTransaction.TransactedProcedures.Remove(link);
             }
-            // Identify and add new links
-            var existingProceureIds = existingTransaction.TransactedProcedures.Select(tp => tp.ProcedureID).ToList();
-            var procedureIdsToAdd = newProcedureIds.Except(existingProceureIds).ToList();
 
-            if (procedureIdsToAdd.Any())
+            // B. Identify links to ADD (Present in new list, but NOT in DB)
+            var existingProcedureIds = existingTransaction.TransactedProcedures
+                .Select(tp => tp.ProcedureID)
+                .ToList();
+
+            var procedureIdsToAdd = newProcedureIds
+                .Except(existingProcedureIds)
+                .ToList();
+
+            foreach (var procedureId in procedureIdsToAdd)
             {
-                // NOTE: We still need to create new junction entities for added procedures, 
-                // but we only use the IDs, avoiding a database SELECT query here too.
-                foreach (var procedureId in procedureIdsToAdd)
+                existingTransaction.TransactedProcedures.Add(new TransactedProcedure
                 {
-                    existingTransaction.TransactedProcedures.Add(new TransactedProcedure
-                    {
-                        TransactionID = existingTransaction.TransactionID,
-                        ProcedureID = procedureId
-                    });
-                }
+                    TransactionID = existingTransaction.TransactionID,
+                    ProcedureID = procedureId
+                    // Note: We DO NOT set the 'Procedure' navigation property here, 
+                    // only the ID. This prevents EF from trying to attach a Procedure object.
+                });
             }
 
-            // Save all changes (updates to Transaction and changes to TransactedProcedures)
+            // 4. Save Changes
             await _dbContext.SaveChangesAsync();
         }
         public async Task DeleteTransaction(int id)

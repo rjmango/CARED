@@ -6,9 +6,9 @@ namespace CARED.Forms
 {
     public class DeleteConfirmationForm : Form
     {
-        private Button btnDelete;
-        private Button btnCancel;
-        private Label lblMessage;
+        private Button btnDelete = null!;
+        private Button btnCancel = null!;
+        private Label lblMessage = null!;
 
         public DeleteConfirmationForm()
         {
@@ -22,6 +22,8 @@ namespace CARED.Forms
             this.btnCancel = new Button();
             this.SuspendLayout();
 
+            this.BackColor = System.Drawing.Color.White;
+
             // Label
             this.lblMessage.Text = "Are you sure you want to delete this record?\nThis action cannot be undone.";
             this.lblMessage.Location = new Point(20, 20);
@@ -32,7 +34,7 @@ namespace CARED.Forms
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Location = new Point(50, 90);
             this.btnCancel.Size = new Size(100, 35);
-            //this.btnCancel.Click += (s, e) => this.DialogResult = DialogResult.Cancel;
+            this.btnCancel.Click += (s, e) => this.DialogResult = DialogResult.Cancel;
 
             // Delete Button
             this.btnDelete.Text = "Delete";
@@ -40,10 +42,11 @@ namespace CARED.Forms
             this.btnDelete.Size = new Size(100, 35);
             this.btnDelete.BackColor = Color.IndianRed;
             this.btnDelete.ForeColor = Color.White;
-            //this.btnDelete.Click += (s, e) => {
-            //    this.DialogResult = DialogResult.OK;
-            //    this.Close();
-            //};
+            this.btnDelete.Click += (s, e) =>
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            };
 
             // Form Setup
             this.ClientSize = new Size(350, 150);

@@ -17,6 +17,7 @@ namespace CARED.UserControls
     {
         // 1. Add a field to hold the service
         private readonly ITransactionService? _transactionService;
+        private readonly IProcedureService? _procedureService;
 
         // 2. Add a parameterless constructor for the Visual Studio Designer to work
         public RetrieveRecordsUserControl()
@@ -25,19 +26,20 @@ namespace CARED.UserControls
         }
 
         // 3. Add the main constructor that accepts the service (Dependency Injection)
-        public RetrieveRecordsUserControl(ITransactionService transactionService) : this()
+        public RetrieveRecordsUserControl(ITransactionService transactionService, IProcedureService procedureService) : this()
         {
             _transactionService = transactionService;
+            _procedureService = procedureService;
 
-            // Wire up the event manually here to be safe
-            textBox1.TextChanged += textBox1_TextChanged; // Type-as-you-go Search
+            // Wired up the event manually here to be safe
+            // Type-as-you-go Search
+            textBox1.TextChanged += textBox1_TextChanged; 
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
-            // *** NEW: Add Double Click Event ***
+            // Double Click Event 
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
 
             SetupDataGridView();
-
-            // *** CALL THE STYLING METHOD HERE ***
+            // Styling Method
             ApplyModernStyle();
         }
         private void SetupDataGridView()
@@ -52,16 +54,12 @@ namespace CARED.UserControls
 
             // CS No: Small (e.g., 10%)
             csNoDataGridViewTextBoxColumn.FillWeight = 13;
-
             // Date: Small-Medium (e.g., 12%)
             dateDataGridViewTextBoxColumn.FillWeight = 12;
-
             // Name: Medium (e.g., 18%)
             nameDataGridViewTextBoxColumn.FillWeight = 15;
-
             // Personnel: Medium (e.g., 15%)
             personnelDataGridViewTextBoxColumn.FillWeight = 15;
-
             // Procedures: Largest (e.g., 45%) - needs the most space for lists
             transactedProceduresDataGridViewTextBoxColumn.FillWeight = 25;
 
@@ -76,17 +74,14 @@ namespace CARED.UserControls
                 var editIcon = new DataGridViewImageColumn();
                 editIcon.Name = "EditAction";
                 editIcon.HeaderText = ""; // Empty header looks cleaner for icons
-                // Ensure you have 'edit.png' in Resources
-                editIcon.Image = Properties.Resources.edit;
-
+                // RESIZING HERE: Force the image to be 24x24 pixels
+                editIcon.Image = new Bitmap(Properties.Resources.edit, new Size(24, 24));
                 // FIXED SIZE SETTINGS:
                 // 'Normal' keeps original image size (24px etc) regardless of row height
                 editIcon.ImageLayout = DataGridViewImageCellLayout.Normal;
-
                 // Width just enough for the icon
                 editIcon.Width = 50;
                 editIcon.AutoSizeMode = DataGridViewAutoSizeColumnMode.None; // Lock width
-
                 // Center the icon in the middle of the cell
                 editIcon.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -99,8 +94,9 @@ namespace CARED.UserControls
                 var delIcon = new DataGridViewImageColumn();
                 delIcon.Name = "DeleteAction";
                 delIcon.HeaderText = "";
-                // Ensure you have 'delete.png' in Resources
-                delIcon.Image = Properties.Resources.delete;
+
+                // RESIZING HERE: Force the image to be 24x24 pixels (Matching Edit)
+                delIcon.Image = new Bitmap(Properties.Resources.delete, new Size(24, 24));
 
                 // FIXED SIZE SETTINGS:
                 delIcon.ImageLayout = DataGridViewImageCellLayout.Normal;
@@ -147,8 +143,12 @@ namespace CARED.UserControls
 
                 if (transaction != null)
                 {
+                    // PREPARE DATA: Fetch all procedures to populate the dropdown
+                    // We use the service we injected
+                    var allProcedures = await _procedureService!.GetAllProceduresAsync();
+
                     // Open the Edit Modal
-                    using (var editForm = new EditTransactionForm(transaction))
+                    using (var editForm = new EditTransactionForm(transaction, allProcedures))
                     {
                         if (editForm.ShowDialog() == DialogResult.OK)
                         {
