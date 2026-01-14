@@ -53,13 +53,13 @@ namespace CARED.UserControls
             // but thinking in percentages makes it easier to design.
 
             // CS No: Small (e.g., 10%)
-            csNoDataGridViewTextBoxColumn.FillWeight = 13;
+            csNoDataGridViewTextBoxColumn.FillWeight = 10;
             // Date: Small-Medium (e.g., 12%)
-            dateDataGridViewTextBoxColumn.FillWeight = 12;
+            dateDataGridViewTextBoxColumn.FillWeight = 10;
             // Name: Medium (e.g., 18%)
-            nameDataGridViewTextBoxColumn.FillWeight = 15;
+            nameDataGridViewTextBoxColumn.FillWeight = 10;
             // Personnel: Medium (e.g., 15%)
-            personnelDataGridViewTextBoxColumn.FillWeight = 15;
+            personnelDataGridViewTextBoxColumn.FillWeight = 10;
             // Procedures: Largest (e.g., 45%) - needs the most space for lists
             transactedProceduresDataGridViewTextBoxColumn.FillWeight = 25;
 
@@ -73,17 +73,22 @@ namespace CARED.UserControls
             {
                 var editIcon = new DataGridViewImageColumn();
                 editIcon.Name = "EditAction";
-                editIcon.HeaderText = ""; // Empty header looks cleaner for icons
+                editIcon.HeaderText = "Edit"; // Empty header looks cleaner for icons
                 // RESIZING HERE: Force the image to be 24x24 pixels
                 editIcon.Image = new Bitmap(Properties.Resources.edit, new Size(24, 24));
-                // FIXED SIZE SETTINGS:
                 // 'Normal' keeps original image size (24px etc) regardless of row height
                 editIcon.ImageLayout = DataGridViewImageCellLayout.Normal;
-                // Width just enough for the icon
-                editIcon.Width = 50;
-                editIcon.AutoSizeMode = DataGridViewAutoSizeColumnMode.None; // Lock width
                 // Center the icon in the middle of the cell
                 editIcon.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // CENTER THE HEADER TEXT
+                editIcon.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // --- PARTITION SETTINGS ---
+                // Instead of fixed Width=50, we give it a weight (Partition)
+                editIcon.FillWeight = 6;
+                // We set a minimum so it never squishes smaller than the icon
+                editIcon.MinimumWidth = 50;
 
                 dataGridView1.Columns.Add(editIcon);
             }
@@ -93,16 +98,22 @@ namespace CARED.UserControls
             {
                 var delIcon = new DataGridViewImageColumn();
                 delIcon.Name = "DeleteAction";
-                delIcon.HeaderText = "";
+                delIcon.HeaderText = "Delete";
 
                 // RESIZING HERE: Force the image to be 24x24 pixels (Matching Edit)
                 delIcon.Image = new Bitmap(Properties.Resources.delete, new Size(24, 24));
 
                 // FIXED SIZE SETTINGS:
                 delIcon.ImageLayout = DataGridViewImageCellLayout.Normal;
-                delIcon.Width = 50;
-                delIcon.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 delIcon.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // CENTER THE HEADER TEXT
+                delIcon.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                
+                // --- PARTITION SETTINGS ---
+                // Link size to Edit column by using the same weight
+                delIcon.FillWeight = 6;
+                delIcon.MinimumWidth = 50;
 
                 dataGridView1.Columns.Add(delIcon);
             }
@@ -224,7 +235,7 @@ namespace CARED.UserControls
                         .Select(p => p.Procedure?.ProcedureName)
                         .Where(name => !string.IsNullOrEmpty(name));
 
-                    e.Value = string.Join(", ", procedureNames);
+                    e.Value = string.Join(Environment.NewLine, procedureNames);
                     e.FormattingApplied = true;
                 }
                 else
@@ -232,6 +243,20 @@ namespace CARED.UserControls
                     e.Value = "No Procedures";
                     e.FormattingApplied = true;
                 }
+            }
+
+            // --- Tooltip for EDIT Button ---
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "EditAction")
+            {
+                var cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                cell.ToolTipText = "Edit"; // <--- This text appears on hover
+            }
+
+            // --- Tooltip for DELETE Button ---
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "DeleteAction")
+            {
+                var cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                cell.ToolTipText = "Delete"; // <--- This text appears on hover
             }
         }
 

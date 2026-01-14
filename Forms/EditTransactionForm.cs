@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using CARED.Models;
+using System.Drawing;
 
 namespace CARED.Forms
 {
@@ -34,7 +35,7 @@ namespace CARED.Forms
             _currentProcedureIds = _displayProcedures.Select(p => p.ProcedureID).ToList();
 
             // 2. Setup the "Current Procedures" ListBox
-            lstProcedures.DataSource = null; // Reset
+            lstProcedures.DataSource = null;
             lstProcedures.DataSource = _displayProcedures;
             lstProcedures.DisplayMember = "ProcedureName";
             lstProcedures.ValueMember = "ProcedureID";
@@ -85,13 +86,14 @@ namespace CARED.Forms
             this.BackColor = System.Drawing.Color.White;
 
             // Layout helper variables
+            int formWidth = 750;
             int startX = 30;
             int startY = 30;
             int gap = 50;
 
             // Labels and TextBoxes
             SetupField(label1, "CS No:", txtCsNo, startX, startY);
-            // --- NEW: Setup Date Picker Manually ---
+            // ---  Setup Date Picker Manually ---
             // Label
             label2.Text = "Date:";
             label2.Location = new System.Drawing.Point(startX, startY + gap);
@@ -107,7 +109,8 @@ namespace CARED.Forms
             SetupField(label6, "Insurer:", txtInsurer, startX, startY + gap * 5);
 
             // --- RIGHT SIDE: PROCEDURES MANAGER ---
-            int rightSideX = 350; // Start the right section
+            int rightSideX = 400; // Moved slightly right
+            int rightControlWidth = 280; // Unified width for all right-side controls
 
             // Label
             this.lblProcedures.Text = "Laboratory Request/s:";
@@ -117,38 +120,47 @@ namespace CARED.Forms
 
             // ListBox (Shows current items)
             this.lstProcedures.Location = new System.Drawing.Point(rightSideX, startY + 25);
-            this.lstProcedures.Size = new System.Drawing.Size(280, 200);
+            this.lstProcedures.Size = new System.Drawing.Size(rightControlWidth, 130);
 
             // Remove Button
             this.btnRemoveProcedure.Text = "Remove Selected";
-            this.btnRemoveProcedure.Location = new System.Drawing.Point(rightSideX, startY + 230);
-            this.btnRemoveProcedure.Size = new System.Drawing.Size(120, 30);
+            this.btnRemoveProcedure.Location = new Point(rightSideX, startY + 165);
+            this.btnRemoveProcedure.Size = new Size(rightControlWidth, 30);
             this.btnRemoveProcedure.Click += btnRemoveProcedure_Click;
 
             // ComboBox (Select to Add)
-            this.cmbAllProcedures.Location = new System.Drawing.Point(rightSideX, startY + 280);
-            this.cmbAllProcedures.Size = new System.Drawing.Size(190, 25);
+            this.cmbAllProcedures.Location = new Point(rightSideX, startY + 210);
+            this.cmbAllProcedures.Size = new Size(rightControlWidth, 25);
             this.cmbAllProcedures.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Add Button
             this.btnAddProcedure.Text = "Add";
-            this.btnAddProcedure.Location = new System.Drawing.Point(rightSideX + 200, startY + 280);
-            this.btnAddProcedure.Size = new System.Drawing.Size(80, 27);
+            this.btnAddProcedure.Location = new Point(rightSideX, startY + 245);
+            this.btnAddProcedure.Size = new Size(rightControlWidth, 30);
             this.btnAddProcedure.Click += btnAddProcedure_Click;
+
+            //--- BOTTOM: ACTION BUTTONS (CENTERED) ---
+            int buttonY = 340;
+            int buttonWidth = 120;
+            int buttonSpacing = 20;
+            int totalButtonSpan = (buttonWidth * 2) + buttonSpacing;
+            int startButtonX = (formWidth - totalButtonSpan) / 2;
 
             // Buttons
             this.btnCancel.Text = "Cancel";
-            this.btnCancel.Location = new System.Drawing.Point(startX, startY + gap * 7);
-            this.btnCancel.Size = new System.Drawing.Size(100, 35);
+            this.btnCancel.Location = new Point(startButtonX, buttonY);
+            this.btnCancel.Size = new System.Drawing.Size(buttonWidth, 35);
             this.btnCancel.Click += (s, e) => this.DialogResult = DialogResult.Cancel;
 
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.Location = new System.Drawing.Point(startX + 120, startY + gap * 7);
-            this.btnEdit.Size = new System.Drawing.Size(120, 35);
+            this.btnEdit.Text = "Confirm";
+            this.btnEdit.Location = new Point(startButtonX + buttonWidth + buttonSpacing, buttonY);
+            this.btnEdit.Size = new Size(buttonWidth, 35);
+            this.btnEdit.BackColor = Color.FromArgb(0, 120, 215);
+            this.btnEdit.ForeColor = Color.White;
             this.btnEdit.Click += btnEdit_Click;
 
             // Form Settings
-            this.ClientSize = new System.Drawing.Size(680, 450);
+            this.ClientSize = new Size(formWidth, 400);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnEdit);
 
@@ -194,7 +206,7 @@ namespace CARED.Forms
 
         // --- EVENT HANDLERS ---
 
-        private void btnAddProcedure_Click(object sender, EventArgs e)
+        private void btnAddProcedure_Click(object? sender, EventArgs e)
         {
             var selectedProc = cmbAllProcedures.SelectedItem as Procedure;
             if (selectedProc == null) return;
@@ -213,7 +225,7 @@ namespace CARED.Forms
             RefreshProcedureList();
         }
 
-        private void btnRemoveProcedure_Click(object sender, EventArgs e)
+        private void btnRemoveProcedure_Click(object? sender, EventArgs e)
         {
             var selectedProc = lstProcedures.SelectedItem as Procedure;
             if (selectedProc == null) return;
@@ -236,7 +248,7 @@ namespace CARED.Forms
             // Update the ID list that will be sent back to database
             _currentProcedureIds = _displayProcedures.Select(p => p.ProcedureID).ToList();
         }
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object? sender, EventArgs e)
         {
             // Update the object with new values
             UpdatedTransaction.CsNo = txtCsNo.Text;
