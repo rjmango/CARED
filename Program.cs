@@ -49,6 +49,7 @@ namespace CARED
                     services.AddTransient<PrintRecordsUserControl>();
                     services.AddTransient<NewBillingUserControl>();
                     services.AddTransient<RetrieveRecordsUserControl>();
+                    services.AddTransient<ProcedureListRowUserControl>();
 
                 })
                 .Build();

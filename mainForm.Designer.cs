@@ -5,6 +5,7 @@ using CARED.Services;
 using CARED.UserControls;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace CARED
 {
     public partial class mainForm : Form
@@ -38,6 +39,7 @@ namespace CARED
         private void InitializeComponent()
         {
             sidePanel = new Panel();
+            CAREDLabel = new Label();
             btnPrintRecords = new Button();
             btnRetrieveRecords = new Button();
             btnNewRecord = new Button();
@@ -48,6 +50,7 @@ namespace CARED
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(37, 48, 35);
+            sidePanel.Controls.Add(CAREDLabel);
             sidePanel.Controls.Add(btnPrintRecords);
             sidePanel.Controls.Add(btnRetrieveRecords);
             sidePanel.Controls.Add(btnNewRecord);
@@ -57,6 +60,17 @@ namespace CARED
             sidePanel.Name = "sidePanel";
             sidePanel.Size = new Size(200, 450);
             sidePanel.TabIndex = 1;
+            // 
+            // CAREDLabel
+            // 
+            CAREDLabel.AutoSize = true;
+            CAREDLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            CAREDLabel.ForeColor = Color.FromArgb(148, 176, 114);
+            CAREDLabel.Location = new Point(10, 33);
+            CAREDLabel.Name = "CAREDLabel";
+            CAREDLabel.Size = new Size(180, 32);
+            CAREDLabel.TabIndex = 1;
+            CAREDLabel.Text = "CARED System";
             // 
             // btnPrintRecords
             // 
@@ -73,6 +87,7 @@ namespace CARED
             btnPrintRecords.Text = "Print Records";
             btnPrintRecords.UseVisualStyleBackColor = false;
             btnPrintRecords.Click += HandleNavClick;
+            btnPrintRecords.Paint += SideButton_Paint;
             // 
             // btnRetrieveRecords
             // 
@@ -89,6 +104,7 @@ namespace CARED
             btnRetrieveRecords.Text = "Retrieve Records";
             btnRetrieveRecords.UseVisualStyleBackColor = false;
             btnRetrieveRecords.Click += HandleNavClick;
+            btnRetrieveRecords.Paint += SideButton_Paint;
             // 
             // btnNewRecord
             // 
@@ -105,6 +121,7 @@ namespace CARED
             btnNewRecord.Text = "New Record";
             btnNewRecord.UseVisualStyleBackColor = false;
             btnNewRecord.Click += HandleNavClick;
+            btnNewRecord.Paint += SideButton_Paint;
             // 
             // contentPanel
             // 
@@ -129,8 +146,9 @@ namespace CARED
             MaximizeBox = false;
             Name = "mainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "CARED System";
             sidePanel.ResumeLayout(false);
+            sidePanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -140,6 +158,23 @@ namespace CARED
             if (btn == btnPrintRecords) ShowUserControl<PrintRecordsUserControl>(btn);
             else if (btn == btnNewRecord) ShowUserControl<NewBillingUserControl>(btn);
             else if (btn == btnRetrieveRecords) ShowUserControl<RetrieveRecordsUserControl>(btn);
+        }
+
+        private void SideButton_Paint(object sender, PaintEventArgs e)
+        {
+            Button btn = (Button)sender;
+            int radius = 10; // Slightly smaller radius looks better for buttons
+
+            using (var path = new System.Drawing.Drawing2D.GraphicsPath())
+            {
+                path.AddArc(0, 0, radius, radius, 180, 90);
+                path.AddArc(btn.Width - radius, 0, radius, radius, 270, 90);
+                path.AddArc(btn.Width - radius, btn.Height - radius, radius, radius, 0, 90);
+                path.AddArc(0, btn.Height - radius, radius, radius, 90, 90);
+                path.CloseFigure();
+
+                btn.Region = new Region(path);
+            }
         }
 
         private void ShowUserControl<T>(Button triggerButton) where T : UserControl
@@ -159,8 +194,6 @@ namespace CARED
             contentPanel.Controls.Add(control);
         }
 
-
-
         #endregion
 
         // Inject the Service Layer through the constructor
@@ -179,6 +212,7 @@ namespace CARED
         private Panel contentPanel;
         private Button btnPrintRecords;
         private Button btnRetrieveRecords;
+        private Label CAREDLabel;
     }
 }
 
