@@ -1,5 +1,6 @@
 using CARED.Data;
 using CARED.Services;
+using CARED.UserControls;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -42,6 +43,13 @@ namespace CARED
 
                     // --- 3. WINFORMS REGISTRATION ---
                     services.AddTransient<mainForm>();
+                    //services.AddTransient<TestForm>();
+
+                    // --- Registration for your user controls ---
+                    services.AddTransient<PrintRecordsUserControl>();
+                    services.AddTransient<NewBillingUserControl>();
+                    services.AddTransient<RetrieveRecordsUserControl>();
+                    services.AddTransient<ProcedureListRowUserControl>();
 
                 })
                 .Build();
@@ -61,6 +69,7 @@ namespace CARED
                 }
             }
             Application.Run(AppHost.Services.GetRequiredService<mainForm>());
+            //Application.Run(AppHost.Services.GetRequiredService<TestForm>());
         }
     }
 }

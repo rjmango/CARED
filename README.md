@@ -44,6 +44,7 @@ Install-Package Microsoft.EntityFrameworkCore.Tools
 # 2. Dependency Injection & Hosting (Architecture)
 Install-Package Microsoft.Extensions.Hosting
 Install-Package Microsoft.Extensions.DependencyInjection
+
 ```
 ---
 

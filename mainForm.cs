@@ -1,3 +1,4 @@
+
 namespace CARED
 {
     public partial class mainForm : Form
@@ -6,5 +7,6 @@ namespace CARED
         {
             InitializeComponent();
         }
+
     }
 }

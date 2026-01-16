@@ -18,23 +18,49 @@ namespace CARED.Services
 
         public async Task<Transaction> AddTransaction(Transaction transaction, IEnumerable<int> procedureIds)
         {
-            // 1. Add the main transaction entity
-            _dbContext.Transactions.Add(transaction);
+            //// 1. Add the main transaction entity
+            //_dbContext.Transactions.Add(transaction);
 
-            foreach(var procedureId in procedureIds)
+            //foreach(var procedureId in procedureIds)
+            //{
+            //    // 2. Create the junction records to link procedures
+            //    var transactedProcedure = new TransactedProcedure
+            //    {
+            //        TransactionID = transaction.TransactionID,
+            //        ProcedureID = procedureId
+            //    };
+
+            //    _dbContext.TransactedProcedures.Add(transactedProcedure);
+            //}
+
+            //// 3. Save all changes (inserts the Transaction and all TransactedProcedure links)
+            //await _dbContext.SaveChangesAsync();
+            //return transaction;
+
+            // 1. Clear any existing links just in case
+            transaction.TransactedProcedures = new List<TransactedProcedure>();
+
+            // 2. Add the junction records to the Navigation Property
+            foreach (var procedureId in procedureIds)
             {
-                // 2. Create the junction records to link procedures
-                var transactedProcedure = new TransactedProcedure
+                // Notice: We do NOT set TransactionID here!
+                // We are adding this to the collection INSIDE the transaction object.
+                transaction.TransactedProcedures.Add(new TransactedProcedure
                 {
-                    TransactionID = transaction.TransactionID,
                     ProcedureID = procedureId
-                };
-
-                _dbContext.TransactedProcedures.Add(transactedProcedure);
+                    // EF will fill in the TransactionID automatically during SaveChanges
+                });
             }
 
-            // 3. Save all changes (inserts the Transaction and all TransactedProcedure links)
+            // 3. Add the main transaction entity
+            // EF will "see" the children inside the TransactedProcedures list
+            _dbContext.Transactions.Add(transaction);
+
+            // 4. Save all changes
+            // EF inserts the Transaction, gets the new ID from the DB,
+            // applies it to the children, and then inserts the junction records.
             await _dbContext.SaveChangesAsync();
+
             return transaction;
         }
         public Task<Transaction?> GetTransactionById(int id)
