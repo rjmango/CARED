@@ -44,7 +44,10 @@ namespace CARED
             btnRetrieveRecords = new Button();
             btnNewRecord = new Button();
             contentPanel = new Panel();
+            loadingOverlayPanel = new Panel();
+            label1 = new Label();
             sidePanel.SuspendLayout();
+            loadingOverlayPanel.SuspendLayout();
             SuspendLayout();
             // 
             // sidePanel
@@ -133,11 +136,33 @@ namespace CARED
             contentPanel.Size = new Size(600, 450);
             contentPanel.TabIndex = 0;
             // 
+            // loadingOverlayPanel
+            // 
+            loadingOverlayPanel.Controls.Add(label1);
+            loadingOverlayPanel.Dock = DockStyle.Fill;
+            loadingOverlayPanel.Location = new Point(200, 0);
+            loadingOverlayPanel.Name = "loadingOverlayPanel";
+            loadingOverlayPanel.Size = new Size(600, 450);
+            loadingOverlayPanel.TabIndex = 0;
+            loadingOverlayPanel.Visible = false;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(212, 203);
+            label1.Name = "label1";
+            label1.Size = new Size(176, 45);
+            label1.TabIndex = 0;
+            label1.Text = "LOADING...";
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(loadingOverlayPanel);
             Controls.Add(contentPanel);
             Controls.Add(sidePanel);
             ForeColor = SystemColors.ControlText;
@@ -149,15 +174,17 @@ namespace CARED
             Text = "CARED System";
             sidePanel.ResumeLayout(false);
             sidePanel.PerformLayout();
+            loadingOverlayPanel.ResumeLayout(false);
+            loadingOverlayPanel.PerformLayout();
             ResumeLayout(false);
         }
 
-        private void HandleNavClick(object sender, EventArgs e)
+        private async void HandleNavClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (btn == btnPrintRecords) ShowUserControl<PrintRecordsUserControl>(btn);
-            else if (btn == btnNewRecord) ShowUserControl<NewBillingUserControl>(btn);
-            else if (btn == btnRetrieveRecords) ShowUserControl<RetrieveRecordsUserControl>(btn);
+            if (btn == btnPrintRecords) await ShowUserControl<PrintRecordsUserControl>(btn);
+            else if (btn == btnNewRecord) await ShowUserControl<NewBillingUserControl>(btn);
+            else if (btn == btnRetrieveRecords) await ShowUserControl<RetrieveRecordsUserControl>(btn);
         }
 
         private void SideButton_Paint(object sender, PaintEventArgs e)
@@ -177,21 +204,44 @@ namespace CARED
             }
         }
 
-        private void ShowUserControl<T>(Button triggerButton) where T : UserControl
+        private async Task ShowUserControl<T>(Button triggerButton) where T : UserControl
         {
-            if (activeBtn != null)
-            {
-                activeBtn.BackColor = Color.FromArgb(37, 48, 35);
-                activeBtn.ForeColor = SystemColors.Window;
-            }
-            activeBtn = triggerButton;
-            activeBtn.BackColor = Color.FromArgb(149, 177, 114); // Darker highlight for active tab
-            activeBtn.ForeColor = Color.FromArgb(37, 48, 25);
+            loadingOverlayPanel.Visible = true;
+            loadingOverlayPanel.BringToFront();
 
-            contentPanel.Controls.Clear();
-            var control = _serviceProvider.GetRequiredService<T>();
-            control.Dock = DockStyle.Fill;
-            contentPanel.Controls.Add(control);
+            // Force a small delay so the UI thread can paint the loading panel
+            await Task.Delay(100);
+
+            try
+            {
+                if (activeBtn != null)
+                {
+                    activeBtn.BackColor = Color.FromArgb(37, 48, 35);
+                    activeBtn.ForeColor = SystemColors.Window;
+                }
+                activeBtn = triggerButton;
+                activeBtn.BackColor = Color.FromArgb(149, 177, 114); // Darker highlight for active tab
+                activeBtn.ForeColor = Color.FromArgb(37, 48, 25);
+
+                contentPanel.SuspendLayout();
+                contentPanel.Controls.Clear();
+
+                var control = _serviceProvider.GetRequiredService<T>();
+                control.Dock = DockStyle.Fill;
+
+                contentPanel.Controls.Add(control);
+                contentPanel.ResumeLayout(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load tab: {ex.Message}");
+            }
+            finally
+            {
+                // 6. Hide the Loading Overlay
+                loadingOverlayPanel.Visible = false;
+            }
+
         }
 
         #endregion
@@ -213,6 +263,8 @@ namespace CARED
         private Button btnPrintRecords;
         private Button btnRetrieveRecords;
         private Label CAREDLabel;
+        private Panel loadingOverlayPanel;
+        private Label label1;
     }
 }
 
