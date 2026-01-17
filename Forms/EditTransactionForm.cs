@@ -52,7 +52,7 @@ namespace CARED.Forms
             txtCompany.Text = transaction.Company;
             txtInsurer.Text = transaction.Insurer;
 
-            // --- NEW: Set DateTimePicker Value ---
+            // Set DateTimePicker Value
             dtpDate.Value = transaction.Date;
         }
 

@@ -31,13 +31,13 @@ namespace CARED.Services
                     t.Name.ToLower().Contains(term) ||
                     t.CsNo.ToLower().Contains(term) ||
                     t.Personnel.ToLower().Contains(term) ||
-                    t.Company.ToLower().Contains(term) ||
-                    t.Insurer.ToLower().Contains(term));
+                    t.Insurer.ToLower().Contains(term) ||
+                    t.TransactedProcedures.Any(tp => tp.Procedure.ProcedureName.ToLower().Contains(term)));
             }
 
-            // 3. Always Sort by Date (Most Recent First) and execute
+            // 3. Sort by CS Number
             return await query
-                .OrderByDescending(t => t.Date)
+                .OrderBy(t => t.CsNo)
                 .ToListAsync();
         }
         public async Task<Transaction> AddTransaction(Transaction transaction, IEnumerable<int> procedureIds)
@@ -76,12 +76,15 @@ namespace CARED.Services
                 .Include(t => t.TransactedProcedures)
                 .ThenInclude(tp => tp.Procedure)
                 .AsNoTracking()
-                .OrderByDescending(t => t.Date)
+                .OrderBy(t => t.CsNo) 
                 .ToListAsync();
         }
         public async Task UpdateTransaction(Transaction updatedTransaction, IEnumerable<int> newProcedureIds)
         {
-            // 1. Fetch the EXISTING record from the database (Tracked by EF)
+            // 1. Update the main Transaction entity details
+            _dbContext.Transactions.Update(updatedTransaction);
+
+            // 2. Fetch the EXISTING record from the database (Tracked by EF)
             var existingTransaction = await _dbContext.Transactions
                 .Include(t => t.TransactedProcedures)
                 .FirstOrDefaultAsync(t => t.TransactionID == updatedTransaction.TransactionID);
@@ -91,7 +94,7 @@ namespace CARED.Services
                 throw new KeyNotFoundException($"Transaction with ID {updatedTransaction.TransactionID} not found.");
             }
 
-            // 2. Update Scalar Properties
+            // 3. Update Scalar Properties
             // Copy values from the form object (updatedTransaction) to the database object (existingTransaction)
             existingTransaction.CsNo = updatedTransaction.CsNo;
             existingTransaction.Name = updatedTransaction.Name;
@@ -100,7 +103,7 @@ namespace CARED.Services
             existingTransaction.Company = updatedTransaction.Company;
             existingTransaction.Insurer = updatedTransaction.Insurer;
 
-            // 3. Handle Junction Table Updates (Add/Remove Procedures)
+            // 4. Handle Junction Table Updates (Add/Remove Procedures)
 
             // A. Identify links to REMOVE (Present in DB, but NOT in the new list)
             var linksToRemove = existingTransaction.TransactedProcedures
@@ -121,15 +124,18 @@ namespace CARED.Services
                 .Except(existingProcedureIds)
                 .ToList();
 
-            foreach (var procedureId in procedureIdsToAdd)
+            if (procedureIdsToAdd.Any())
             {
-                existingTransaction.TransactedProcedures.Add(new TransactedProcedure
+                // NOTE: We still need to create new junction entities for added procedures, 
+                // but we only use the IDs, avoiding a database SELECT query here too.
+                foreach (var procedureId in procedureIdsToAdd)
                 {
-                    TransactionID = existingTransaction.TransactionID,
-                    ProcedureID = procedureId
-                    // Note: We DO NOT set the 'Procedure' navigation property here, 
-                    // only the ID. This prevents EF from trying to attach a Procedure object.
-                });
+                    existingTransaction.TransactedProcedures.Add(new TransactedProcedure
+                    {
+                        TransactionID = existingTransaction.TransactionID,
+                        ProcedureID = procedureId
+                    });
+                }
             }
 
             // 4. Save Changes

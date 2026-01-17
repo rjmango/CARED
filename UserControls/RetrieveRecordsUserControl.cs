@@ -19,6 +19,10 @@ namespace CARED.UserControls
         private readonly ITransactionService? _transactionService;
         private readonly IProcedureService? _procedureService;
 
+        // Sorting Fields
+        private string _sortColumn = "CsNo"; // Default Sort Column
+        private bool _sortAscending = true;  // Default Direction
+
         // 2. Add a parameterless constructor for the Visual Studio Designer to work
         public RetrieveRecordsUserControl()
         {
@@ -37,6 +41,8 @@ namespace CARED.UserControls
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // Double Click Event 
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            // Wire up Sorting Event
+            dataGridView1.ColumnHeaderMouseClick += DataGridView1_ColumnHeaderMouseClick;
 
             SetupDataGridView();
             // Styling Method
@@ -67,6 +73,13 @@ namespace CARED.UserControls
             transactedProceduresDataGridViewTextBoxColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             // 2. Tell the grid to automatically adjust row height to fit the wrapped text
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            // *** ENABLE SORTING UI (Programmatic Mode) ***
+            // This tells the grid to let us handle the click, but still show the sort arrow
+            csNoDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Programmatic;
+            dateDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Programmatic;
+            nameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Programmatic;
+            personnelDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.Programmatic;
 
             // *** ADDING EDIT ICON COLUMN ***
             if (!dataGridView1.Columns.Contains("EditAction"))
@@ -118,6 +131,74 @@ namespace CARED.UserControls
                 dataGridView1.Columns.Add(delIcon);
             }
         }
+
+        // SORTING LOGIC
+        private void DataGridView1_ColumnHeaderMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            // Identify which column was clicked
+            DataGridViewColumn clickedColumn = dataGridView1.Columns[e.ColumnIndex];
+            string propertyName = "";
+
+            if (clickedColumn == csNoDataGridViewTextBoxColumn) propertyName = "CsNo";
+            else if (clickedColumn == dateDataGridViewTextBoxColumn) propertyName = "Date";
+            else if (clickedColumn == nameDataGridViewTextBoxColumn) propertyName = "Name";
+            else if (clickedColumn == personnelDataGridViewTextBoxColumn) propertyName = "Personnel";
+            else return; // Ignore clicks on Procedure or Icon columns
+
+            // Toggle direction if clicking the same column
+            if (_sortColumn == propertyName)
+            {
+                _sortAscending = !_sortAscending;
+            }
+            else
+            {
+                _sortColumn = propertyName;
+                _sortAscending = true; // Reset to ascending for new column
+            }
+            SortGrid();
+        }
+        private void SortGrid()
+        {
+            var list = transactionBindingSource.DataSource as List<Transaction>;
+            if (list == null || list.Count == 0) return;
+
+            // Sort the list based on current settings
+            switch (_sortColumn)
+            {
+                case "CsNo":
+                    list = _sortAscending ? list.OrderBy(x => x.CsNo).ToList() : list.OrderByDescending(x => x.CsNo).ToList();
+                    break;
+                case "Date":
+                    list = _sortAscending ? list.OrderBy(x => x.Date).ToList() : list.OrderByDescending(x => x.Date).ToList();
+                    break;
+                case "Name":
+                    list = _sortAscending ? list.OrderBy(x => x.Name).ToList() : list.OrderByDescending(x => x.Name).ToList();
+                    break;
+                case "Personnel":
+                    list = _sortAscending ? list.OrderBy(x => x.Personnel).ToList() : list.OrderByDescending(x => x.Personnel).ToList();
+                    break;
+            }
+            // Rebind the sorted list
+            transactionBindingSource.DataSource = list;
+            transactionBindingSource.ResetBindings(false);
+
+            // Update the Visual Sort Arrow
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                col.HeaderCell.SortGlyphDirection = SortOrder.None;
+            }
+
+            var activeCol = dataGridView1.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c =>
+                (c == csNoDataGridViewTextBoxColumn && _sortColumn == "CsNo") ||
+                (c == dateDataGridViewTextBoxColumn && _sortColumn == "Date") ||
+                (c == nameDataGridViewTextBoxColumn && _sortColumn == "Name") ||
+                (c == personnelDataGridViewTextBoxColumn && _sortColumn == "Personnel"));
+
+            if (activeCol != null)
+            {
+                activeCol.HeaderCell.SortGlyphDirection = _sortAscending ? SortOrder.Ascending : SortOrder.Descending;
+            }
+        }
         private async void RetrieveRecordsUserControl_Load(object sender, EventArgs e)
         {
             if (_transactionService != null)
@@ -132,6 +213,16 @@ namespace CARED.UserControls
             {
                 var transactions = await _transactionService!.SearchTransactionsAsync(searchTerm);
                 transactionBindingSource.DataSource = transactions;
+                // Re-apply local sort if user has changed it from default
+                if (_sortColumn != "CsNo" || !_sortAscending)
+                {
+                    SortGrid();
+                }
+                else
+                {
+                    // Just set the glyph for the default load
+                    csNoDataGridViewTextBoxColumn.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+                }
                 // Important: Reset bindings to ensure grid refreshes visual state
                 transactionBindingSource.ResetBindings(false);
             }
@@ -151,13 +242,11 @@ namespace CARED.UserControls
             {
                 // Get the bound object for this row
                 var transaction = transactionBindingSource.List[e.RowIndex] as Transaction;
-
                 if (transaction != null)
                 {
                     // PREPARE DATA: Fetch all procedures to populate the dropdown
                     // We use the service we injected
                     var allProcedures = await _procedureService!.GetAllProceduresAsync();
-
                     // Open the Edit Modal
                     using (var editForm = new EditTransactionForm(transaction, allProcedures))
                     {
@@ -185,7 +274,6 @@ namespace CARED.UserControls
             if (dataGridView1.Columns[e.ColumnIndex].Name == "DeleteAction")
             {
                 var transaction = transactionBindingSource.List[e.RowIndex] as Transaction;
-
                 if (transaction != null)
                 {
                     // Open the Delete Confirmation Modal
@@ -197,7 +285,6 @@ namespace CARED.UserControls
                             {
                                 // Call Service to Delete
                                 await _transactionService!.DeleteTransaction(transaction.TransactionID);
-
                                 // Refresh Grid
                                 await LoadData(textBox1.Text);
                                 MessageBox.Show("Record deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -226,15 +313,13 @@ namespace CARED.UserControls
             {
                 // Retrieve the list of TransactedProcedure objects
                 var procedures = e.Value as ICollection<TransactedProcedure>;
-
                 if (procedures != null && procedures.Count > 0)
                 {
                     // Extract the procedure names and join them with commas
-                    // We use the null-conditional operator (?) just in case a procedure is missing
+                    // Use the null-conditional operator (?) just in case a procedure is missing
                     var procedureNames = procedures
                         .Select(p => p.Procedure?.ProcedureName)
                         .Where(name => !string.IsNullOrEmpty(name));
-
                     e.Value = string.Join(Environment.NewLine, procedureNames);
                     e.FormattingApplied = true;
                 }
@@ -251,7 +336,6 @@ namespace CARED.UserControls
                 var cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 cell.ToolTipText = "Edit"; // <--- This text appears on hover
             }
-
             // --- Tooltip for DELETE Button ---
             if (dataGridView1.Columns[e.ColumnIndex].Name == "DeleteAction")
             {
@@ -260,15 +344,13 @@ namespace CARED.UserControls
             }
         }
 
-        // *** NEW METHOD: Handle Double Click to Show Charge Slip ***
+        // Handle Double Click to Show Charge Slip ***
         private void dataGridView1_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
             // Ignore header clicks (RowIndex -1)
             if (e.RowIndex < 0) return;
-
             // Get the transaction object
             var transaction = transactionBindingSource.List[e.RowIndex] as Transaction;
-
             if (transaction != null)
             {
                 // Open the Charge Slip Form
