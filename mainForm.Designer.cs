@@ -210,7 +210,7 @@ namespace CARED
             loadingOverlayPanel.BringToFront();
 
             // Force a small delay so the UI thread can paint the loading panel
-            await Task.Delay(100);
+            await Task.Delay(0);
 
             try
             {
