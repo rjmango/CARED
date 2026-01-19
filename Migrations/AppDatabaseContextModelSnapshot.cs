@@ -665,6 +665,233 @@ namespace CARED.Migrations
                     b.HasIndex("ProcedureID");
 
                     b.ToTable("TransactedProcedures");
+
+                    b.HasData(
+                        new
+                        {
+                            TransactionID = 1,
+                            ProcedureID = 2
+                        },
+                        new
+                        {
+                            TransactionID = 2,
+                            ProcedureID = 3
+                        },
+                        new
+                        {
+                            TransactionID = 2,
+                            ProcedureID = 8
+                        },
+                        new
+                        {
+                            TransactionID = 3,
+                            ProcedureID = 4
+                        },
+                        new
+                        {
+                            TransactionID = 4,
+                            ProcedureID = 5
+                        },
+                        new
+                        {
+                            TransactionID = 4,
+                            ProcedureID = 10
+                        },
+                        new
+                        {
+                            TransactionID = 5,
+                            ProcedureID = 6
+                        },
+                        new
+                        {
+                            TransactionID = 6,
+                            ProcedureID = 7
+                        },
+                        new
+                        {
+                            TransactionID = 6,
+                            ProcedureID = 12
+                        },
+                        new
+                        {
+                            TransactionID = 7,
+                            ProcedureID = 8
+                        },
+                        new
+                        {
+                            TransactionID = 8,
+                            ProcedureID = 9
+                        },
+                        new
+                        {
+                            TransactionID = 8,
+                            ProcedureID = 14
+                        },
+                        new
+                        {
+                            TransactionID = 9,
+                            ProcedureID = 10
+                        },
+                        new
+                        {
+                            TransactionID = 10,
+                            ProcedureID = 11
+                        },
+                        new
+                        {
+                            TransactionID = 10,
+                            ProcedureID = 16
+                        },
+                        new
+                        {
+                            TransactionID = 11,
+                            ProcedureID = 12
+                        },
+                        new
+                        {
+                            TransactionID = 12,
+                            ProcedureID = 13
+                        },
+                        new
+                        {
+                            TransactionID = 12,
+                            ProcedureID = 18
+                        },
+                        new
+                        {
+                            TransactionID = 13,
+                            ProcedureID = 14
+                        },
+                        new
+                        {
+                            TransactionID = 14,
+                            ProcedureID = 15
+                        },
+                        new
+                        {
+                            TransactionID = 14,
+                            ProcedureID = 20
+                        },
+                        new
+                        {
+                            TransactionID = 15,
+                            ProcedureID = 16
+                        },
+                        new
+                        {
+                            TransactionID = 16,
+                            ProcedureID = 17
+                        },
+                        new
+                        {
+                            TransactionID = 16,
+                            ProcedureID = 22
+                        },
+                        new
+                        {
+                            TransactionID = 17,
+                            ProcedureID = 18
+                        },
+                        new
+                        {
+                            TransactionID = 18,
+                            ProcedureID = 19
+                        },
+                        new
+                        {
+                            TransactionID = 18,
+                            ProcedureID = 24
+                        },
+                        new
+                        {
+                            TransactionID = 19,
+                            ProcedureID = 20
+                        },
+                        new
+                        {
+                            TransactionID = 20,
+                            ProcedureID = 21
+                        },
+                        new
+                        {
+                            TransactionID = 20,
+                            ProcedureID = 26
+                        },
+                        new
+                        {
+                            TransactionID = 21,
+                            ProcedureID = 22
+                        },
+                        new
+                        {
+                            TransactionID = 22,
+                            ProcedureID = 23
+                        },
+                        new
+                        {
+                            TransactionID = 22,
+                            ProcedureID = 28
+                        },
+                        new
+                        {
+                            TransactionID = 23,
+                            ProcedureID = 24
+                        },
+                        new
+                        {
+                            TransactionID = 24,
+                            ProcedureID = 25
+                        },
+                        new
+                        {
+                            TransactionID = 24,
+                            ProcedureID = 30
+                        },
+                        new
+                        {
+                            TransactionID = 25,
+                            ProcedureID = 26
+                        },
+                        new
+                        {
+                            TransactionID = 26,
+                            ProcedureID = 27
+                        },
+                        new
+                        {
+                            TransactionID = 26,
+                            ProcedureID = 32
+                        },
+                        new
+                        {
+                            TransactionID = 27,
+                            ProcedureID = 28
+                        },
+                        new
+                        {
+                            TransactionID = 28,
+                            ProcedureID = 29
+                        },
+                        new
+                        {
+                            TransactionID = 28,
+                            ProcedureID = 34
+                        },
+                        new
+                        {
+                            TransactionID = 29,
+                            ProcedureID = 30
+                        },
+                        new
+                        {
+                            TransactionID = 30,
+                            ProcedureID = 31
+                        },
+                        new
+                        {
+                            TransactionID = 30,
+                            ProcedureID = 36
+                        });
                 });
 
             modelBuilder.Entity("CARED.Models.Transaction", b =>
@@ -706,6 +933,308 @@ namespace CARED.Migrations
                     b.HasKey("TransactionID");
 
                     b.ToTable("Transactions");
+
+                    b.HasData(
+                        new
+                        {
+                            TransactionID = 1,
+                            Company = "Globex",
+                            CsNo = "CS-1001",
+                            Date = new DateTime(2025, 12, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "PhilHealth",
+                            Name = "Jane Smith 1",
+                            Personnel = "Nurse Joy"
+                        },
+                        new
+                        {
+                            TransactionID = 2,
+                            Company = "Soylent Corp",
+                            CsNo = "CS-1002",
+                            Date = new DateTime(2025, 12, 3, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Intellicare",
+                            Name = "Alice Jones 2",
+                            Personnel = "Dr. House"
+                        },
+                        new
+                        {
+                            TransactionID = 3,
+                            Company = "Initech",
+                            CsNo = "CS-1003",
+                            Date = new DateTime(2025, 12, 4, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Medicard",
+                            Name = "Bob Brown 3",
+                            Personnel = "Dr. Strange"
+                        },
+                        new
+                        {
+                            TransactionID = 4,
+                            Company = "Umbrella Corp",
+                            CsNo = "CS-1004",
+                            Date = new DateTime(2025, 12, 5, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Etiqa",
+                            Name = "Charlie Day 4",
+                            Personnel = "Nurse Jackie"
+                        },
+                        new
+                        {
+                            TransactionID = 5,
+                            Company = "Stark Ind",
+                            CsNo = "CS-1005",
+                            Date = new DateTime(2025, 12, 6, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Maxicare",
+                            Name = "Diana Prince 5",
+                            Personnel = "Dr. Smith"
+                        },
+                        new
+                        {
+                            TransactionID = 6,
+                            Company = "Acme Corp",
+                            CsNo = "CS-1006",
+                            Date = new DateTime(2025, 12, 7, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "PhilHealth",
+                            Name = "Evan Wright 6",
+                            Personnel = "Nurse Joy"
+                        },
+                        new
+                        {
+                            TransactionID = 7,
+                            Company = "Globex",
+                            CsNo = "CS-1007",
+                            Date = new DateTime(2025, 12, 8, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Intellicare",
+                            Name = "Fiona Gallagher 7",
+                            Personnel = "Dr. House"
+                        },
+                        new
+                        {
+                            TransactionID = 8,
+                            Company = "Soylent Corp",
+                            CsNo = "CS-1008",
+                            Date = new DateTime(2025, 12, 9, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Medicard",
+                            Name = "John Doe 8",
+                            Personnel = "Dr. Strange"
+                        },
+                        new
+                        {
+                            TransactionID = 9,
+                            Company = "Initech",
+                            CsNo = "CS-1009",
+                            Date = new DateTime(2025, 12, 10, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Etiqa",
+                            Name = "Jane Smith 9",
+                            Personnel = "Nurse Jackie"
+                        },
+                        new
+                        {
+                            TransactionID = 10,
+                            Company = "Umbrella Corp",
+                            CsNo = "CS-1010",
+                            Date = new DateTime(2025, 12, 11, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Maxicare",
+                            Name = "Alice Jones 10",
+                            Personnel = "Dr. Smith"
+                        },
+                        new
+                        {
+                            TransactionID = 11,
+                            Company = "Stark Ind",
+                            CsNo = "CS-1011",
+                            Date = new DateTime(2025, 12, 12, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "PhilHealth",
+                            Name = "Bob Brown 11",
+                            Personnel = "Nurse Joy"
+                        },
+                        new
+                        {
+                            TransactionID = 12,
+                            Company = "Acme Corp",
+                            CsNo = "CS-1012",
+                            Date = new DateTime(2025, 12, 13, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Intellicare",
+                            Name = "Charlie Day 12",
+                            Personnel = "Dr. House"
+                        },
+                        new
+                        {
+                            TransactionID = 13,
+                            Company = "Globex",
+                            CsNo = "CS-1013",
+                            Date = new DateTime(2025, 12, 14, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Medicard",
+                            Name = "Diana Prince 13",
+                            Personnel = "Dr. Strange"
+                        },
+                        new
+                        {
+                            TransactionID = 14,
+                            Company = "Soylent Corp",
+                            CsNo = "CS-1014",
+                            Date = new DateTime(2025, 12, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Etiqa",
+                            Name = "Evan Wright 14",
+                            Personnel = "Nurse Jackie"
+                        },
+                        new
+                        {
+                            TransactionID = 15,
+                            Company = "Initech",
+                            CsNo = "CS-1015",
+                            Date = new DateTime(2025, 12, 16, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Maxicare",
+                            Name = "Fiona Gallagher 15",
+                            Personnel = "Dr. Smith"
+                        },
+                        new
+                        {
+                            TransactionID = 16,
+                            Company = "Umbrella Corp",
+                            CsNo = "CS-1016",
+                            Date = new DateTime(2025, 12, 17, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "PhilHealth",
+                            Name = "John Doe 16",
+                            Personnel = "Nurse Joy"
+                        },
+                        new
+                        {
+                            TransactionID = 17,
+                            Company = "Stark Ind",
+                            CsNo = "CS-1017",
+                            Date = new DateTime(2025, 12, 18, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Intellicare",
+                            Name = "Jane Smith 17",
+                            Personnel = "Dr. House"
+                        },
+                        new
+                        {
+                            TransactionID = 18,
+                            Company = "Acme Corp",
+                            CsNo = "CS-1018",
+                            Date = new DateTime(2025, 12, 19, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Medicard",
+                            Name = "Alice Jones 18",
+                            Personnel = "Dr. Strange"
+                        },
+                        new
+                        {
+                            TransactionID = 19,
+                            Company = "Globex",
+                            CsNo = "CS-1019",
+                            Date = new DateTime(2025, 12, 20, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Etiqa",
+                            Name = "Bob Brown 19",
+                            Personnel = "Nurse Jackie"
+                        },
+                        new
+                        {
+                            TransactionID = 20,
+                            Company = "Soylent Corp",
+                            CsNo = "CS-1020",
+                            Date = new DateTime(2025, 12, 21, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Maxicare",
+                            Name = "Charlie Day 20",
+                            Personnel = "Dr. Smith"
+                        },
+                        new
+                        {
+                            TransactionID = 21,
+                            Company = "Initech",
+                            CsNo = "CS-1021",
+                            Date = new DateTime(2025, 12, 22, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "PhilHealth",
+                            Name = "Diana Prince 21",
+                            Personnel = "Nurse Joy"
+                        },
+                        new
+                        {
+                            TransactionID = 22,
+                            Company = "Umbrella Corp",
+                            CsNo = "CS-1022",
+                            Date = new DateTime(2025, 12, 23, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Intellicare",
+                            Name = "Evan Wright 22",
+                            Personnel = "Dr. House"
+                        },
+                        new
+                        {
+                            TransactionID = 23,
+                            Company = "Stark Ind",
+                            CsNo = "CS-1023",
+                            Date = new DateTime(2025, 12, 24, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Medicard",
+                            Name = "Fiona Gallagher 23",
+                            Personnel = "Dr. Strange"
+                        },
+                        new
+                        {
+                            TransactionID = 24,
+                            Company = "Acme Corp",
+                            CsNo = "CS-1024",
+                            Date = new DateTime(2025, 12, 25, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Etiqa",
+                            Name = "John Doe 24",
+                            Personnel = "Nurse Jackie"
+                        },
+                        new
+                        {
+                            TransactionID = 25,
+                            Company = "Globex",
+                            CsNo = "CS-1025",
+                            Date = new DateTime(2025, 12, 26, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Maxicare",
+                            Name = "Jane Smith 25",
+                            Personnel = "Dr. Smith"
+                        },
+                        new
+                        {
+                            TransactionID = 26,
+                            Company = "Soylent Corp",
+                            CsNo = "CS-1026",
+                            Date = new DateTime(2025, 12, 27, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "PhilHealth",
+                            Name = "Alice Jones 26",
+                            Personnel = "Nurse Joy"
+                        },
+                        new
+                        {
+                            TransactionID = 27,
+                            Company = "Initech",
+                            CsNo = "CS-1027",
+                            Date = new DateTime(2025, 12, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Intellicare",
+                            Name = "Bob Brown 27",
+                            Personnel = "Dr. House"
+                        },
+                        new
+                        {
+                            TransactionID = 28,
+                            Company = "Umbrella Corp",
+                            CsNo = "CS-1028",
+                            Date = new DateTime(2025, 12, 29, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Medicard",
+                            Name = "Charlie Day 28",
+                            Personnel = "Dr. Strange"
+                        },
+                        new
+                        {
+                            TransactionID = 29,
+                            Company = "Stark Ind",
+                            CsNo = "CS-1029",
+                            Date = new DateTime(2025, 12, 30, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Etiqa",
+                            Name = "Diana Prince 29",
+                            Personnel = "Nurse Jackie"
+                        },
+                        new
+                        {
+                            TransactionID = 30,
+                            Company = "Acme Corp",
+                            CsNo = "CS-1030",
+                            Date = new DateTime(2025, 12, 1, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Insurer = "Maxicare",
+                            Name = "Evan Wright 30",
+                            Personnel = "Dr. Smith"
+                        });
                 });
 
             modelBuilder.Entity("CARED.Models.TransactedProcedure", b =>

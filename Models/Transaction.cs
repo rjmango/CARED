@@ -17,22 +17,22 @@ namespace CARED.Models
 
         [Required]
         [StringLength(100)]
-        public string Insurer { get; set; }
+        public string Insurer { get; set; } = string.Empty;
         [Required]
         [StringLength(50)]
-        public string CsNo { get; set; }
+        public string CsNo { get; set; } = string.Empty;
 
         public DateTime Date { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [StringLength(100)]
-        public string Personnel { get; set; }
+        public string Personnel { get; set; } = string.Empty;
 
         [StringLength(100)]
-        public string Company { get; set; }
+        public string Company { get; set; } = string.Empty;
 
         // Navigation property for the many-to-many junction table
         public ICollection<TransactedProcedure> TransactedProcedures { get; set; } = new List<TransactedProcedure>();

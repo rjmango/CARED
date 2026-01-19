@@ -15,7 +15,31 @@ namespace CARED.Services
         {
             _dbContext = dbContext;
         }
+        public async Task<List<Transaction>> SearchTransactionsAsync(string? searchTerm)
+        {
+            // 1. Start query and Include relationships
+            var query = _dbContext.Transactions
+                .Include(t => t.TransactedProcedures)
+                .ThenInclude(tp => tp.Procedure)
+                .AsNoTracking();
 
+            // 2. Apply Filter (if search term is provided)
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                string term = searchTerm.ToLower().Trim();
+                query = query.Where(t =>
+                    t.Name.ToLower().Contains(term) ||
+                    t.CsNo.ToLower().Contains(term) ||
+                    t.Personnel.ToLower().Contains(term) ||
+                    t.Insurer.ToLower().Contains(term) ||
+                    t.TransactedProcedures.Any(tp => tp.Procedure.ProcedureName.ToLower().Contains(term)));
+            }
+
+            // 3. Sort by CS Number
+            return await query
+                .OrderBy(t => t.CsNo)
+                .ToListAsync();
+        }
         public async Task<Transaction> AddTransaction(Transaction transaction, IEnumerable<int> procedureIds)
         {
             //// 1. Add the main transaction entity
@@ -78,7 +102,7 @@ namespace CARED.Services
                 .Include(t => t.TransactedProcedures)
                 .ThenInclude(tp => tp.Procedure)
                 .AsNoTracking()
-                .OrderByDescending(t => t.Date)
+                .OrderBy(t => t.CsNo) 
                 .ToListAsync();
         }
         public async Task UpdateTransaction(Transaction updatedTransaction, IEnumerable<int> newProcedureIds)
@@ -86,29 +110,45 @@ namespace CARED.Services
             // 1. Update the main Transaction entity details
             _dbContext.Transactions.Update(updatedTransaction);
 
-            // 2. Handle Junction Table updates (the linked procedures)
-            // Fetch the existing transaction with its current procedures
+            // 2. Fetch the EXISTING record from the database (Tracked by EF)
             var existingTransaction = await _dbContext.Transactions
                 .Include(t => t.TransactedProcedures)
                 .FirstOrDefaultAsync(t => t.TransactionID == updatedTransaction.TransactionID);
 
-            if(existingTransaction == null)
+            if (existingTransaction == null)
             {
                 throw new KeyNotFoundException($"Transaction with ID {updatedTransaction.TransactionID} not found.");
             }
 
-            // Remove old links that are not in the newProcedureIds list
+            // 3. Update Scalar Properties
+            // Copy values from the form object (updatedTransaction) to the database object (existingTransaction)
+            existingTransaction.CsNo = updatedTransaction.CsNo;
+            existingTransaction.Name = updatedTransaction.Name;
+            existingTransaction.Date = updatedTransaction.Date;
+            existingTransaction.Personnel = updatedTransaction.Personnel;
+            existingTransaction.Company = updatedTransaction.Company;
+            existingTransaction.Insurer = updatedTransaction.Insurer;
+
+            // 4. Handle Junction Table Updates (Add/Remove Procedures)
+
+            // A. Identify links to REMOVE (Present in DB, but NOT in the new list)
             var linksToRemove = existingTransaction.TransactedProcedures
                 .Where(tp => !newProcedureIds.Contains(tp.ProcedureID))
                 .ToList();
 
-            foreach(var link in linksToRemove)
+            foreach (var link in linksToRemove)
             {
                 existingTransaction.TransactedProcedures.Remove(link);
             }
-            // Identify and add new links
-            var existingProceureIds = existingTransaction.TransactedProcedures.Select(tp => tp.ProcedureID).ToList();
-            var procedureIdsToAdd = newProcedureIds.Except(existingProceureIds).ToList();
+
+            // B. Identify links to ADD (Present in new list, but NOT in DB)
+            var existingProcedureIds = existingTransaction.TransactedProcedures
+                .Select(tp => tp.ProcedureID)
+                .ToList();
+
+            var procedureIdsToAdd = newProcedureIds
+                .Except(existingProcedureIds)
+                .ToList();
 
             if (procedureIdsToAdd.Any())
             {
@@ -124,7 +164,7 @@ namespace CARED.Services
                 }
             }
 
-            // Save all changes (updates to Transaction and changes to TransactedProcedures)
+            // 4. Save Changes
             await _dbContext.SaveChangesAsync();
         }
         public async Task DeleteTransaction(int id)

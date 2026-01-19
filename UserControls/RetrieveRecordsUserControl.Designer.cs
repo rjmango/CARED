@@ -28,27 +28,124 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
+            dataGridView1 = new DataGridView();
+            csNoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            transactedProceduresDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            personnelDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            transactionBindingSource = new BindingSource(components);
+            textBox1 = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)transactionBindingSource).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(245, 257);
+            label1.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(20, 32);
             label1.Name = "label1";
-            label1.Size = new Size(310, 86);
+            label1.Size = new Size(412, 81);
             label1.TabIndex = 1;
-            label1.Text = "RECORDS";
-            
+            label1.Text = "View Records";
+            label1.Click += label1_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { csNoDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, transactedProceduresDataGridViewTextBoxColumn, personnelDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = transactionBindingSource;
+            dataGridView1.Location = new Point(20, 200);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(1240, 660);
+            dataGridView1.TabIndex = 3;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // csNoDataGridViewTextBoxColumn
+            // 
+            csNoDataGridViewTextBoxColumn.DataPropertyName = "CsNo";
+            csNoDataGridViewTextBoxColumn.HeaderText = "CS Number";
+            csNoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            csNoDataGridViewTextBoxColumn.Name = "csNoDataGridViewTextBoxColumn";
+            csNoDataGridViewTextBoxColumn.ReadOnly = true;
+            csNoDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            dateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            dateDataGridViewTextBoxColumn.ReadOnly = true;
+            dateDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // transactedProceduresDataGridViewTextBoxColumn
+            // 
+            transactedProceduresDataGridViewTextBoxColumn.DataPropertyName = "TransactedProcedures";
+            transactedProceduresDataGridViewTextBoxColumn.HeaderText = "Laboratory Requests";
+            transactedProceduresDataGridViewTextBoxColumn.MinimumWidth = 6;
+            transactedProceduresDataGridViewTextBoxColumn.Name = "transactedProceduresDataGridViewTextBoxColumn";
+            transactedProceduresDataGridViewTextBoxColumn.ReadOnly = true;
+            transactedProceduresDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // personnelDataGridViewTextBoxColumn
+            // 
+            personnelDataGridViewTextBoxColumn.DataPropertyName = "Personnel";
+            personnelDataGridViewTextBoxColumn.HeaderText = "Doctor";
+            personnelDataGridViewTextBoxColumn.MinimumWidth = 6;
+            personnelDataGridViewTextBoxColumn.Name = "personnelDataGridViewTextBoxColumn";
+            personnelDataGridViewTextBoxColumn.ReadOnly = true;
+            personnelDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // transactionBindingSource
+            // 
+            transactionBindingSource.DataSource = typeof(Models.Transaction);
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(20, 132);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Search by Name, CS No, or Company...";
+            textBox1.Size = new Size(1211, 43);
+            textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // RetrieveRecordsUserControl
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(textBox1);
+            Controls.Add(dataGridView1);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "RetrieveRecordsUserControl";
-            Size = new Size(800, 600);
+            Size = new Size(1280, 880);
+            Load += RetrieveRecordsUserControl_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)transactionBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -56,5 +153,13 @@
         #endregion
 
         private Label label1;
+        private DataGridView dataGridView1;
+        private TextBox textBox1;
+        private BindingSource transactionBindingSource;
+        private DataGridViewTextBoxColumn csNoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn transactedProceduresDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn personnelDataGridViewTextBoxColumn;
     }
 }
