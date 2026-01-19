@@ -46,6 +46,7 @@ namespace CARED
             contentPanel = new Panel();
             loadingOverlayPanel = new Panel();
             label1 = new Label();
+            deleteButton = new Button();
             sidePanel.SuspendLayout();
             loadingOverlayPanel.SuspendLayout();
             SuspendLayout();
@@ -53,6 +54,7 @@ namespace CARED
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(37, 48, 35);
+            sidePanel.Controls.Add(deleteButton);
             sidePanel.Controls.Add(CAREDLabel);
             sidePanel.Controls.Add(btnPrintRecords);
             sidePanel.Controls.Add(btnRetrieveRecords);
@@ -157,6 +159,23 @@ namespace CARED
             label1.TabIndex = 0;
             label1.Text = "LOADING...";
             // 
+            // deleteButton
+            // 
+            deleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            deleteButton.BackColor = Color.FromArgb(174, 36, 2);
+            deleteButton.FlatAppearance.BorderSize = 0;
+            deleteButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(59, 73, 50);
+            deleteButton.FlatStyle = FlatStyle.Flat;
+            deleteButton.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            deleteButton.ForeColor = SystemColors.Window;
+            deleteButton.Location = new Point(26, 388);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(149, 36);
+            deleteButton.TabIndex = 2;
+            deleteButton.Text = "Remove Records";
+            deleteButton.UseVisualStyleBackColor = false;
+            deleteButton.Click += deleteButton_Click;
+            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -210,7 +229,7 @@ namespace CARED
             loadingOverlayPanel.BringToFront();
 
             // Force a small delay so the UI thread can paint the loading panel
-            await Task.Delay(0);
+            await Task.Delay(1);
 
             try
             {
@@ -247,7 +266,7 @@ namespace CARED
         #endregion
 
         // Inject the Service Layer through the constructor
-        private readonly IServiceProvider _serviceProvider;
+        protected readonly IServiceProvider _serviceProvider;
         public mainForm(IServiceProvider serviceProvider)
         {
             InitializeComponent();
@@ -265,6 +284,7 @@ namespace CARED
         private Label CAREDLabel;
         private Panel loadingOverlayPanel;
         private Label label1;
+        private Button deleteButton;
     }
 }
 
