@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 
 namespace CARED.UserControls
@@ -14,6 +15,44 @@ namespace CARED.UserControls
         public ExportRecordsUserControl()
         {
             InitializeComponent();
+
+            // Apply rounded corners after the control is fully loaded
+            this.Load += (s, e) =>
+            {
+                ApplyRoundedCorners(tableLayoutPanel1, 15);
+                ApplyRoundedCorners(panel3, 10);
+                ApplyRoundedCorners(monthComboBox, 15);
+                //ApplyRoundedCorners(insurerComboBox, 15);
+                //ApplyRoundedCorners(panel4, 10);
+                ApplyRoundedCorners(panel1, 15);
+                ApplyRoundedCorners(exportButton, 15);
+            };
+
+            // Reapply on resize to maintain rounded corners
+            this.Resize += (s, e) =>
+            {
+                ApplyRoundedCorners(tableLayoutPanel1, 15);
+                ApplyRoundedCorners(panel3, 10);
+                ApplyRoundedCorners(monthComboBox, 15);
+                //ApplyRoundedCorners(insurerComboBox, 15);
+                //ApplyRoundedCorners(panel4, 10);
+                ApplyRoundedCorners(panel1, 15);
+                ApplyRoundedCorners(exportButton, 15);
+            };
+        }
+
+        private void ApplyRoundedCorners(Control control, int radius)
+        {
+            if (control == null) return;
+
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(control.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(control.Width - radius, control.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, control.Height - radius, radius, radius), 90, 90);
+            path.CloseFigure();
+            control.Region = new Region(path);
         }
 
         private void DashboardUserControl_Load(object sender, EventArgs e)
@@ -46,7 +85,7 @@ namespace CARED.UserControls
                 BillingStatementCheckBox.Checked = false;
                 csSuggestion.Visible = true;
             }
-            else 
+            else
             {
                 csSuggestion.Visible = false;
             }
@@ -54,6 +93,7 @@ namespace CARED.UserControls
 
         private void exportButton_Click(object sender, EventArgs e)
         {
+
             int month = monthComboBox.SelectedIndex + 1;
 
             if (!int.TryParse(yearTextBox.Text, out int year))
@@ -75,7 +115,7 @@ namespace CARED.UserControls
                     targetMonth: month,
                     bsName: bsNameTitle.Text,
                     hmo: hmoTitle.Text,
-                    defaultFileName: fileNameTextBox.Text
+                    defaultFileName: textBox6.Text
                 );
                 MessageBox.Show("Billing Statement exported successfully.");
             }
@@ -84,7 +124,7 @@ namespace CARED.UserControls
                 CreateExcelService.GenerateChargeSlips(
                     targetYear: year,
                     targetMonth: month,
-                    defaultFileName: fileNameTextBox.Text
+                    defaultFileName: textBox6.Text
                 );
             }
             else
@@ -124,6 +164,31 @@ namespace CARED.UserControls
         }
 
         private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void insurerLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
         }
