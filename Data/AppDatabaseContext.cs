@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace CARED.Data
 {
+
+
     public class AppDatabaseContext : DbContext
     {
+
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
         public DbSet<TransactedProcedure> TransactedProcedures { get; set; }
+
+        public AppDatabaseContext()
+        {
+        }
 
         // We use the parameterless constructor for direct instantiation
         public AppDatabaseContext(DbContextOptions<AppDatabaseContext> options) : base(options)
