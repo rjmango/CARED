@@ -180,13 +180,14 @@ namespace CARED.UserControls
             saveButton.FlatAppearance.BorderSize = 0;
             saveButton.FlatStyle = FlatStyle.Flat;
             saveButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            saveButton.ImageAlign = ContentAlignment.MiddleLeft;
+            saveButton.Image = Properties.Resources.icons8_save_48;
+            saveButton.ImageAlign = ContentAlignment.MiddleRight;
             saveButton.Location = new Point(546, 20);
             saveButton.Margin = new Padding(3, 20, 0, 3);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(185, 49);
             saveButton.TabIndex = 0;
-            saveButton.Text = "Save Record";
+            saveButton.Text = "Save Record        ";
             saveButton.UseVisualStyleBackColor = false;
             saveButton.Click += saveButton_Click;
             saveButton.Paint += Button_Paint;
@@ -652,6 +653,7 @@ namespace CARED.UserControls
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 237, 226);
+            BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(headerLabel);
             Controls.Add(contentPanel);
             Name = "NewBillingUserControl";

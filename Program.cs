@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.ServiceProcess;
 
 namespace CARED
 {
@@ -40,6 +41,7 @@ namespace CARED
                     // --- Registration for your core entities ---
                     services.AddTransient<IProcedureService, ProcedureService>();
                     services.AddTransient<ITransactionService, TransactionService>();
+                    services.AddSingleton<RecordCacheService>();
 
                     // --- 3. WINFORMS REGISTRATION ---
                     services.AddTransient<mainForm>();

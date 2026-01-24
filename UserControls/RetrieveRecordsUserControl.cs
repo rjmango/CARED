@@ -207,7 +207,7 @@ namespace CARED.UserControls
                 await LoadData("");
             }
         }
-        private async Task LoadData(string searchTerm)
+        internal async Task LoadData(string searchTerm)
         {
             try
             {

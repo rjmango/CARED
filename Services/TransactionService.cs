@@ -182,6 +182,30 @@ namespace CARED.Services
                 // Depending on requirements, you might ignore this or log it.
             }
         }
+
+        public async Task ClearAllDataAsync()
+        {
+            // Start a transaction to ensure atomic deletion
+            using (var dbTransaction = await _dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    // 1. Remove all Junction entries first to satisfy foreign key constraints
+                    _dbContext.TransactedProcedures.RemoveRange(_dbContext.TransactedProcedures);
+
+                    // 2. Remove all Transactions
+                    _dbContext.Transactions.RemoveRange(_dbContext.Transactions);
+
+                    await _dbContext.SaveChangesAsync();
+                    await dbTransaction.CommitAsync();
+                }
+                catch
+                {
+                    await dbTransaction.RollbackAsync();
+                    throw;
+                }
+            }
+        }
         public async Task<decimal> CalculateTotalCostAsync(int transactionId)
         {
             // We join the three tables (Transaction, TransactedProcedures, Procedures)

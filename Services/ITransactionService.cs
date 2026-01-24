@@ -58,12 +58,24 @@ namespace CARED.Services
         Task DeleteTransaction(int id);
 
         // ----------------------------------------------------
+        // D - Delete
+        // ----------------------------------------------------
+
+        /// <summary>
+        /// Deletes all Transactions and cascades the deletion to the TransactedProcedures records.
+        /// </summary>
+        /// <param none>No param as it deletes all entreis in the mentioned tables</param>
+        Task ClearAllDataAsync();
+
+        // ----------------------------------------------------
         // Business Logic (Example)
         // ----------------------------------------------------
 
         /// <summary>
         /// Calculates the total cost for a specific transaction by summing the costs of all linked procedures.
         /// </summary>
+        /// 
+
         Task<decimal> CalculateTotalCostAsync(int transactionId);
         // Returns a Tuple: (List of items, Total count of items)
         Task<List<Transaction>> SearchTransactionsAsync(string? searchTerm);
