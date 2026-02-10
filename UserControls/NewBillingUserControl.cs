@@ -37,6 +37,8 @@ namespace CARED.UserControls
             _availableProcedures = await _procedureService.GetAllProceduresAsync();
             _availableProcedures = CreateGroupedList(_availableProcedures);
             personnelTextbox.Text = AppState.CurrentPersonnel;
+            addProcedureDisabledTooltip.SetToolTip(addProcedureButton, "Please select a procedure in the current row before adding a new one.");
+            addProcedureButton.BackColor = Color.Gray;
             AddDefaultRow();
         }
 
@@ -86,12 +88,19 @@ namespace CARED.UserControls
 
         private void addProcedureButton_Click(object sender, EventArgs e)
         {
+            var bottomRow = GetBottomMostRow();
+            if (bottomRow != null && !bottomRow.IsSelectionValid) return;
+
             var newRow = new ProcedureListRowUserControl(_availableProcedures);
+            newRow.Margin = new Padding(0);
             newRow.Dock = DockStyle.Top;
             newRow.PriceChanged += Row_PriceChanged;
             newRow.DeleteRequested += Row_DeleteRequested;
             procedureRowsPanel.Controls.Add(newRow);
             newRow.BringToFront();
+            procedureRowsPanel.ScrollControlIntoView(newRow);
+
+            UpdateAddButtonState();
         }
 
         private void Row_DeleteRequested(object? sender, EventArgs e)
@@ -107,6 +116,7 @@ namespace CARED.UserControls
 
         private void Row_PriceChanged(object? sender, EventArgs e)
         {
+            UpdateAddButtonState();
             CalculateGrandTotal();
         }
 
@@ -236,6 +246,33 @@ namespace CARED.UserControls
         private void personnelTextbox_Leave(object sender, EventArgs e)
         {
             AppState.CurrentPersonnel = personnelTextbox.Text;
-    }
+        }
+
+        private ProcedureListRowUserControl GetBottomMostRow()
+        {
+            return procedureRowsPanel.Controls.OfType<ProcedureListRowUserControl>()
+                    .OrderByDescending(row => row.Bottom)
+                    .FirstOrDefault();
+        }
+
+        private void UpdateAddButtonState()
+        {
+            var bottomRow = GetBottomMostRow();
+            bool isValid = bottomRow == null || bottomRow.IsSelectionValid;
+
+            if (isValid)
+            {
+                addProcedureButton.Enabled = true;
+                addProcedureButton.BackColor = Color.FromArgb(153, 184, 137); // Your green color
+                addProcedureDisabledTooltip.SetToolTip(addProcedureButton, "");
+            }
+            else
+            {
+                // Keep it enabled so ToolTip works, but prevent the action in the Click event
+                addProcedureButton.Enabled = true;
+                addProcedureButton.BackColor = Color.Gray;
+                addProcedureDisabledTooltip.SetToolTip(addProcedureButton, "Please select a procedure first.");
+            }
+        }
     }
 }

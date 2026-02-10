@@ -16,6 +16,8 @@ namespace CARED.UserControls
     {
         public event EventHandler? PriceChanged;
         public event EventHandler? DeleteRequested;
+
+        public bool IsSelectionValid => procedureDropdown.SelectedIndex != -1;
         private void OnPriceChanged()
         {
             PriceChanged?.Invoke(this, EventArgs.Empty);
@@ -90,6 +92,21 @@ namespace CARED.UserControls
         private void deleteButton_Click(object sender, EventArgs e)
         {
             DeleteRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void deleteButton_MouseEnter(object sender, EventArgs e)
+        {
+            deleteButton.ImageIndex = 1;
+
+            deleteButton.FlatAppearance.BorderSize = 1;
+            //deleteButton.FlatAppearance.BorderColor = Color.FromArgb(238, 94, 104);
+        }
+
+        private void deleteButton_MouseLeave(object sender, EventArgs e)
+        {
+            deleteButton.ImageIndex = 0;
+
+            deleteButton.FlatAppearance.BorderSize = 0;
         }
     }
 }

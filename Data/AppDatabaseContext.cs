@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace CARED.Data
 {
-
-
     public class AppDatabaseContext : DbContext
     {
 
@@ -29,11 +27,34 @@ namespace CARED.Data
         // --- IMPORTANT: This is now used for the connection ---
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Use SQLite and point to the database file
-            optionsBuilder.UseSqlite("Data Source=app_database.db");
+            //// Use SQLite and point to the database file
+            //optionsBuilder.UseSqlite("Data Source=app_database.db");
 
-            // Optional: Enable detailed query logging for debugging
-            optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+            //// Optional: Enable detailed query logging for debugging
+            //optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+
+            // Check if options were already configured (e.g., by a Test project or Program.cs)
+            if (!optionsBuilder.IsConfigured)
+            {
+                // db location is at %LocalAppData%/CARED -- Type this in file explorer to verify
+                // 1. Define the secure path for Windows 7
+                string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string dbFolder = Path.Combine(appDataPath, "CARED");
+
+                // 2. Ensure folder exists
+                if (!Directory.Exists(dbFolder))
+                {
+                    Directory.CreateDirectory(dbFolder);
+                }
+
+                string dbPath = Path.Combine(dbFolder, "app_database.db");
+
+                // 3. Configure SQLite
+                optionsBuilder.UseSqlite($"Data Source={dbPath}");
+
+                // Optional: Logging
+                optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+            }
         }
         // --------------------------------------------------------
 
@@ -60,10 +81,10 @@ namespace CARED.Data
             modelBuilder.Entity<Procedure>().HasData(ProcedureSeedData.GetInitialProcedures());
 
             // *** Philippe: Transaction Seeding ***
-            modelBuilder.Entity<Transaction>().HasData(TransactionSeedData.GetTransactions());
+            //modelBuilder.Entity<Transaction>().HasData(TransactionSeedData.GetTransactions());
 
             // *** Philippe: TransactedProcedure Seeding ***
-            modelBuilder.Entity<TransactedProcedure>().HasData(TransactionSeedData.GetTransactedProcedures());
+            //modelBuilder.Entity<TransactedProcedure>().HasData(TransactionSeedData.GetTransactedProcedures());
 
             // --- 3. Relationship Configuration ---
 

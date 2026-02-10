@@ -53,5 +53,27 @@ namespace CARED
                 }
             }
         }
+
+        private void CAREDLabel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            Control btn = (Control)sender;
+            int radius = 20; // Slightly smaller radius looks better for buttons
+
+            using (var path = new System.Drawing.Drawing2D.GraphicsPath())
+            {
+                path.AddArc(0, 0, radius, radius, 180, 90);
+                path.AddArc(btn.Width - radius, 0, radius, radius, 270, 90);
+                path.AddArc(btn.Width - radius, btn.Height - radius, radius, radius, 0, 90);
+                path.AddArc(0, btn.Height - radius, radius, radius, 90, 90);
+                path.CloseFigure();
+
+                btn.Region = new Region(path);
+            }
+        }
     }
 }

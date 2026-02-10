@@ -8,7 +8,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
 	<CheckEolTargetFramework>false</CheckEolTargetFramework>
+
+	<ApplicationIcon>Resources\CARED Logo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\CARED Logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\CARED Logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="Models\Procedure.cs" />
