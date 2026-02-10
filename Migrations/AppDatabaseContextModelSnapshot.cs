@@ -54,801 +54,601 @@ namespace CARED.Migrations
                         {
                             ProcedureID = 1,
                             Amount = 182.00m,
-                            Group = "LABORATORY",
+                            Group = "LABORATORY TESTS",
                             ProcedureName = "URINALYSIS",
-                            SubGroup = "CLINICAL MICROSCOPY"
+                            SubGroup = "I. CLINICAL MICROSCOPY"
                         },
                         new
                         {
                             ProcedureID = 2,
-                            Amount = 300.00m,
-                            Group = "LABORATORY",
-                            ProcedureName = "CBC",
-                            SubGroup = "HEMATOLOGY"
+                            Amount = 182.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "STOOL",
+                            SubGroup = "I. CLINICAL MICROSCOPY"
                         },
                         new
                         {
                             ProcedureID = 3,
-                            Amount = 340.00m,
-                            Group = "IMAGING",
-                            ProcedureName = "CHEST PA",
-                            SubGroup = "THORACIC"
+                            Amount = 275.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "FECAL OCCULT BLOOD",
+                            SubGroup = "I. CLINICAL MICROSCOPY"
                         },
                         new
                         {
                             ProcedureID = 4,
-                            Amount = 1100.00m,
-                            Group = "ULTRASOUND",
-                            ProcedureName = "UPPER ABDOMEN",
-                            SubGroup = "GENERAL"
+                            Amount = 385.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "PT (SERUM)",
+                            SubGroup = "II. SEROLOGY"
                         },
                         new
                         {
                             ProcedureID = 5,
-                            Amount = 506.00m,
-                            Group = "IMAGING",
-                            ProcedureName = "ECG 12L WITH RS",
-                            SubGroup = "OTHERS"
+                            Amount = 242.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BLOOD TYPING",
+                            SubGroup = "II. SEROLOGY"
                         },
                         new
                         {
                             ProcedureID = 6,
-                            Amount = 106.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 6",
-                            SubGroup = "GENERATED"
+                            Amount = 440.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "VDRL",
+                            SubGroup = "II. SEROLOGY"
                         },
                         new
                         {
                             ProcedureID = 7,
-                            Amount = 107.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 7",
-                            SubGroup = "GENERATED"
+                            Amount = 440.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HBsAg",
+                            SubGroup = "II. SEROLOGY"
                         },
                         new
                         {
                             ProcedureID = 8,
-                            Amount = 108.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 8",
-                            SubGroup = "GENERATED"
+                            Amount = 440.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "Anti- HBs",
+                            SubGroup = "II. SEROLOGY"
                         },
                         new
                         {
                             ProcedureID = 9,
-                            Amount = 109.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 9",
-                            SubGroup = "GENERATED"
+                            Amount = 2024.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "NS1, IgM/IgG",
+                            SubGroup = "II. SEROLOGY"
                         },
                         new
                         {
                             ProcedureID = 10,
-                            Amount = 110.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 10",
-                            SubGroup = "GENERATED"
+                            Amount = 770.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HIV SCREENING",
+                            SubGroup = "II. SEROLOGY"
                         },
                         new
                         {
                             ProcedureID = 11,
-                            Amount = 111.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 11",
-                            SubGroup = "GENERATED"
+                            Amount = 300.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CBC",
+                            SubGroup = "III. HEMATOLOGY"
                         },
                         new
                         {
                             ProcedureID = 12,
-                            Amount = 112.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 12",
-                            SubGroup = "GENERATED"
+                            Amount = 193.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CLOTTING TIME",
+                            SubGroup = "III. HEMATOLOGY"
                         },
                         new
                         {
                             ProcedureID = 13,
-                            Amount = 113.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 13",
-                            SubGroup = "GENERATED"
+                            Amount = 193.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BLEEDING TIME",
+                            SubGroup = "III. HEMATOLOGY"
                         },
                         new
                         {
                             ProcedureID = 14,
-                            Amount = 114.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 14",
-                            SubGroup = "GENERATED"
+                            Amount = 220.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "ESR",
+                            SubGroup = "III. HEMATOLOGY"
                         },
                         new
                         {
                             ProcedureID = 15,
-                            Amount = 115.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 15",
-                            SubGroup = "GENERATED"
+                            Amount = 825.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "LIPID PANEL with FBS",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 16,
-                            Amount = 116.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 16",
-                            SubGroup = "GENERATED"
+                            Amount = 330.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "GLUCOSE/FBS/RBS",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 17,
-                            Amount = 117.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 17",
-                            SubGroup = "GENERATED"
+                            Amount = 363.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CHOLESTEROL",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 18,
-                            Amount = 118.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 18",
-                            SubGroup = "GENERATED"
+                            Amount = 385.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "TRIGLYCERIDES",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 19,
-                            Amount = 119.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 19",
-                            SubGroup = "GENERATED"
+                            Amount = 385.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HDL",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 20,
-                            Amount = 120.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 20",
-                            SubGroup = "GENERATED"
+                            Amount = 330.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "CREATININE",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 21,
-                            Amount = 121.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 21",
-                            SubGroup = "GENERATED"
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BUA",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 22,
-                            Amount = 122.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 22",
-                            SubGroup = "GENERATED"
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "BUN",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 23,
-                            Amount = 123.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 23",
-                            SubGroup = "GENERATED"
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "SGPT",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 24,
-                            Amount = 124.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 24",
-                            SubGroup = "GENERATED"
+                            Amount = 303.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "SGOT",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 25,
-                            Amount = 125.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 25",
-                            SubGroup = "GENERATED"
+                            Amount = 352.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "ALKALINE PHOSPHATASE",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 26,
-                            Amount = 126.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 26",
-                            SubGroup = "GENERATED"
+                            Amount = 770.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "HbA1C",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 27,
-                            Amount = 127.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 27",
-                            SubGroup = "GENERATED"
+                            Amount = 770.00m,
+                            Group = "LABORATORY TESTS",
+                            ProcedureName = "OGTT 75g 2HRS",
+                            SubGroup = "IV. BLOOD CHEMISTRY"
                         },
                         new
                         {
                             ProcedureID = 28,
-                            Amount = 128.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 28",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "SKULL AP AND LATERAL",
+                            SubGroup = "I. HEAD"
                         },
                         new
                         {
                             ProcedureID = 29,
-                            Amount = 129.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 29",
-                            SubGroup = "GENERATED"
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "PARANASAL SINUS (CALDWELL @ WATERS)",
+                            SubGroup = "I. HEAD"
                         },
                         new
                         {
                             ProcedureID = 30,
-                            Amount = 130.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 30",
-                            SubGroup = "GENERATED"
+                            Amount = 440.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "SHOULDER AP",
+                            SubGroup = "II. UPPER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 31,
-                            Amount = 131.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 31",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "FOREARMS AP LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 32,
-                            Amount = 132.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 32",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "ELBOW AP LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 33,
-                            Amount = 133.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 33",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "WRIST AP LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 34,
-                            Amount = 134.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 34",
-                            SubGroup = "GENERATED"
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "HAND PA OBLIQUE and LATERAL",
+                            SubGroup = "II. UPPER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 35,
-                            Amount = 135.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 35",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "HUMERUS APL",
+                            SubGroup = "II. UPPER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 36,
-                            Amount = 136.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 36",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "LEG (TIBIA FIBULA) AP LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 37,
-                            Amount = 137.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 37",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "KNEE AP AND LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 38,
-                            Amount = 138.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 38",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "ANKLE AP OBLIQUE and LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 39,
-                            Amount = 139.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 39",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "FOOT AP, OBLIQUE and LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 40,
-                            Amount = 140.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 40",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "FOOT LATERAL",
+                            SubGroup = "III. LOWER EXTREMITIES"
                         },
                         new
                         {
                             ProcedureID = 41,
-                            Amount = 141.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 41",
-                            SubGroup = "GENERATED"
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CERVICAL SPINE APL",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
                         },
                         new
                         {
                             ProcedureID = 42,
-                            Amount = 142.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 42",
-                            SubGroup = "GENERATED"
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CERVICAL SPINE (open mouth) APL",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
                         },
                         new
                         {
                             ProcedureID = 43,
-                            Amount = 143.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 43",
-                            SubGroup = "GENERATED"
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "LUMBOSACRAL",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
                         },
                         new
                         {
                             ProcedureID = 44,
-                            Amount = 144.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 44",
-                            SubGroup = "GENERATED"
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "THORACIC SPINE",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
                         },
                         new
                         {
                             ProcedureID = 45,
-                            Amount = 145.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 45",
-                            SubGroup = "GENERATED"
+                            Amount = 790.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "PELVIC XRAY",
+                            SubGroup = "IV. VERTEBRAL COLUMN"
                         },
                         new
                         {
                             ProcedureID = 46,
-                            Amount = 146.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 46",
-                            SubGroup = "GENERATED"
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST PA",
+                            SubGroup = "V. THORACIC"
                         },
                         new
                         {
                             ProcedureID = 47,
-                            Amount = 147.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 47",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST PAL",
+                            SubGroup = "V. THORACIC"
                         },
                         new
                         {
                             ProcedureID = 48,
-                            Amount = 148.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 48",
-                            SubGroup = "GENERATED"
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST AP(Pedia)",
+                            SubGroup = "V. THORACIC"
                         },
                         new
                         {
                             ProcedureID = 49,
-                            Amount = 149.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 49",
-                            SubGroup = "GENERATED"
+                            Amount = 640.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST APL (Pedia)",
+                            SubGroup = "V. THORACIC"
                         },
                         new
                         {
                             ProcedureID = 50,
-                            Amount = 150.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 50",
-                            SubGroup = "GENERATED"
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST LATERAL",
+                            SubGroup = "V. THORACIC"
                         },
                         new
                         {
                             ProcedureID = 51,
-                            Amount = 151.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 51",
-                            SubGroup = "GENERATED"
+                            Amount = 340.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "CHEST APICOLORDOTIC",
+                            SubGroup = "V. THORACIC"
                         },
                         new
                         {
                             ProcedureID = 52,
-                            Amount = 152.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 52",
-                            SubGroup = "GENERATED"
+                            Amount = 506.00m,
+                            Group = "IMAGING SERVICES",
+                            ProcedureName = "ECG 12L WITH RS",
+                            SubGroup = "VI. OTHERS"
                         },
                         new
                         {
                             ProcedureID = 53,
-                            Amount = 153.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 53",
-                            SubGroup = "GENERATED"
+                            Amount = 1650.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "WHOLE ABDOMEN",
+                            SubGroup = "I. GENERAL"
                         },
                         new
                         {
                             ProcedureID = 54,
-                            Amount = 154.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 54",
-                            SubGroup = "GENERATED"
+                            Amount = 1100.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "UPPER ABDOMEN",
+                            SubGroup = "I. GENERAL"
                         },
                         new
                         {
                             ProcedureID = 55,
-                            Amount = 155.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 55",
-                            SubGroup = "GENERATED"
+                            Amount = 990.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "LOWER ABDOMEN",
+                            SubGroup = "I. GENERAL"
                         },
                         new
                         {
                             ProcedureID = 56,
-                            Amount = 156.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 56",
-                            SubGroup = "GENERATED"
+                            Amount = 990.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "KUB",
+                            SubGroup = "I. GENERAL"
                         },
                         new
                         {
                             ProcedureID = 57,
-                            Amount = 157.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 57",
-                            SubGroup = "GENERATED"
+                            Amount = 1155.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "KUB + PROSTATE",
+                            SubGroup = "I. GENERAL"
                         },
                         new
                         {
                             ProcedureID = 58,
-                            Amount = 158.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 58",
-                            SubGroup = "GENERATED"
+                            Amount = 1100.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "HBT",
+                            SubGroup = "I. GENERAL"
                         },
                         new
                         {
                             ProcedureID = 59,
-                            Amount = 159.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 59",
-                            SubGroup = "GENERATED"
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "TRANSVAGINAL",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 60,
-                            Amount = 160.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 60",
-                            SubGroup = "GENERATED"
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "PREGNANT PELVIS/TRANS AB UTZ",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 61,
-                            Amount = 161.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 61",
-                            SubGroup = "GENERATED"
+                            Amount = 1500.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "PELVIC UTZ W/ CERVICAL LENGTH",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 62,
-                            Amount = 162.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 62",
-                            SubGroup = "GENERATED"
+                            Amount = 1200.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "BIOPHYSICAL PROFILE",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 63,
-                            Amount = 163.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 63",
-                            SubGroup = "GENERATED"
+                            Amount = 2000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "DOPPLER VELOCIMETRY",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 64,
-                            Amount = 164.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 64",
-                            SubGroup = "GENERATED"
+                            Amount = 2000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "CONGENITAL ANOMALY SCAN",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 65,
-                            Amount = 165.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 65",
-                            SubGroup = "GENERATED"
+                            Amount = 2500.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "CAS W/ CERVICAL LENGTH",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 66,
-                            Amount = 166.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 66",
-                            SubGroup = "GENERATED"
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "4D UTZ PIC ALONE",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 67,
-                            Amount = 167.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 67",
-                            SubGroup = "GENERATED"
+                            Amount = 2100.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "W/ BIOMETRY",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 68,
-                            Amount = 168.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 68",
-                            SubGroup = "GENERATED"
+                            Amount = 2900.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "WITH BIOMETRY CD AND PIC",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 69,
-                            Amount = 169.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 69",
-                            SubGroup = "GENERATED"
+                            Amount = 1300.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "1ST TRINUCHAL SCREEN",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 70,
-                            Amount = 170.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 70",
-                            SubGroup = "GENERATED"
+                            Amount = 1200.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "TRANSRECTAL",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 71,
-                            Amount = 171.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 71",
-                            SubGroup = "GENERATED"
+                            Amount = 1000.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "NON PREGNANT PELVIS",
+                            SubGroup = "II. OB ULTRASOUND"
                         },
                         new
                         {
                             ProcedureID = 72,
-                            Amount = 172.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 72",
-                            SubGroup = "GENERATED"
+                            Amount = 5300.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "POST BRONCHIAL SPIROMETRY",
+                            SubGroup = "III. OTHERS"
                         },
                         new
                         {
                             ProcedureID = 73,
-                            Amount = 173.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 73",
-                            SubGroup = "GENERATED"
+                            Amount = 3900.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "24H ABPM",
+                            SubGroup = "III. OTHERS"
                         },
                         new
                         {
                             ProcedureID = 74,
-                            Amount = 174.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 74",
-                            SubGroup = "GENERATED"
+                            Amount = 4400.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "24H HOLTER MONITORING",
+                            SubGroup = "III. OTHERS"
                         },
                         new
                         {
                             ProcedureID = 75,
-                            Amount = 175.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 75",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 76,
-                            Amount = 176.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 76",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 77,
-                            Amount = 177.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 77",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 78,
-                            Amount = 178.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 78",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 79,
-                            Amount = 179.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 79",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 80,
-                            Amount = 180.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 80",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 81,
-                            Amount = 181.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 81",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 82,
-                            Amount = 182.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 82",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 83,
-                            Amount = 183.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 83",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 84,
-                            Amount = 184.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 84",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 85,
-                            Amount = 185.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 85",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 86,
-                            Amount = 186.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 86",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 87,
-                            Amount = 187.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 87",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 88,
-                            Amount = 188.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 88",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 89,
-                            Amount = 189.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 89",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 90,
-                            Amount = 190.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 90",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 91,
-                            Amount = 191.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 91",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 92,
-                            Amount = 192.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 92",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 93,
-                            Amount = 193.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 93",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 94,
-                            Amount = 194.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 94",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 95,
-                            Amount = 195.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 95",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 96,
-                            Amount = 196.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 96",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 97,
-                            Amount = 197.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 97",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 98,
-                            Amount = 198.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 98",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 99,
-                            Amount = 199.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 99",
-                            SubGroup = "GENERATED"
-                        },
-                        new
-                        {
-                            ProcedureID = 100,
-                            Amount = 200.00m,
-                            Group = "STRESS TEST",
-                            ProcedureName = "TEST PROCEDURE 100",
-                            SubGroup = "GENERATED"
+                            Amount = 3300.00m,
+                            Group = "ULTRASOUND SERVICES",
+                            ProcedureName = "ABI",
+                            SubGroup = "III. OTHERS"
                         });
                 });
 
@@ -865,813 +665,6 @@ namespace CARED.Migrations
                     b.HasIndex("ProcedureID");
 
                     b.ToTable("TransactedProcedures");
-
-                    b.HasData(
-                        new
-                        {
-                            TransactionID = 1,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 1,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 1,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 2,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 2,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 2,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 3,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 3,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 3,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 4,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 4,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 4,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 5,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 5,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 5,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 6,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 6,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 6,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 7,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 7,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 7,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 8,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 8,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 8,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 9,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 9,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 9,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 10,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 10,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 10,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 1
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 2
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 3
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 4
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 5
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 6
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 7
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 8
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 9
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 10
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 11
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 12
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 13
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 14
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 15
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 16
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 17
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 18
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 19
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 20
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 21
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 22
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 23
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 24
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 25
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 26
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 27
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 28
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 29
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 30
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 31
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 32
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 33
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 34
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 35
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 36
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 37
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 38
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 39
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 40
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 41
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 42
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 43
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 44
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 45
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 46
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 47
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 48
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 49
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 50
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 51
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 52
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 53
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 54
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 55
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 56
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 57
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 58
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 59
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            ProcedureID = 60
-                        },
-                        new
-                        {
-                            TransactionID = 12,
-                            ProcedureID = 5
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 10
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 10
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 11
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 11
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 12
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 12
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 13
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 13
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 14
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 14
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 15
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 15
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 16
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 16
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 17
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 17
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 18
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 18
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 19
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 19
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 20
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 20
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 21
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 21
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 22
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 22
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 23
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 23
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 24
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 24
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 25
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 25
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 26
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 26
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 27
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 27
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 28
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 28
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 29
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 29
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 30
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 30
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 31
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 31
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 32
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 32
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 33
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 33
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 34
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 34
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 35
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 35
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 36
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 36
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 37
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 37
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 38
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 38
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 39
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 39
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 40
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 40
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 41
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 41
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 42
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 42
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 43
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 43
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            ProcedureID = 44
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            ProcedureID = 44
-                        });
                 });
 
             modelBuilder.Entity("CARED.Models.Transaction", b =>
@@ -1713,148 +706,6 @@ namespace CARED.Migrations
                     b.HasKey("TransactionID");
 
                     b.ToTable("Transactions");
-
-                    b.HasData(
-                        new
-                        {
-                            TransactionID = 1,
-                            Company = "Test Corp",
-                            CsNo = "CS-1",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 2,
-                            Company = "Test Corp",
-                            CsNo = "CS-2",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 3,
-                            Company = "Test Corp",
-                            CsNo = "CS-3",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 4,
-                            Company = "Test Corp",
-                            CsNo = "CS-4",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 5,
-                            Company = "Test Corp",
-                            CsNo = "CS-5",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 6,
-                            Company = "Test Corp",
-                            CsNo = "CS-6",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 7,
-                            Company = "Test Corp",
-                            CsNo = "CS-7",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 8,
-                            Company = "Test Corp",
-                            CsNo = "CS-8",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 9,
-                            Company = "Test Corp",
-                            CsNo = "CS-9",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 10,
-                            Company = "Test Corp",
-                            CsNo = "CS-10",
-                            Date = new DateTime(2025, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "Standard Patient",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 11,
-                            Company = "Test Corp",
-                            CsNo = "CS-11",
-                            Date = new DateTime(2025, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "THE MONSTER (60 ITEMS)",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 12,
-                            Company = "Test Corp",
-                            CsNo = "CS-12",
-                            Date = new DateTime(2025, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "TINY NEIGHBOR (1 ITEM)",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 13,
-                            Company = "Test Corp",
-                            CsNo = "CS-13",
-                            Date = new DateTime(2025, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "EDGE CASE LEFT (35 ITEMS)",
-                            Personnel = "Dr. Test"
-                        },
-                        new
-                        {
-                            TransactionID = 14,
-                            Company = "Test Corp",
-                            CsNo = "CS-14",
-                            Date = new DateTime(2025, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Insurer = "Test Insurer",
-                            Name = "EDGE CASE RIGHT (35 ITEMS)",
-                            Personnel = "Dr. Test"
-                        });
                 });
 
             modelBuilder.Entity("CARED.Models.TransactedProcedure", b =>

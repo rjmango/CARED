@@ -52,7 +52,6 @@
             csSuggestion = new Label();
             exportButton = new Button();
             panel2 = new Panel();
-            tableLayoutPanel7 = new TableLayoutPanel();
             Header = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
@@ -64,11 +63,11 @@
             tableLayoutPanel6.SuspendLayout();
             bsPopup.SuspendLayout();
             panel2.SuspendLayout();
-            tableLayoutPanel7.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.BackColor = Color.White;
             tableLayoutPanel1.ColumnCount = 5;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.00013F));
@@ -76,21 +75,20 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1.99999356F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38.9998741F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10.0001278F));
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel12, 1, 1);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 2);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 3, 2);
-            tableLayoutPanel1.Controls.Add(panel1, 1, 3);
-            tableLayoutPanel1.Controls.Add(exportButton, 1, 4);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 45);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel12, 1, 0);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 1);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 3, 1);
+            tableLayoutPanel1.Controls.Add(panel1, 1, 2);
+            tableLayoutPanel1.Controls.Add(exportButton, 1, 3);
+            tableLayoutPanel1.Location = new Point(0, 59);
             tableLayoutPanel1.Margin = new Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 4F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 32F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16F));
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(800, 555);
             tableLayoutPanel1.TabIndex = 2;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
@@ -102,14 +100,14 @@
             tableLayoutPanel12.Controls.Add(label6, 0, 0);
             tableLayoutPanel12.Controls.Add(panel10, 0, 1);
             tableLayoutPanel12.Dock = DockStyle.Fill;
-            tableLayoutPanel12.Location = new Point(83, 25);
+            tableLayoutPanel12.Location = new Point(83, 3);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 2;
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel12.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel12.Size = new Size(305, 127);
+            tableLayoutPanel12.Size = new Size(305, 132);
             tableLayoutPanel12.TabIndex = 22;
             // 
             // label6
@@ -117,7 +115,7 @@
             label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(3, 33);
+            label6.Location = new Point(3, 36);
             label6.Name = "label6";
             label6.Size = new Size(115, 30);
             label6.TabIndex = 17;
@@ -130,7 +128,7 @@
             panel10.Controls.Add(textBox6);
             panel10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             panel10.ForeColor = Color.FromArgb(240, 237, 226);
-            panel10.Location = new Point(3, 66);
+            panel10.Location = new Point(3, 69);
             panel10.Name = "panel10";
             panel10.Padding = new Padding(0, 3, 0, 0);
             panel10.Size = new Size(299, 47);
@@ -154,13 +152,13 @@
             tableLayoutPanel2.Controls.Add(monthComboBox, 0, 1);
             tableLayoutPanel2.Controls.Add(monthLabel, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(83, 158);
+            tableLayoutPanel2.Location = new Point(83, 141);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(305, 127);
+            tableLayoutPanel2.Size = new Size(305, 132);
             tableLayoutPanel2.TabIndex = 12;
             // 
             // monthComboBox
@@ -171,7 +169,7 @@
             monthComboBox.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
             monthComboBox.FormattingEnabled = true;
             monthComboBox.Items.AddRange(new object[] { "January", "February", "March", "April", "May ", "June", "July", "August", "September", "October", "November", "December" });
-            monthComboBox.Location = new Point(3, 66);
+            monthComboBox.Location = new Point(3, 69);
             monthComboBox.Name = "monthComboBox";
             monthComboBox.Size = new Size(299, 53);
             monthComboBox.TabIndex = 6;
@@ -182,7 +180,7 @@
             monthLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             monthLabel.AutoSize = true;
             monthLabel.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            monthLabel.Location = new Point(3, 33);
+            monthLabel.Location = new Point(3, 36);
             monthLabel.Name = "monthLabel";
             monthLabel.Size = new Size(82, 30);
             monthLabel.TabIndex = 16;
@@ -195,13 +193,13 @@
             tableLayoutPanel5.Controls.Add(panel3, 0, 1);
             tableLayoutPanel5.Controls.Add(yearLabel, 0, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(409, 158);
+            tableLayoutPanel5.Location = new Point(409, 141);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel5.Size = new Size(305, 127);
+            tableLayoutPanel5.Size = new Size(305, 132);
             tableLayoutPanel5.TabIndex = 15;
             // 
             // panel3
@@ -209,7 +207,7 @@
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel3.BackColor = Color.FromArgb(240, 237, 226);
             panel3.Controls.Add(yearTextBox);
-            panel3.Location = new Point(3, 66);
+            panel3.Location = new Point(3, 69);
             panel3.Name = "panel3";
             panel3.Padding = new Padding(0, 3, 0, 0);
             panel3.Size = new Size(299, 47);
@@ -233,7 +231,7 @@
             yearLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             yearLabel.AutoSize = true;
             yearLabel.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            yearLabel.Location = new Point(3, 33);
+            yearLabel.Location = new Point(3, 36);
             yearLabel.Name = "yearLabel";
             yearLabel.Size = new Size(59, 30);
             yearLabel.TabIndex = 17;
@@ -245,7 +243,7 @@
             panel1.BackColor = Color.FromArgb(240, 237, 226);
             tableLayoutPanel1.SetColumnSpan(panel1, 3);
             panel1.Controls.Add(tableLayoutPanel6);
-            panel1.Location = new Point(83, 316);
+            panel1.Location = new Point(83, 308);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(6);
             panel1.Size = new Size(631, 120);
@@ -387,7 +385,7 @@
             exportButton.FlatStyle = FlatStyle.Flat;
             exportButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             exportButton.ForeColor = Color.FromArgb(36, 49, 34);
-            exportButton.Location = new Point(223, 482);
+            exportButton.Location = new Point(223, 480);
             exportButton.Margin = new Padding(0);
             exportButton.Name = "exportButton";
             exportButton.Size = new Size(350, 56);
@@ -398,38 +396,25 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(tableLayoutPanel7);
-            panel2.Dock = DockStyle.Fill;
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = Color.FromArgb(240, 237, 226);
+            panel2.Controls.Add(tableLayoutPanel1);
+            panel2.Controls.Add(Header);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(800, 600);
             panel2.TabIndex = 17;
             // 
-            // tableLayoutPanel7
-            // 
-            tableLayoutPanel7.BackColor = Color.FromArgb(240, 237, 226);
-            tableLayoutPanel7.ColumnCount = 1;
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel7.Controls.Add(tableLayoutPanel1, 0, 1);
-            tableLayoutPanel7.Controls.Add(Header, 0, 0);
-            tableLayoutPanel7.Dock = DockStyle.Fill;
-            tableLayoutPanel7.Location = new Point(0, 0);
-            tableLayoutPanel7.Name = "tableLayoutPanel7";
-            tableLayoutPanel7.RowCount = 2;
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 7.5F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 92.5F));
-            tableLayoutPanel7.Size = new Size(800, 600);
-            tableLayoutPanel7.TabIndex = 17;
-            // 
             // Header
             // 
-            Header.Anchor = AnchorStyles.Left;
             Header.AutoSize = true;
+            Header.BackColor = Color.FromArgb(240, 237, 226);
+            Header.Dock = DockStyle.Top;
             Header.Font = new Font("Segoe UI", 32F, FontStyle.Bold, GraphicsUnit.Point);
             Header.ForeColor = Color.FromArgb(36, 49, 34);
-            Header.Location = new Point(3, 0);
+            Header.Location = new Point(0, 0);
             Header.Name = "Header";
-            Header.Size = new Size(357, 45);
+            Header.Size = new Size(357, 59);
             Header.TabIndex = 3;
             Header.Text = "Export Template";
             // 
@@ -458,8 +443,7 @@
             bsPopup.ResumeLayout(false);
             bsPopup.PerformLayout();
             panel2.ResumeLayout(false);
-            tableLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel7.PerformLayout();
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -472,7 +456,6 @@
         private TableLayoutPanel tableLayoutPanel5;
         private Label yearLabel;
         private TextBox yearTextBox;
-        private Button exportButton;
         private Panel panel1;
         private TableLayoutPanel tableLayoutPanel6;
         private CheckBox ChargeSlipCheckBox;
@@ -484,7 +467,6 @@
         private Label bsNameLabel;
         private Label csSuggestion;
         private Panel panel2;
-        private TableLayoutPanel tableLayoutPanel7;
         private Label Header;
         private Panel panel;
         private Panel yearBorder;
@@ -493,5 +475,6 @@
         private Label label6;
         private Panel panel10;
         private TextBox textBox6;
+        private Button exportButton;
     }
 }

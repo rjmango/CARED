@@ -46,7 +46,6 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.AutoSize = true;
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
@@ -60,7 +59,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(760, 53);
+            tableLayoutPanel1.Size = new Size(760, 39);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // pricePanel
@@ -71,8 +70,8 @@
             pricePanel.Location = new Point(422, 3);
             pricePanel.Margin = new Padding(4, 3, 4, 3);
             pricePanel.Name = "pricePanel";
-            pricePanel.Padding = new Padding(8, 8, 8, 0);
-            pricePanel.Size = new Size(258, 47);
+            pricePanel.Padding = new Padding(8, 2, 8, 0);
+            pricePanel.Size = new Size(258, 40);
             pricePanel.TabIndex = 2;
             // 
             // priceTextbox
@@ -81,7 +80,7 @@
             priceTextbox.BorderStyle = BorderStyle.FixedSingle;
             priceTextbox.Dock = DockStyle.Top;
             priceTextbox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            priceTextbox.Location = new Point(8, 8);
+            priceTextbox.Location = new Point(8, 2);
             priceTextbox.Margin = new Padding(4, 3, 4, 3);
             priceTextbox.Name = "priceTextbox";
             priceTextbox.ReadOnly = true;
@@ -98,8 +97,8 @@
             procedurePanel.Location = new Point(4, 3);
             procedurePanel.Margin = new Padding(4, 3, 4, 3);
             procedurePanel.Name = "procedurePanel";
-            procedurePanel.Padding = new Padding(8, 8, 8, 0);
-            procedurePanel.Size = new Size(410, 47);
+            procedurePanel.Padding = new Padding(8, 2, 8, 0);
+            procedurePanel.Size = new Size(410, 40);
             procedurePanel.TabIndex = 1;
             // 
             // procedureDropdown
@@ -107,7 +106,7 @@
             procedureDropdown.Dock = DockStyle.Top;
             procedureDropdown.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             procedureDropdown.FormattingEnabled = true;
-            procedureDropdown.Location = new Point(8, 8);
+            procedureDropdown.Location = new Point(8, 2);
             procedureDropdown.Margin = new Padding(4, 3, 4, 3);
             procedureDropdown.Name = "procedureDropdown";
             procedureDropdown.Size = new Size(394, 29);
@@ -121,47 +120,51 @@
             buttonPanel.Location = new Point(688, 3);
             buttonPanel.Margin = new Padding(4, 3, 4, 3);
             buttonPanel.Name = "buttonPanel";
-            buttonPanel.Padding = new Padding(11, 7, 11, 8);
-            buttonPanel.Size = new Size(68, 47);
+            buttonPanel.Padding = new Padding(11, 2, 11, 0);
+            buttonPanel.Size = new Size(68, 40);
             buttonPanel.TabIndex = 3;
             // 
             // deleteButton
             // 
             deleteButton.BackColor = Color.White;
             deleteButton.BackgroundImageLayout = ImageLayout.Zoom;
-            deleteButton.Dock = DockStyle.Fill;
+            deleteButton.FlatAppearance.BorderColor = Color.FromArgb(238, 94, 104);
             deleteButton.FlatAppearance.BorderSize = 0;
-            deleteButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(238, 94, 104);
+            deleteButton.FlatAppearance.MouseOverBackColor = Color.White;
             deleteButton.FlatStyle = FlatStyle.Flat;
-            deleteButton.Location = new Point(11, 7);
+            deleteButton.ImageIndex = 0;
+            deleteButton.ImageList = imageList1;
+            deleteButton.Location = new Point(11, 2);
             deleteButton.Margin = new Padding(4, 3, 4, 3);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(46, 32);
+            deleteButton.Padding = new Padding(0, 0, 1, 5);
+            deleteButton.Size = new Size(46, 29);
             deleteButton.TabIndex = 0;
-            deleteButton.Text = "X";
             deleteButton.TextImageRelation = TextImageRelation.ImageBeforeText;
             deleteButton.UseMnemonic = false;
             deleteButton.UseVisualStyleBackColor = false;
             deleteButton.Click += deleteButton_Click;
+            deleteButton.MouseEnter += deleteButton_MouseEnter;
+            deleteButton.MouseLeave += deleteButton_MouseLeave;
             // 
             // imageList1
             // 
             imageList1.ColorDepth = ColorDepth.Depth8Bit;
             imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
             imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, "icons8-trash-52.png");
+            imageList1.Images.SetKeyName(0, "icons8-trash-can-100.png");
+            imageList1.Images.SetKeyName(1, "icons8-trash-can-100-red.png");
             // 
             // ProcedureListRowUserControl
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
             BackColor = Color.FromArgb(240, 237, 227);
             Controls.Add(tableLayoutPanel1);
             Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(4, 0, 4, 0);
             Name = "ProcedureListRowUserControl";
-            Size = new Size(760, 53);
+            Size = new Size(760, 39);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             pricePanel.ResumeLayout(false);
@@ -169,7 +172,6 @@
             procedurePanel.ResumeLayout(false);
             buttonPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

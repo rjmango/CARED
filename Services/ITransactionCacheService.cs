@@ -7,12 +7,12 @@ using CARED.Models;
 
 namespace CARED.Services
 {
-    public class RecordCacheService
+    public class ITransactionCacheService
     {
         private readonly TransactionService _transactionService;
         private List<Transaction> _cachedTransactions;
 
-        public RecordCacheService(TransactionService transactionService)
+        public ITransactionCacheService(TransactionService transactionService)
         {
             _transactionService = transactionService;
         }

@@ -27,13 +27,26 @@ namespace CARED
                     // Register the AppDatabaseContext with the dependency injection container.
                     services.AddDbContext<AppDatabaseContext>(options =>
                     {
-                        // Using SQLite connection defined here
-                        options.UseSqlite("Data Source=app_database.db");
 
-                        // Inside services.AddDbContext<AppDatabaseContext>(options => { ... });
+                        // db location is at %LocalAppData%/CARED -- Type this in file explorer to verify
+                        // 1. Get the path to the AppData folder
+                        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+                        // 2. Define a subfolder for your app (e.g., LocalAppData/CARED)
+                        string dbFolder = Path.Combine(appDataPath, "CARED");
+
+                        // 3. Ensure the folder exists before EF Core tries to create the DB
+                        if (!Directory.Exists(dbFolder))
+                        {
+                            Directory.CreateDirectory(dbFolder);
+                        }
+
+                        // 4. Combine to get the full file path
+                        string dbPath = Path.Combine(dbFolder, "app_database.db");
+
+                        options.UseSqlite($"Data Source={dbPath}");
                         options.LogTo(Console.WriteLine, LogLevel.Information);
                     });
-
                     // 2. Service Layer Registration
                     // If you have a User model):
                     //services.AddTransient<IUserService, UserService>();
@@ -41,7 +54,7 @@ namespace CARED
                     // --- Registration for your core entities ---
                     services.AddTransient<IProcedureService, ProcedureService>();
                     services.AddTransient<ITransactionService, TransactionService>();
-                    services.AddSingleton<RecordCacheService>();
+                    //services.AddSingleton<RecordCacheService>();
 
                     // --- 3. WINFORMS REGISTRATION ---
                     services.AddTransient<mainForm>();
@@ -51,7 +64,7 @@ namespace CARED
                     services.AddTransient<ExportRecordsUserControl>();
                     services.AddTransient<NewBillingUserControl>();
                     services.AddTransient<RetrieveRecordsUserControl>();
-                    services.AddTransient<ProcedureListRowUserControl>();
+                    //services.AddTransient<ProcedureListRowUserControl>();
 
                 })
                 .Build();

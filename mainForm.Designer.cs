@@ -38,24 +38,29 @@ namespace CARED
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             sidePanel = new Panel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            logo = new PictureBox();
             CAREDLabel = new Label();
+            deleteButton = new Button();
             btnPrintRecords = new Button();
             btnRetrieveRecords = new Button();
             btnNewRecord = new Button();
             contentPanel = new Panel();
             loadingOverlayPanel = new Panel();
             label1 = new Label();
-            deleteButton = new Button();
             sidePanel.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             loadingOverlayPanel.SuspendLayout();
             SuspendLayout();
             // 
             // sidePanel
             // 
             sidePanel.BackColor = Color.FromArgb(37, 48, 35);
+            sidePanel.Controls.Add(tableLayoutPanel1);
             sidePanel.Controls.Add(deleteButton);
-            sidePanel.Controls.Add(CAREDLabel);
             sidePanel.Controls.Add(btnPrintRecords);
             sidePanel.Controls.Add(btnRetrieveRecords);
             sidePanel.Controls.Add(btnNewRecord);
@@ -66,16 +71,69 @@ namespace CARED
             sidePanel.Size = new Size(200, 450);
             sidePanel.TabIndex = 1;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.BackColor = Color.FromArgb(240, 237, 226);
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));
+            tableLayoutPanel1.Controls.Add(logo, 0, 0);
+            tableLayoutPanel1.Controls.Add(CAREDLabel, 1, 0);
+            tableLayoutPanel1.Location = new Point(8, 49);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new Padding(5);
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(186, 63);
+            tableLayoutPanel1.TabIndex = 3;
+            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
+            // 
+            // logo
+            // 
+            logo.Dock = DockStyle.Fill;
+            logo.Image = Properties.Resources.CARED_Logo;
+            logo.Location = new Point(5, 5);
+            logo.Margin = new Padding(0);
+            logo.Name = "logo";
+            logo.Size = new Size(61, 53);
+            logo.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo.TabIndex = 0;
+            logo.TabStop = false;
+            // 
             // CAREDLabel
             // 
             CAREDLabel.AutoSize = true;
-            CAREDLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            CAREDLabel.ForeColor = Color.FromArgb(148, 176, 114);
-            CAREDLabel.Location = new Point(10, 33);
+            CAREDLabel.Dock = DockStyle.Fill;
+            CAREDLabel.Font = new Font("Segoe UI", 21F, FontStyle.Bold, GraphicsUnit.Point);
+            CAREDLabel.ForeColor = Color.FromArgb(37, 48, 35);
+            CAREDLabel.ImageAlign = ContentAlignment.MiddleLeft;
+            CAREDLabel.ImageIndex = 0;
+            CAREDLabel.Location = new Point(66, 5);
+            CAREDLabel.Margin = new Padding(0);
             CAREDLabel.Name = "CAREDLabel";
-            CAREDLabel.Size = new Size(180, 32);
+            CAREDLabel.Padding = new Padding(0, 5, 0, 0);
+            CAREDLabel.Size = new Size(115, 53);
             CAREDLabel.TabIndex = 1;
             CAREDLabel.Text = "CARED System";
+            CAREDLabel.TextAlign = ContentAlignment.MiddleLeft;
+            CAREDLabel.Paint += CAREDLabel_Paint;
+            // 
+            // deleteButton
+            // 
+            deleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            deleteButton.BackColor = Color.FromArgb(174, 36, 2);
+            deleteButton.FlatAppearance.BorderSize = 0;
+            deleteButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(59, 73, 50);
+            deleteButton.FlatStyle = FlatStyle.Flat;
+            deleteButton.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            deleteButton.ForeColor = SystemColors.Window;
+            deleteButton.Location = new Point(26, 388);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(149, 36);
+            deleteButton.TabIndex = 2;
+            deleteButton.Text = "Remove Records";
+            deleteButton.UseVisualStyleBackColor = false;
+            deleteButton.Click += deleteButton_Click;
             // 
             // btnPrintRecords
             // 
@@ -85,7 +143,7 @@ namespace CARED
             btnPrintRecords.FlatStyle = FlatStyle.Flat;
             btnPrintRecords.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnPrintRecords.ForeColor = SystemColors.Window;
-            btnPrintRecords.Location = new Point(26, 260);
+            btnPrintRecords.Location = new Point(26, 283);
             btnPrintRecords.Name = "btnPrintRecords";
             btnPrintRecords.Size = new Size(149, 36);
             btnPrintRecords.TabIndex = 0;
@@ -102,7 +160,7 @@ namespace CARED
             btnRetrieveRecords.FlatStyle = FlatStyle.Flat;
             btnRetrieveRecords.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnRetrieveRecords.ForeColor = SystemColors.Window;
-            btnRetrieveRecords.Location = new Point(26, 190);
+            btnRetrieveRecords.Location = new Point(26, 213);
             btnRetrieveRecords.Name = "btnRetrieveRecords";
             btnRetrieveRecords.Size = new Size(149, 36);
             btnRetrieveRecords.TabIndex = 0;
@@ -119,7 +177,7 @@ namespace CARED
             btnNewRecord.FlatStyle = FlatStyle.Flat;
             btnNewRecord.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnNewRecord.ForeColor = SystemColors.Window;
-            btnNewRecord.Location = new Point(26, 120);
+            btnNewRecord.Location = new Point(26, 143);
             btnNewRecord.Name = "btnNewRecord";
             btnNewRecord.Size = new Size(149, 36);
             btnNewRecord.TabIndex = 0;
@@ -137,7 +195,6 @@ namespace CARED
             contentPanel.Padding = new Padding(20);
             contentPanel.Size = new Size(600, 450);
             contentPanel.TabIndex = 0;
-            //contentPanel.Paint += contentPanel_Paint;
             // 
             // loadingOverlayPanel
             // 
@@ -160,23 +217,6 @@ namespace CARED
             label1.TabIndex = 0;
             label1.Text = "LOADING...";
             // 
-            // deleteButton
-            // 
-            deleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            deleteButton.BackColor = Color.FromArgb(174, 36, 2);
-            deleteButton.FlatAppearance.BorderSize = 0;
-            deleteButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(59, 73, 50);
-            deleteButton.FlatStyle = FlatStyle.Flat;
-            deleteButton.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            deleteButton.ForeColor = SystemColors.Window;
-            deleteButton.Location = new Point(26, 388);
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(149, 36);
-            deleteButton.TabIndex = 2;
-            deleteButton.Text = "Remove Records";
-            deleteButton.UseVisualStyleBackColor = false;
-            deleteButton.Click += deleteButton_Click;
-            // 
             // mainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -187,13 +227,16 @@ namespace CARED
             Controls.Add(sidePanel);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
             Name = "mainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CARED System";
             sidePanel.ResumeLayout(false);
-            sidePanel.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             loadingOverlayPanel.ResumeLayout(false);
             loadingOverlayPanel.PerformLayout();
             ResumeLayout(false);
@@ -287,6 +330,8 @@ namespace CARED
         private Panel loadingOverlayPanel;
         private Label label1;
         private Button deleteButton;
+        private TableLayoutPanel tableLayoutPanel1;
+        private PictureBox logo;
     }
 }
 
