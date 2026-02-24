@@ -1,6 +1,7 @@
-﻿using CARED.Services;
-using CARED.Utils;
+﻿using CARED.Forms;
 using CARED.Models;
+using CARED.Services;
+using CARED.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,9 +38,9 @@ namespace CARED.UserControls
             _availableProcedures = await _procedureService.GetAllProceduresAsync();
             _availableProcedures = CreateGroupedList(_availableProcedures);
             personnelTextbox.Text = AppState.CurrentPersonnel;
-            addProcedureDisabledTooltip.SetToolTip(addProcedureButton, "Please select a procedure in the current row before adding a new one.");
-            addProcedureButton.BackColor = Color.Gray;
-            AddDefaultRow();
+            //addProcedureDisabledTooltip.SetToolTip(addProcedureButton, "Please select a procedure in the current row before adding a new one.");
+            //addProcedureButton.BackColor = Color.Gray;
+            //AddDefaultRow();
         }
 
         // this function creates the list of procedures with header for the dropdown visuals)
@@ -53,33 +54,10 @@ namespace CARED.UserControls
 
             foreach (var procedure in sortedProcedures)
             {
-                if (procedure.Group != lastGroup)
-                {
-                    lastGroup = procedure.Group;
-                    // Add group header
-                    displayList.Add(new Procedure
-                    {
-                        ProcedureID = -1,
-                        ProcedureName = $"--- {lastGroup.ToUpper()} ---",
-                        Group = lastGroup
-                    });
-                }
                 displayList.Add(procedure);
             }
             return displayList;
         }
-
-        private void AddDefaultRow()
-        {
-            if (_availableProcedures == null) return;
-            var firstRow = new ProcedureListRowUserControl(_availableProcedures);
-            firstRow.Dock = DockStyle.Top;
-            firstRow.PriceChanged += Row_PriceChanged;
-            firstRow.DeleteRequested += Row_DeleteRequested;
-            procedureRowsPanel.Controls.Add(firstRow);
-            firstRow.BringToFront();
-        }
-
 
         private void addProcedureButton_Resize(object sender, EventArgs e)
         {
@@ -88,35 +66,78 @@ namespace CARED.UserControls
 
         private void addProcedureButton_Click(object sender, EventArgs e)
         {
-            var bottomRow = GetBottomMostRow();
-            if (bottomRow != null && !bottomRow.IsSelectionValid) return;
+            var currentRows = procedureRowsPanel.Controls.OfType<ProcedureListRowUserControl>().ToList();
+            var currentProceduresSelected = new HashSet<string>(currentRows.Select(r => r.SelectedProcedureName));
 
-            var newRow = new ProcedureListRowUserControl(_availableProcedures);
+            using (var popup = new ProcedureSelectionForm(_availableProcedures, currentProceduresSelected))
+            {
+                if (popup.ShowDialog() != DialogResult.OK) return;
+                
+                if (popup.SelectedProcedures.Count == 0)
+                { 
+                    procedureSelectionPlaceholder.Visible = true;
+                }
+                else
+                {
+                    procedureSelectionPlaceholder.Visible = false;
+                }
+                    
+                var checkedNames = new HashSet<string>(popup.SelectedProcedures.Select(p => p.ProcedureName));
+
+                foreach (var row in currentRows)
+                {
+                    if (!checkedNames.Contains(row.SelectedProcedureName))
+                    {
+                        procedureRowsPanel.Controls.Remove(row);
+                        row.Dispose(); // Mandatory for cleaning up event handlers
+                    }
+                }
+
+                foreach (var proc in popup.SelectedProcedures)
+                {
+                    if (!currentProceduresSelected.Contains(proc.ProcedureName))
+                    {
+                        AddNewProcedureRow(proc);
+                    }
+                }
+                CalculateGrandTotal();
+            }
+        }
+
+        private void AddNewProcedureRow(Procedure? procedure)
+        {
+            var bottomRow = GetBottomMostRow();
+            //if (bottomRow != null && !bottomRow.IsSelectionValid) return;
+
+            var newRow = new ProcedureListRowUserControl(procedure);
             newRow.Margin = new Padding(0);
             newRow.Dock = DockStyle.Top;
             newRow.PriceChanged += Row_PriceChanged;
             newRow.DeleteRequested += Row_DeleteRequested;
+
             procedureRowsPanel.Controls.Add(newRow);
             newRow.BringToFront();
             procedureRowsPanel.ScrollControlIntoView(newRow);
-
-            UpdateAddButtonState();
+            CalculateGrandTotal();
         }
 
         private void Row_DeleteRequested(object? sender, EventArgs e)
         {
-            if (procedureRowsPanel.Controls.Count == 1) return;
             if (sender is ProcedureListRowUserControl row)
             {
                 procedureRowsPanel.Controls.Remove(row);
                 row.Dispose();
                 CalculateGrandTotal();
             }
+
+            if (procedureRowsPanel.Controls.Count == 1)
+            {
+                procedureSelectionPlaceholder.Visible = true;
+            }
         }
 
         private void Row_PriceChanged(object? sender, EventArgs e)
         {
-            UpdateAddButtonState();
             CalculateGrandTotal();
         }
 
@@ -156,10 +177,7 @@ namespace CARED.UserControls
                     if (ctrl is ProcedureListRowUserControl row)
                     {
                         int id = row.GetSelectedProcedureID();
-                        if (id > 0)
-                        {
-                            procedureIds.Add(id);
-                        }
+                        procedureIds.Add(id);
                     }
                 }
 
@@ -239,8 +257,6 @@ namespace CARED.UserControls
             procedureRowsPanel.Controls.Clear();
             totalAmount.Text = 0.ToString("C2");
 
-            // Add back the initial empty row
-            AddDefaultRow();
         }
 
         private void personnelTextbox_Leave(object sender, EventArgs e)
@@ -255,24 +271,6 @@ namespace CARED.UserControls
                     .FirstOrDefault();
         }
 
-        private void UpdateAddButtonState()
-        {
-            var bottomRow = GetBottomMostRow();
-            bool isValid = bottomRow == null || bottomRow.IsSelectionValid;
-
-            if (isValid)
-            {
-                addProcedureButton.Enabled = true;
-                addProcedureButton.BackColor = Color.FromArgb(153, 184, 137); // Your green color
-                addProcedureDisabledTooltip.SetToolTip(addProcedureButton, "");
-            }
-            else
-            {
-                // Keep it enabled so ToolTip works, but prevent the action in the Click event
-                addProcedureButton.Enabled = true;
-                addProcedureButton.BackColor = Color.Gray;
-                addProcedureDisabledTooltip.SetToolTip(addProcedureButton, "Please select a procedure first.");
-            }
-        }
+        
     }
 }

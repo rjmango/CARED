@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             dataGridView1 = new DataGridView();
+            transactionBindingSource = new BindingSource(components);
+            textBox1 = new TextBox();
             csNoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             transactedProceduresDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             personnelDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            transactionBindingSource = new BindingSource(components);
-            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)transactionBindingSource).BeginInit();
             SuspendLayout();
@@ -46,9 +47,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(20, 32);
+            label1.Location = new Point(18, 24);
             label1.Name = "label1";
-            label1.Size = new Size(412, 81);
+            label1.Size = new Size(329, 65);
             label1.TabIndex = 1;
             label1.Text = "View Records";
             label1.Click += label1_Click;
@@ -64,14 +65,31 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { csNoDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, transactedProceduresDataGridViewTextBoxColumn, personnelDataGridViewTextBoxColumn });
             dataGridView1.DataSource = transactionBindingSource;
-            dataGridView1.Location = new Point(20, 200);
+            dataGridView1.Location = new Point(18, 150);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1240, 660);
+            dataGridView1.Size = new Size(1085, 495);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // transactionBindingSource
+            // 
+            transactionBindingSource.DataSource = typeof(Models.Transaction);
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(18, 99);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Search by Name, CS No, or Company...";
+            textBox1.Size = new Size(1060, 36);
+            textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // csNoDataGridViewTextBoxColumn
             // 
@@ -85,6 +103,9 @@
             // dateDataGridViewTextBoxColumn
             // 
             dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            dateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             dateDataGridViewTextBoxColumn.HeaderText = "Date";
             dateDataGridViewTextBoxColumn.MinimumWidth = 6;
             dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
@@ -118,31 +139,15 @@
             personnelDataGridViewTextBoxColumn.ReadOnly = true;
             personnelDataGridViewTextBoxColumn.Width = 125;
             // 
-            // transactionBindingSource
-            // 
-            transactionBindingSource.DataSource = typeof(Models.Transaction);
-            // 
-            // textBox1
-            // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(20, 132);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Search by Name, CS No, or Company...";
-            textBox1.Size = new Size(1211, 43);
-            textBox1.TabIndex = 4;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
             // RetrieveRecordsUserControl
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(textBox1);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "RetrieveRecordsUserControl";
-            Size = new Size(1280, 880);
+            Size = new Size(1120, 660);
             Load += RetrieveRecordsUserControl_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)transactionBindingSource).EndInit();

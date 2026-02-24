@@ -17,31 +17,17 @@ namespace CARED.UserControls
         public event EventHandler? PriceChanged;
         public event EventHandler? DeleteRequested;
 
-        public bool IsSelectionValid => procedureDropdown.SelectedIndex != -1;
-        private void OnPriceChanged()
-        {
-            PriceChanged?.Invoke(this, EventArgs.Empty);
-        }
-        public ProcedureListRowUserControl(List<Procedure> procedures)
+        private Procedure _procedure;
+        internal string? SelectedProcedureName;
+
+        public ProcedureListRowUserControl(Procedure procedure)
         {
             InitializeComponent();
+            _procedure = procedure;
+            SelectedProcedureName = procedure.ProcedureName;
+            procedureTextbox.Text = SelectedProcedureName;
+            priceTextbox.Text = procedure.Amount.ToString("C");
 
-            procedureDropdown.MouseWheel += preventScrollWhenDropdownClosed;
-
-            procedureDropdown.DataSource = procedures;
-            procedureDropdown.DisplayMember = "ProcedureName";
-            procedureDropdown.ValueMember = "ProcedureID";
-            procedureDropdown.SelectedIndex = -1; // Default to empty
-            procedureDropdown.Text = "Select Procedure";
-
-        }
-
-        public void preventScrollWhenDropdownClosed(object? sender, MouseEventArgs e)
-        {
-            if (sender is ComboBox comboBox && !comboBox.DroppedDown)
-            {
-                ((HandledMouseEventArgs)e).Handled = true;
-            }
         }
 
         private void ProcedureListRowUserControl_Resize(object sender, EventArgs e)
@@ -49,25 +35,6 @@ namespace CARED.UserControls
             UIHelper.SetRoundedRegion(this, 5);
         }
 
-        private void procedureDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (procedureDropdown.SelectedItem is Procedure selected)
-            {
-                if (selected.ProcedureID == -1)
-                {
-                    procedureDropdown.SelectedIndex = -1;
-                    priceTextbox.Text = 0.ToString("C2");
-                    priceTextbox.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    priceTextbox.Text = selected.Amount.ToString("C2");
-                    priceTextbox.ForeColor = SystemColors.WindowText;
-                }
-                OnPriceChanged();
-
-            }
-        }
         public decimal GetLineTotal()
         {
             // Convert the text back to a number, ignoring the "₱" symbol
@@ -80,14 +47,6 @@ namespace CARED.UserControls
             return 0;
         }
 
-        public int GetSelectedProcedureID()
-        {
-            if (procedureDropdown.SelectedItem is Procedure selected)
-            {
-                return selected.ProcedureID;
-            }
-            return 0; // or throw an exception if preferred
-        }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
@@ -107,6 +66,11 @@ namespace CARED.UserControls
             deleteButton.ImageIndex = 0;
 
             deleteButton.FlatAppearance.BorderSize = 0;
+        }
+
+        internal int GetSelectedProcedureID()
+        {
+            return _procedure.ProcedureID;
         }
     }
 }
