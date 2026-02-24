@@ -80,6 +80,7 @@ namespace CARED.UserControls
             buttonPanel = new FlowLayoutPanel();
             addProcedureButton = new Button();
             procedureRowsPanel = new Panel();
+            procedureSelectionPlaceholder = new Label();
             procedureListLabelLayout = new TableLayoutPanel();
             label2 = new Label();
             label1 = new Label();
@@ -115,6 +116,7 @@ namespace CARED.UserControls
             totalPricePanel.SuspendLayout();
             panel1.SuspendLayout();
             buttonPanel.SuspendLayout();
+            procedureRowsPanel.SuspendLayout();
             procedureListLabelLayout.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             personnelInputPanel.SuspendLayout();
@@ -158,10 +160,10 @@ namespace CARED.UserControls
             contentPanel.Controls.Add(patientDetailsTableLayout);
             contentPanel.Controls.Add(topGreenLine);
             contentPanel.Controls.Add(patientDetailsLabel);
-            contentPanel.Location = new Point(4, 65);
+            contentPanel.Location = new Point(4, 57);
             contentPanel.Name = "contentPanel";
             contentPanel.Padding = new Padding(20, 10, 20, 20);
-            contentPanel.Size = new Size(791, 530);
+            contentPanel.Size = new Size(791, 538);
             contentPanel.TabIndex = 2;
             contentPanel.Paint += contentPanel_Paint;
             // 
@@ -175,13 +177,13 @@ namespace CARED.UserControls
             totalPricePanel.Controls.Add(saveButton, 1, 0);
             totalPricePanel.Controls.Add(panel1, 0, 0);
             totalPricePanel.Dock = DockStyle.Top;
-            totalPricePanel.Location = new Point(20, 432);
+            totalPricePanel.Location = new Point(20, 446);
             totalPricePanel.Name = "totalPricePanel";
-            totalPricePanel.Padding = new Padding(5, 10, 5, 10);
+            totalPricePanel.Padding = new Padding(5, 7, 5, 7);
             totalPricePanel.RightToLeft = RightToLeft.No;
             totalPricePanel.RowCount = 1;
             totalPricePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            totalPricePanel.Size = new Size(751, 93);
+            totalPricePanel.Size = new Size(751, 87);
             totalPricePanel.TabIndex = 0;
             totalPricePanel.Resize += panel1_Resize;
             // 
@@ -194,7 +196,7 @@ namespace CARED.UserControls
             saveButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             saveButton.Image = Properties.Resources.icons8_save_48;
             saveButton.ImageAlign = ContentAlignment.MiddleRight;
-            saveButton.Location = new Point(541, 13);
+            saveButton.Location = new Point(541, 10);
             saveButton.Margin = new Padding(3, 3, 20, 3);
             saveButton.Name = "saveButton";
             saveButton.Padding = new Padding(5, 0, 0, 0);
@@ -212,7 +214,7 @@ namespace CARED.UserControls
             panel1.Controls.Add(totalAmount);
             panel1.Controls.Add(totalAmountLabel);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(8, 13);
+            panel1.Location = new Point(8, 10);
             panel1.Name = "panel1";
             panel1.Size = new Size(364, 67);
             panel1.TabIndex = 2;
@@ -249,7 +251,7 @@ namespace CARED.UserControls
             buttonPanel.AutoSize = true;
             buttonPanel.Controls.Add(addProcedureButton);
             buttonPanel.Dock = DockStyle.Top;
-            buttonPanel.Location = new Point(20, 385);
+            buttonPanel.Location = new Point(20, 399);
             buttonPanel.Margin = new Padding(2, 3, 0, 3);
             buttonPanel.Name = "buttonPanel";
             buttonPanel.Padding = new Padding(0, 4, 0, 4);
@@ -281,13 +283,27 @@ namespace CARED.UserControls
             procedureRowsPanel.AutoScroll = true;
             procedureRowsPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             procedureRowsPanel.BackColor = Color.FromArgb(240, 237, 227);
+            procedureRowsPanel.Controls.Add(procedureSelectionPlaceholder);
             procedureRowsPanel.Dock = DockStyle.Top;
-            procedureRowsPanel.Location = new Point(20, 265);
+            procedureRowsPanel.ImeMode = ImeMode.Disable;
+            procedureRowsPanel.Location = new Point(20, 248);
             procedureRowsPanel.Name = "procedureRowsPanel";
-            procedureRowsPanel.Padding = new Padding(5, 0, 5, 15);
-            procedureRowsPanel.Size = new Size(751, 120);
+            procedureRowsPanel.Padding = new Padding(5, 0, 5, 10);
+            procedureRowsPanel.Size = new Size(751, 151);
             procedureRowsPanel.TabIndex = 28;
             procedureRowsPanel.Resize += procedureRowsPanel_Resize;
+            // 
+            // procedureSelectionPlaceholder
+            // 
+            procedureSelectionPlaceholder.AutoSize = true;
+            procedureSelectionPlaceholder.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            procedureSelectionPlaceholder.ForeColor = SystemColors.ControlDark;
+            procedureSelectionPlaceholder.Location = new Point(254, 48);
+            procedureSelectionPlaceholder.Name = "procedureSelectionPlaceholder";
+            procedureSelectionPlaceholder.Size = new Size(243, 28);
+            procedureSelectionPlaceholder.TabIndex = 0;
+            procedureSelectionPlaceholder.Text = "Please select a procedure";
+            procedureSelectionPlaceholder.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // procedureListLabelLayout
             // 
@@ -299,11 +315,11 @@ namespace CARED.UserControls
             procedureListLabelLayout.Controls.Add(label2, 1, 0);
             procedureListLabelLayout.Controls.Add(label1, 0, 0);
             procedureListLabelLayout.Dock = DockStyle.Top;
-            procedureListLabelLayout.Location = new Point(20, 234);
+            procedureListLabelLayout.Location = new Point(20, 220);
             procedureListLabelLayout.Name = "procedureListLabelLayout";
             procedureListLabelLayout.RowCount = 1;
             procedureListLabelLayout.RowStyles.Add(new RowStyle());
-            procedureListLabelLayout.Size = new Size(751, 31);
+            procedureListLabelLayout.Size = new Size(751, 28);
             procedureListLabelLayout.TabIndex = 0;
             procedureListLabelLayout.Resize += procedureListLabelLayout_Resize;
             // 
@@ -315,8 +331,8 @@ namespace CARED.UserControls
             label2.ForeColor = Color.FromArgb(36, 49, 34);
             label2.Location = new Point(416, 0);
             label2.Name = "label2";
-            label2.Padding = new Padding(7, 10, 0, 0);
-            label2.Size = new Size(53, 31);
+            label2.Padding = new Padding(7, 7, 0, 0);
+            label2.Size = new Size(53, 28);
             label2.TabIndex = 1;
             label2.Text = "Price";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -329,8 +345,8 @@ namespace CARED.UserControls
             label1.ForeColor = Color.FromArgb(36, 49, 34);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Padding = new Padding(12, 10, 0, 0);
-            label1.Size = new Size(92, 31);
+            label1.Padding = new Padding(12, 7, 0, 0);
+            label1.Size = new Size(92, 28);
             label1.TabIndex = 0;
             label1.Text = "Procedure";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -341,7 +357,7 @@ namespace CARED.UserControls
             paddingPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             paddingPanel.BackColor = Color.White;
             paddingPanel.Dock = DockStyle.Top;
-            paddingPanel.Location = new Point(20, 224);
+            paddingPanel.Location = new Point(20, 210);
             paddingPanel.Name = "paddingPanel";
             paddingPanel.Padding = new Padding(0, 10, 0, 0);
             paddingPanel.Size = new Size(751, 10);
@@ -351,7 +367,7 @@ namespace CARED.UserControls
             // 
             bottomGreenLine.BackColor = Color.FromArgb(148, 177, 114);
             bottomGreenLine.Dock = DockStyle.Top;
-            bottomGreenLine.Location = new Point(20, 222);
+            bottomGreenLine.Location = new Point(20, 208);
             bottomGreenLine.Name = "bottomGreenLine";
             bottomGreenLine.Size = new Size(751, 2);
             bottomGreenLine.TabIndex = 24;
@@ -362,11 +378,11 @@ namespace CARED.UserControls
             proceduresLabel.Dock = DockStyle.Top;
             proceduresLabel.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
             proceduresLabel.ForeColor = Color.FromArgb(36, 49, 34);
-            proceduresLabel.Location = new Point(20, 184);
+            proceduresLabel.Location = new Point(20, 173);
             proceduresLabel.Margin = new Padding(0, 3, 3, 5);
             proceduresLabel.Name = "proceduresLabel";
-            proceduresLabel.Padding = new Padding(0, 5, 0, 5);
-            proceduresLabel.Size = new Size(114, 38);
+            proceduresLabel.Padding = new Padding(0, 2, 0, 5);
+            proceduresLabel.Size = new Size(114, 35);
             proceduresLabel.TabIndex = 23;
             proceduresLabel.Text = "Procedures";
             // 
@@ -379,12 +395,12 @@ namespace CARED.UserControls
             tableLayoutPanel1.Controls.Add(personnelInputPanel, 0, 0);
             tableLayoutPanel1.Controls.Add(companyInputPanel, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(20, 117);
+            tableLayoutPanel1.Location = new Point(20, 109);
             tableLayoutPanel1.Margin = new Padding(3, 0, 3, 3);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(751, 67);
+            tableLayoutPanel1.Size = new Size(751, 64);
             tableLayoutPanel1.TabIndex = 33;
             // 
             // personnelInputPanel
@@ -395,7 +411,7 @@ namespace CARED.UserControls
             personnelInputPanel.Dock = DockStyle.Fill;
             personnelInputPanel.Location = new Point(3, 3);
             personnelInputPanel.Name = "personnelInputPanel";
-            personnelInputPanel.Size = new Size(369, 61);
+            personnelInputPanel.Size = new Size(369, 58);
             personnelInputPanel.TabIndex = 3;
             // 
             // personnelPanel
@@ -403,7 +419,7 @@ namespace CARED.UserControls
             personnelPanel.BackColor = Color.FromArgb(240, 237, 227);
             personnelPanel.Controls.Add(personnelTextbox);
             personnelPanel.Dock = DockStyle.Top;
-            personnelPanel.Location = new Point(0, 29);
+            personnelPanel.Location = new Point(0, 26);
             personnelPanel.Name = "personnelPanel";
             personnelPanel.Padding = new Padding(15, 7, 15, 0);
             personnelPanel.Size = new Size(369, 32);
@@ -431,8 +447,8 @@ namespace CARED.UserControls
             personnelLabel.ForeColor = Color.FromArgb(36, 49, 34);
             personnelLabel.Location = new Point(0, 0);
             personnelLabel.Name = "personnelLabel";
-            personnelLabel.Padding = new Padding(0, 5, 0, 5);
-            personnelLabel.Size = new Size(134, 29);
+            personnelLabel.Padding = new Padding(0, 2, 0, 5);
+            personnelLabel.Size = new Size(134, 26);
             personnelLabel.TabIndex = 14;
             personnelLabel.Text = "Personnel In-charge";
             // 
@@ -444,7 +460,7 @@ namespace CARED.UserControls
             companyInputPanel.Dock = DockStyle.Fill;
             companyInputPanel.Location = new Point(378, 3);
             companyInputPanel.Name = "companyInputPanel";
-            companyInputPanel.Size = new Size(370, 61);
+            companyInputPanel.Size = new Size(370, 58);
             companyInputPanel.TabIndex = 4;
             // 
             // companyPanel
@@ -452,7 +468,7 @@ namespace CARED.UserControls
             companyPanel.BackColor = Color.FromArgb(240, 237, 227);
             companyPanel.Controls.Add(companyTextbox);
             companyPanel.Dock = DockStyle.Top;
-            companyPanel.Location = new Point(0, 29);
+            companyPanel.Location = new Point(0, 26);
             companyPanel.Name = "companyPanel";
             companyPanel.Padding = new Padding(15, 7, 15, 0);
             companyPanel.Size = new Size(370, 32);
@@ -479,8 +495,8 @@ namespace CARED.UserControls
             companyLabel.ForeColor = Color.FromArgb(36, 49, 34);
             companyLabel.Location = new Point(0, 0);
             companyLabel.Name = "companyLabel";
-            companyLabel.Padding = new Padding(0, 5, 0, 5);
-            companyLabel.Size = new Size(68, 29);
+            companyLabel.Padding = new Padding(0, 2, 0, 5);
+            companyLabel.Size = new Size(68, 26);
             companyLabel.TabIndex = 17;
             companyLabel.Text = "Company";
             // 
@@ -495,13 +511,13 @@ namespace CARED.UserControls
             patientDetailsTableLayout.Controls.Add(csNoInputPanel, 1, 0);
             patientDetailsTableLayout.Controls.Add(dateInputPanel, 2, 0);
             patientDetailsTableLayout.Dock = DockStyle.Top;
-            patientDetailsTableLayout.Location = new Point(20, 50);
+            patientDetailsTableLayout.Location = new Point(20, 45);
             patientDetailsTableLayout.Name = "patientDetailsTableLayout";
             patientDetailsTableLayout.RowCount = 1;
             patientDetailsTableLayout.RowStyles.Add(new RowStyle());
             patientDetailsTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             patientDetailsTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            patientDetailsTableLayout.Size = new Size(751, 67);
+            patientDetailsTableLayout.Size = new Size(751, 64);
             patientDetailsTableLayout.TabIndex = 3;
             // 
             // patientNameInputPanel
@@ -512,7 +528,7 @@ namespace CARED.UserControls
             patientNameInputPanel.Dock = DockStyle.Fill;
             patientNameInputPanel.Location = new Point(3, 3);
             patientNameInputPanel.Name = "patientNameInputPanel";
-            patientNameInputPanel.Size = new Size(246, 61);
+            patientNameInputPanel.Size = new Size(246, 58);
             patientNameInputPanel.TabIndex = 0;
             // 
             // patientNamePanel
@@ -520,7 +536,7 @@ namespace CARED.UserControls
             patientNamePanel.BackColor = Color.FromArgb(240, 237, 227);
             patientNamePanel.Controls.Add(patientNameTextbox);
             patientNamePanel.Dock = DockStyle.Top;
-            patientNamePanel.Location = new Point(0, 29);
+            patientNamePanel.Location = new Point(0, 26);
             patientNamePanel.Name = "patientNamePanel";
             patientNamePanel.Padding = new Padding(15, 7, 15, 0);
             patientNamePanel.Size = new Size(246, 32);
@@ -547,8 +563,8 @@ namespace CARED.UserControls
             patientNameLabel.ForeColor = Color.FromArgb(36, 49, 34);
             patientNameLabel.Location = new Point(0, 0);
             patientNameLabel.Name = "patientNameLabel";
-            patientNameLabel.Padding = new Padding(0, 5, 0, 5);
-            patientNameLabel.Size = new Size(94, 29);
+            patientNameLabel.Padding = new Padding(0, 2, 0, 5);
+            patientNameLabel.Size = new Size(94, 26);
             patientNameLabel.TabIndex = 5;
             patientNameLabel.Text = "Patient Name";
             // 
@@ -560,7 +576,7 @@ namespace CARED.UserControls
             csNoInputPanel.Dock = DockStyle.Fill;
             csNoInputPanel.Location = new Point(255, 3);
             csNoInputPanel.Name = "csNoInputPanel";
-            csNoInputPanel.Size = new Size(246, 61);
+            csNoInputPanel.Size = new Size(246, 58);
             csNoInputPanel.TabIndex = 1;
             // 
             // csNoPanel
@@ -568,7 +584,7 @@ namespace CARED.UserControls
             csNoPanel.BackColor = Color.FromArgb(240, 237, 227);
             csNoPanel.Controls.Add(csNoTextbox);
             csNoPanel.Dock = DockStyle.Top;
-            csNoPanel.Location = new Point(0, 29);
+            csNoPanel.Location = new Point(0, 26);
             csNoPanel.Name = "csNoPanel";
             csNoPanel.Padding = new Padding(15, 7, 15, 0);
             csNoPanel.Size = new Size(246, 32);
@@ -595,8 +611,8 @@ namespace CARED.UserControls
             csNoLabel.ForeColor = Color.FromArgb(36, 49, 34);
             csNoLabel.Location = new Point(0, 0);
             csNoLabel.Name = "csNoLabel";
-            csNoLabel.Padding = new Padding(0, 5, 0, 5);
-            csNoLabel.Size = new Size(49, 29);
+            csNoLabel.Padding = new Padding(0, 2, 0, 5);
+            csNoLabel.Size = new Size(49, 26);
             csNoLabel.TabIndex = 12;
             csNoLabel.Text = "CS No";
             // 
@@ -608,7 +624,7 @@ namespace CARED.UserControls
             dateInputPanel.Dock = DockStyle.Fill;
             dateInputPanel.Location = new Point(507, 3);
             dateInputPanel.Name = "dateInputPanel";
-            dateInputPanel.Size = new Size(241, 61);
+            dateInputPanel.Size = new Size(241, 58);
             dateInputPanel.TabIndex = 2;
             // 
             // datePanel
@@ -616,7 +632,7 @@ namespace CARED.UserControls
             datePanel.BackColor = Color.FromArgb(240, 237, 227);
             datePanel.Controls.Add(dateTimePicker1);
             datePanel.Dock = DockStyle.Top;
-            datePanel.Location = new Point(0, 29);
+            datePanel.Location = new Point(0, 26);
             datePanel.Name = "datePanel";
             datePanel.Padding = new Padding(15, 5, 15, 0);
             datePanel.Size = new Size(241, 32);
@@ -643,8 +659,8 @@ namespace CARED.UserControls
             dateLabel.ForeColor = Color.FromArgb(36, 49, 34);
             dateLabel.Location = new Point(0, 0);
             dateLabel.Name = "dateLabel";
-            dateLabel.Padding = new Padding(0, 5, 0, 5);
-            dateLabel.Size = new Size(38, 29);
+            dateLabel.Padding = new Padding(0, 2, 0, 5);
+            dateLabel.Size = new Size(38, 26);
             dateLabel.TabIndex = 13;
             dateLabel.Text = "Date";
             // 
@@ -652,7 +668,7 @@ namespace CARED.UserControls
             // 
             topGreenLine.BackColor = Color.FromArgb(148, 177, 114);
             topGreenLine.Dock = DockStyle.Top;
-            topGreenLine.Location = new Point(20, 48);
+            topGreenLine.Location = new Point(20, 43);
             topGreenLine.Name = "topGreenLine";
             topGreenLine.Size = new Size(751, 2);
             topGreenLine.TabIndex = 1;
@@ -666,8 +682,8 @@ namespace CARED.UserControls
             patientDetailsLabel.Location = new Point(20, 10);
             patientDetailsLabel.Margin = new Padding(0, 3, 3, 5);
             patientDetailsLabel.Name = "patientDetailsLabel";
-            patientDetailsLabel.Padding = new Padding(0, 0, 0, 10);
-            patientDetailsLabel.Size = new Size(142, 38);
+            patientDetailsLabel.Padding = new Padding(0, 0, 0, 5);
+            patientDetailsLabel.Size = new Size(142, 33);
             patientDetailsLabel.TabIndex = 0;
             patientDetailsLabel.Text = "Patient Details";
             // 
@@ -702,6 +718,8 @@ namespace CARED.UserControls
             panel1.PerformLayout();
             buttonPanel.ResumeLayout(false);
             buttonPanel.PerformLayout();
+            procedureRowsPanel.ResumeLayout(false);
+            procedureRowsPanel.PerformLayout();
             procedureListLabelLayout.ResumeLayout(false);
             procedureListLabelLayout.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
@@ -775,5 +793,6 @@ namespace CARED.UserControls
         private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
         private ToolTip addProcedureDisabledTooltip;
+        private Label procedureSelectionPlaceholder;
     }
 }

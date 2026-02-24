@@ -169,9 +169,19 @@ namespace CARED.Services
         }
         public async Task DeleteTransaction(int id)
         {
-            // Use stub entity for deletion if you only have the ID (avoids fetching the entire entity)
-            var transactionToDelete = new Transaction { TransactionID = id };
-            _dbContext.Transactions.Remove(transactionToDelete);
+            var trackedEntity = _dbContext.Transactions.Local.FirstOrDefault(t => t.TransactionID == id);
+
+            if (trackedEntity != null)
+            {
+                // Use the already tracked instance to avoid the "already being tracked" error
+                _dbContext.Transactions.Remove(trackedEntity);
+            }
+            else
+            {
+                // If not tracked, use your stub approach
+                var stub = new Transaction { TransactionID = id };
+                _dbContext.Entry(stub).State = EntityState.Deleted;
+            }
             try
             {
                 await _dbContext.SaveChangesAsync();
