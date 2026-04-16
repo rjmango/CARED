@@ -1,6 +1,7 @@
 using CARED.Data;
 using CARED.Services;
 using CARED.UserControls;
+using DocumentFormat.OpenXml.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,7 +15,7 @@ namespace CARED
         public static IHost? AppHost { get; private set; }
 
         [STAThread]
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
@@ -48,13 +49,20 @@ namespace CARED
                         options.LogTo(Console.WriteLine, LogLevel.Information);
                     });
                     // 2. Service Layer Registration
-                    // If you have a User model):
+                    // If you have a User Service):
                     //services.AddTransient<IUserService, UserService>();
 
                     // --- Registration for your core entities ---
                     services.AddTransient<IProcedureService, ProcedureService>();
                     services.AddTransient<ITransactionService, TransactionService>();
                     //services.AddSingleton<RecordCacheService>();
+
+                    // -- - Registration for your data providers ---
+                    services.AddSingleton<IProcedureProvider>(sp => 
+                    {
+                        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "procedures.json");
+                        return new JsonProcedureProvider(path);
+                    });
 
                     // --- 3. WINFORMS REGISTRATION ---
                     services.AddTransient<mainForm>();
@@ -72,10 +80,25 @@ namespace CARED
             // --- Database Migration and Initialization ---
             using (var scope = AppHost.Services.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDatabaseContext>();
+                var services = scope.ServiceProvider;
+                var dbContext = services.GetRequiredService<AppDatabaseContext>();
+
+                var procedureProvider = services.GetRequiredService<IProcedureProvider>();
+
                 try
                 {
-                    dbContext.Database.Migrate();
+                    await dbContext.Database.MigrateAsync();
+
+                    if(!dbContext.Procedures.Any())
+                    {
+                        var initialProcedures = await procedureProvider.GetProceduresAsync();
+
+                        if (initialProcedures.Any())
+                        { 
+                            await dbContext.Procedures.AddRangeAsync(initialProcedures);
+                            await dbContext.SaveChangesAsync();
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {

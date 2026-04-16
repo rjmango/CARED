@@ -78,7 +78,7 @@ namespace CARED.Data
 
             // --- 2. Data Seeding (Static Initial Data) ---
             // This calls the external static method to insert procedure data via migration.
-            modelBuilder.Entity<Procedure>().HasData(ProcedureSeedData.GetInitialProcedures());
+            //modelBuilder.Entity<Procedure>().HasData(ProcedureSeedData.GetInitialProcedures());
 
             // *** Philippe: Transaction Seeding ***
             //modelBuilder.Entity<Transaction>().HasData(TransactionSeedData.GetTransactions());
