@@ -773,7 +773,6 @@ namespace CARED.UserControls
         private Label proceduresLabel;
         private DateTimePicker dateTimePicker1;
         private Panel procedureRowsPanel;
-        private ProcedureListRowUserControl procedureListRowUserControl1;
         private Button addProcedureButton;
         private FlowLayoutPanel buttonPanel;
         private TableLayoutPanel totalPricePanel;

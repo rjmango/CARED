@@ -468,7 +468,6 @@
         private Label csSuggestion;
         private Panel panel2;
         private Label Header;
-        private Panel panel;
         private Panel yearBorder;
         private Panel panel3;
         private TableLayoutPanel tableLayoutPanel12;
