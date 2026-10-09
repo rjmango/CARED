@@ -95,6 +95,11 @@ namespace CARED.Services
                         }
 
                         ws.Columns().AdjustToContents();
+                        // enforce minimum column widths
+                        ws.Column("A").Width = Math.Max(ws.Column("A").Width, 42);
+                        ws.Column("D").Width = Math.Max(ws.Column("D").Width, 42);
+                        ws.Column("B").Width = Math.Max(ws.Column("B").Width, 12);
+                        ws.Column("E").Width = Math.Max(ws.Column("E").Width, 12);
                         ws.PageSetup.Margins.Top = 0.5;
                         ws.PageSetup.Margins.Bottom = 0.5;
                     }
